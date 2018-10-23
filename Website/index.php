@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Home One || Witter Multipage Responsive Template</title>
+        <title>Kolpo BD</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- favicon -->
@@ -135,7 +135,7 @@
                                 <ul id="nav">
                                     <li><a href="index.php">HOME</a></li>
                                     <li><a href="shop.php">Sell Books</a></li>
-                                    <li><a href="#">Buy Book</a>
+                                    <li><a href="#">Buy Books</a>
                                         <ul class="sub-menu">
                                             <li><a href="about.php">About Us</a></li>
                                             <li><a href="cart.php">Cart Page</a></li>
@@ -277,14 +277,7 @@
 					<div class="layer-1">
 						<h2 class="title-1">LET’S WRITE IMAGINE</h2>
 					</div>
-					<!-- layer 2 -->
-					<div class="layer-2">
-						<p class="title-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-					<!-- layer 3 -->
-					<div class="layer-3">
-						<a href="#" class="title-3">SEE MORE</a>
-					</div>
+					
 					<!-- layer 4 -->
 					<div class="layer-4">
                         <form action="#" class="title-4">

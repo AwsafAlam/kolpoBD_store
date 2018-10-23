@@ -40,7 +40,7 @@
             <?php
                 if ($_SERVER['REQUEST_METHOD']=='POST'){
                     $num=0;
-                    if ($location = mysqli_prepare($con, "SELECT * FROM admin WHERE username= ?")){
+                    if ($location = mysqli_prepare($con, "SELECT * FROM Admin WHERE username= ?")){
                         mysqli_stmt_bind_param($location, "s", $_POST['username']);
                         mysqli_stmt_execute($location);
                         $result = mysqli_stmt_get_result($location);
@@ -81,7 +81,7 @@
                 </div>
 
             <?php
-                }
+            }
             ?>
 
         </div>
