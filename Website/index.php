@@ -62,11 +62,11 @@
                         <div class="header-right">
                             <ul>
                                 <li>
-                                    <a href="account.php"><i class="fa fa-user-circle"></i></a>
+                                    <a href="account.php"><i class="flaticon-people"></i></a>
                                 </li>
                                 <li class="shoping-cart">
                                     <a href="#">
-                                        <i class="fa fa-shopping-cart"></i>
+                                        <i class="flaticon-shop"></i>
                                         <span>2</span>
                                     </a>
                                     <div class="add-to-cart-product">
@@ -134,8 +134,8 @@
                             <nav>
                                 <ul id="nav">
                                     <li><a href="index.php">HOME</a></li>
-                                    <li><a href="shop.php">SELL BOOK</a></li>
-                                    <li><a href="#">Buy Books</a>
+                                    <li><a href="shop.php">Sell Books</a></li>
+                                    <li><a href="#">Buy Book</a>
                                         <ul class="sub-menu">
                                             <li><a href="about.php">About Us</a></li>
                                             <li><a href="cart.php">Cart Page</a></li>
@@ -159,11 +159,11 @@
                         <div class="header-right">
                             <ul>
                                 <li>
-                                    <a href="account.php"><i class="fa fa-user-circle"></i></a>
+                                    <a href="account.php"><i class="flaticon-people"></i></a>
                                 </li>
                                 <li class="shoping-cart">
                                     <a href="#">
-                                        <i class="fa fa-shopping-cart"></i>
+                                        <i class="flaticon-shop"></i>
                                         <span>2</span>
                                     </a>
                                     <div class="add-to-cart-product">
@@ -237,11 +237,11 @@
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<div class="mobile-menu">
 							<nav id="dropdown">
-								<ul>
+                                <ul id="nav">
                                     <li><a href="index.php">HOME</a></li>
-                                    <li><a href="shop.php">SELL BOOK</a></li>
-                                    <li><a href="#">BUY BOOK</a>
-                                        <ul>
+                                    <li><a href="shop.php">Sell Books</a></li>
+                                    <li><a href="#">Buy Book</a>
+                                        <ul class="sub-menu">
                                             <li><a href="about.php">About Us</a></li>
                                             <li><a href="cart.php">Cart Page</a></li>
                                             <li><a href="checkout.php">Check Out</a></li>
@@ -256,8 +256,8 @@
                                     </li>
                                     <li><a href="contact.php">CONTACT</a></li>
                                     <li><a href="contact.php">FAQ</a></li>
-								</ul>
-							</nav>
+                                </ul>
+                    		</nav>
 						</div>
 					</div>
 				</div>
@@ -269,12 +269,44 @@
 			<div class="bend niceties preview-1">
 				<div id="ensign-nivoslider" class="slides">	
 					<img src="img/slider/1.jpg" alt="" title="#slider-direction-1"  />
-					<!-- <img src="img/slider/2.jpg" alt="" title="#slider-direction-2"  /> -->
+					<img src="img/slider/2.jpg" alt="" title="#slider-direction-2"  />
 				</div>
-				
+				<!-- direction 1 -->
+				<div id="slider-direction-1" class="text-center slider-direction">
+					<!-- layer 1 -->
+					<div class="layer-1">
+						<h2 class="title-1">LET’S WRITE IMAGINE</h2>
+					</div>
+					<!-- layer 2 -->
+					<div class="layer-2">
+						<p class="title-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					</div>
+					<!-- layer 3 -->
+					<div class="layer-3">
+						<a href="#" class="title-3">SEE MORE</a>
+					</div>
+					<!-- layer 4 -->
+					<div class="layer-4">
+                        <form action="#" class="title-4">
+                            <input type="text" placeholder="Enter your book title here">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+					</div>
+				</div>
 				<!-- direction 2 -->
-				<div id="slider-direction-1" class="slider-direction">
-					
+				<div id="slider-direction-2" class="slider-direction">
+					<!-- layer 1 -->
+					<div class="layer-1">
+						<h2 class="title-1">LET’S WRITE IMAGINE</h2>
+					</div>
+					<!-- layer 2 -->
+					<div class="layer-2">
+						<p class="title-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					</div>
+					<!-- layer 3 -->
+					<div class="layer-3">
+						<a href="#" class="title-3">SEE MORE</a>
+					</div>
 					<!-- layer 4 -->
 					<div class="layer-4">
                         <form action="#" class="title-4">
@@ -286,8 +318,6 @@
 			</div>
 		</div>
 		<!-- slider Area End-->    
-		<!doctype html>
-
         <!-- Shop Area Start -->
         <div class="shopping-area section-padding">
             <div class="container">
@@ -1088,6 +1118,7 @@
             </div>
         </div>
         <!--End of Quickview Product-->	
+        <!--End of Quickview Product-->			
 		<!-- all js here -->
 		<!-- jquery latest version -->
         <script src="js/vendor/jquery-1.12.0.min.js"></script>
