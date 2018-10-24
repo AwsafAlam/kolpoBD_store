@@ -137,16 +137,16 @@
                                     <li><a href="shop.php">Sell Books</a></li>
                                     <li><a href="#">Buy Books</a>
                                         <ul class="sub-menu">
-                                            <li><a href="about.php">About Us</a></li>
-                                            <li><a href="cart.php">Cart Page</a></li>
-                                            <li><a href="checkout.php">Check Out</a></li>
-                                            <li><a href="contact.php">Contact</a></li>
-                                            <li><a href="login.php">Login</a></li>
-                                            <li><a href="my-account.php">My Account</a></li>
-                                            <li><a href="shop.php">Shopping Page</a></li>
-                                            <li><a href="single-product.php">Single Shop Page</a></li>
-                                            <li><a href="wishlist.php">Wishlist Page</a></li>
-                                            <li><a href="404.php">404 Page</a></li>
+                                            <li><a href="#">EEE</a></li>
+                                            <li><a href="cart.php">CSE</a></li>
+                                            <li><a href="checkout.php">ME</a></li>
+                                            <li><a href="contact.php">Civil</a></li>
+                                            <li><a href="login.php">Chemical</a></li>
+                                            <li><a href="my-account.php">NAME</a></li>
+                                            <li><a href="shop.php">IPE</a></li>
+                                            <li><a href="single-product.php">BME</a></li>
+                                            <li><a href="wishlist.php">MME</a></li>
+                                            <li><a href="404.php">Archi</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="contact.php">CONTACT</a></li>
@@ -788,6 +788,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- List View -->
                                 <div id="menu1" class="tab-pane fade">
                                     <div class="row">
                                         <div class="single-shop-product">
