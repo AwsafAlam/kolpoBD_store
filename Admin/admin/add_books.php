@@ -6,8 +6,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <title>Kolpo Admin</title>
+    <meta name="description" content="kolpoBD Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="apple-icon.png">
@@ -29,21 +29,22 @@
 
      <?php include $_SERVER['DOCUMENT_ROOT'].'/../phpincludes/auth.php';
 
+    //  if ($_SERVER['REQUEST_METHOD']=='GET'){
+
+        
+    //  }
     if (mysqli_connect_errno()) {
         echo "COULD NOT CONNECT TO DATABASE";
         exit();
     }
 
-    $posts = mysqli_query(
-        $con,
-        "SELECT title, views FROM posts WHERE 1"
-    );
-
+  
     ?>
 
 </head>
 <body>
         <!-- Left Panel -->
+
 
         <aside id="left-panel" class="left-panel">
             <nav class="navbar navbar-expand-sm navbar-default">
@@ -62,9 +63,10 @@
                             <a href="index.php"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                         </li>
                         <li>
-                            <a href="new-post.php"> <i class="menu-icon fa fa-th"></i>New Post </a>
-                            <a href="stats.php"> <i class="menu-icon fa fa-bar-chart"></i>Stats </a>
-                            <a href="member-info.php"> <i class="menu-icon fa fa-area-chart"></i>Member Info </a>
+                            <!-- <a href="new-post.php"> <i class="menu-icon fa fa-th"></i>New Post </a> -->
+                            <!-- <a href="stats.php"> <i class="menu-icon fa fa-bar-chart"></i>Stats </a> -->
+                            <a href="book-info.php"> <i class="menu-icon fa fa-area-chart"></i>Book Info </a>
+                            <a href="add_books.php"> <i class="menu-icon fa fa-area-chart"></i>Add Books </a>
                         </li>
 
                     </ul>
@@ -108,7 +110,7 @@
 
 
 
-            <div class="breadcrumbs">
+        <div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
@@ -132,37 +134,100 @@
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
+                <div class='content-wrap'>
+            <?php
+            $err='';
+            $_SESSION['message']='';
 
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <strong class="card-title">Data Table</strong>
-                        </div>
-                        <div class="card-body">
-                  <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Article Name</th>
-                        <th>Views</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <?php
+            if ($_SERVER['REQUEST_METHOD']=='POST'){
 
-                    while($row = mysqli_fetch_array($posts)){
-                    ?>
+                $Book= $con->escape_string($_POST['Book']);
 
-                      <tr>
-                        <td><?php echo $row['title'];?></td>
-                        <td><?php echo $row['views'];?></td>
-                      </tr>
-                      <?php }?>
-                    </tbody>
-                  </table>
-                        </div>
-                    </div>
-                </div>
+                $Price_W= $con->escape_string($_POST['Price_W']);
+                $Price_N= $con->escape_string($_POST['Price_N']);
+                $Price_O= $con->escape_string($_POST['Price_O']);
+                $Author_1= $con->escape_string($_POST['Author_1']);
+                $Author_2= $con->escape_string($_POST['Author_2']);
+                $Author_3= $con->escape_string($_POST['Author_3']);
+                $Author_4= $con->escape_string($_POST['Author_4']);
+                $Author_5= $con->escape_string($_POST['Author_5']);
+                $Author_6= $con->escape_string($_POST['Author_6']);
+                $Author_7= $con->escape_string($_POST['Author_7']);
+                
+                // $strings="INSERT INTO questions(title,userid,username,question,category,anonymous,notification,image,tags,userpic) VALUES (" . "'". $title . "'". "," . "'". $userid . "'". "," . "'". $username . "'". "," . "'". $question . "'". "," . "'". $category. "'" ."," ."'" . $anonymous. "'" . "," . "'". $imagecount. "'" . "," . "'". $imagenames. "'" . ",". "'". $tags . "'". "," . "'". $fbpic . "'".  ")";
+                // $str= "INSERT INTO questions(username,question,category,notification,image) VALUES ( ";
+                // $result = $conn->query($strings);
 
+                if ($location = mysqli_prepare($con, "INSERT INTO Book (book_id, name) VALUES (?, ?)")){
+                    mysqli_stmt_bind_param($location, "sss", $id['admin_id'] , $Book);
+                    mysqli_stmt_execute($location);
+
+                    $_SESSION['message']="Add Book Successful!";
+
+                }
+
+
+
+            }
+            else{
+            ?>
+
+            <div class="form-block">
+                <h1>Add Book ( Try to fill all the fields )</h1>
+                <form action="admin-reg.php" method="post">
+                    <input type="text" name="Book" placeholder="Book Name"><br>
+                    <h5>If edition is unknown leave blank</h5>
+                    <input type="text" name="Book" placeholder="Edition"><br>
+                    <h5>EEE , CSE , MME .. be careful to write only official abbreviation "only in BLOCK Letters"</h5><br>
+                    <input type="text" name="Dept" placeholder="Department"><br>
+                    <h5>1 for L1T1 , 2 for L2T2 and so on</h5><br>
+                    <input type="number" name="Sem" placeholder="Semester"><br>
+                    <h4>Write as many tags you can think of, this will help in search. e.g for Sadiku book -> you can add Node Analysis, Semiconductorn etc tags </h4><br>
+                    <input type="text" name="Tag_1" placeholder="Tag"><br>
+                    <input type="text" name="Tag_2" placeholder="Tag"><br>
+                    <input type="text" name="Tag_3" placeholder="Tag"><br>
+                    <input type="text" name="Tag_4" placeholder="Tag"><br>
+                    <input type="text" name="Tag_5" placeholder="Tag"><br>
+                    <input type="text" name="Tag_6" placeholder="Tag"><br>
+                    <input type="text" name="Tag_7" placeholder="Tag"><br>
+                    <input type="text" name="Tag_8" placeholder="Tag"><br>
+                    <input type="text" name="Tag_9" placeholder="Tag"><br>
+                    <input type="text" name="Tag_10" placeholder="Tag"><br>
+                    <input type="text" name="Tag_11" placeholder="Tag"><br>
+                    <input type="text" name="Tag_12" placeholder="Tag"><br>
+                    <input type="text" name="Tag_13" placeholder="Tag"><br>
+                    <input type="text" name="Tag_14" placeholder="Tag"><br>
+                    <input type="text" name="Tag_15" placeholder="Tag"><br>
+                    <input type="text" name="Tag_16" placeholder="Tag"><br>
+                    <input type="text" name="Tag_17" placeholder="Tag"><br>
+                    <input type="text" name="Tag_18" placeholder="Tag"><br>
+                    <input type="text" name="Tag_19" placeholder="Tag"><br>
+                    <input type="text" name="Tag_20" placeholder="Tag"><br>
+                    <br>
+                    <br>
+                    <br>
+                    <input type="number" name="Price_W" placeholder="Price White Print"><br>
+                    <input type="number" name="Price_N" placeholder="Price News Print"><br>
+                    <input type="number" name="Price_O" placeholder="Price Original Print"><br><br>
+                    <input type="text" name="Author_1" placeholder="Author 1"><br>
+                    <input type="text" name="Author_2" placeholder="Author 2"><br>
+                    <input type="text" name="Author_3" placeholder="Author 3"><br>
+                    <input type="text" name="Author_4" placeholder="Author 4"><br>
+                    <input type="text" name="Author_5" placeholder="Author 5"><br>
+                    <input type="text" name="Author_6" placeholder="Author 6"><br>
+                    <input type="text" name="Author_7" placeholder="Author 7"><br>
+                    
+                    <a style="color: red;"><?php echo $err;?></a>
+                    <input class="button" type="submit" value="Add">
+                </form>
+
+            </div>
+            <?php
+            }
+            echo "<h1>".$_SESSION['message']."</h1>";
+            ?>
+
+        </div>
 
                 </div>
             </div><!-- .animated -->
