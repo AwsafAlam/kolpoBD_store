@@ -1,8 +1,5 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -171,9 +168,8 @@
             </div>
         </div>
 
-        <div class="content mt-3">
-            <div class="animated fadeIn">
-                <div class="row">
+        <div class="container">
+            <div class="row">
                 <div class='content-wrap'>
             <?php
             $err='';
@@ -223,8 +219,8 @@
                 // $str= "INSERT INTO questions(username,question,category,notification,image) VALUES ( ";
                 // $result = $conn->query($strings);
 
-                if ($location = mysqli_prepare($con, "INSERT INTO Book (book_id, name) VALUES (?, ?)")){
-                    mysqli_stmt_bind_param($location, "sss", $id['admin_id'] , $Book);
+                if ($location = mysqli_prepare($con, "INSERT INTO Book (book_id, name , img) VALUES (?, ? , ?)")){
+                    mysqli_stmt_bind_param($location, "sss", $id['bool_id'] , $Book , $id['bool_img']);
                     mysqli_stmt_execute($location);
 
                     $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
@@ -240,33 +236,32 @@
                         $tmp["book_id"] = $book_id;
                     }
 
-                    $strings = "SELECT department_id FROM Department WHERE name = '".$Dept."'";    
+                    // $strings = "SELECT department_id FROM Department WHERE name = '".$Dept."'";    
                     
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($dept_id);
-                        // $posts = array();
-                        $tag = array();
+                    //     $result = $conn->prepare($strings);
+                    //     $result->execute();
+                    //     $result->bind_result($dept_id);
+                    //     $tag = array();
 
-                        while($result->fetch()) {       
-                            $tag["dept_id"] = $dept_id;
-                        }
+                    //     while($result->fetch()) {       
+                    //         $tag["dept_id"] = $dept_id;
+                    //     }
                     
-                        $strings = "SELECT semester_id FROM Semester WHERE number = '".$Sem."'";    
+                    //     $strings = "SELECT semester_id FROM Semester WHERE number = '".$Sem."'";    
                     
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($sem_id);
-                        // $posts = array();
-                        //$tag = array();
+                    //     $result = $conn->prepare($strings);
+                    //     $result->execute();
+                    //     $result->bind_result($sem_id);
+                    //     // $posts = array();
+                    //     //$tag = array();
 
-                        while($result->fetch()) {       
-                            $tag["sem_id"] = $sem_id;
-                        }
+                    //     while($result->fetch()) {       
+                    //         $tag["sem_id"] = $sem_id;
+                    //     }
                     
-                    $strings = "INSERT INTO BookSemester (id , university_id , department_id , semester_id) VALUES  (NULL, 1 ,'".$tag["dept_id"]."','".$tag["sem_id"]."')";    
-                    $result = $conn->prepare($strings);
-                    $result->execute();
+                    // $strings = "INSERT INTO BookSemester (id , university_id , department_id , semester_id) VALUES  (NULL, 1 ,'".$tag["dept_id"]."','".$tag["sem_id"]."')";    
+                    // $result = $conn->prepare($strings);
+                    // $result->execute();
 
                     $strings = "INSERT INTO BookEdition (id , book_id , edition_id) VALUES (NULL, '".$tmp["book_id"]."','".$Edition."')";    
                     $result = $conn->prepare($strings);
@@ -311,10 +306,12 @@
                             $author["author_id"] = $author_id;
                         }
                         
-                        $location = mysqli_prepare($con, "INSERT INTO BookAuthor (id, book_id , author_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tmp["book_id"] , $author["author_id"]);
-                        mysqli_stmt_execute($location);
+                        $strings = "INSERT INTO BookAuthor (id, book_id , author_id) VALUES ( NULL,'".$tmp["book_id"]."' , '".$author["author_id"]."'";    
+                    
+                        $result = $conn->prepare($strings);
+                        $result->execute();
 
+                        
                     }
                     if($Author_2 != ""){
                         $location = mysqli_prepare($con, "INSERT INTO Author (author_id, author_name) VALUES (?, ?)");
@@ -417,10 +414,10 @@
                         while($result->fetch()) {       
                             $tag["tag_id"] = $tag_id;
                         }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookTag (id, tag_id , book_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tag["tag_id"] , $author["book_id"]);
-                        mysqli_stmt_execute($location);
+                        $strings = "INSERT INTO BookTag (id, tag_id , book_id) VALUES ( NULL,'".$tag["tag_id"]."' , '".$author["book_id"]."'";    
+                        $result = $conn->prepare($strings);
+                        $result->execute();
+
                     }
                     if($Tag_2 != ""){
                         $location = mysqli_prepare($con, "INSERT INTO Tag (Tag_id, Tag_name) VALUES (?, ?)");
@@ -642,7 +639,7 @@
 
             <div class="form-block">
                 <h1>Add Book ( Try to fill all the fields )</h1>
-                <form action="admin-reg.php" method="post">
+                <form action="add_books.php" method="post">
                     <input type="text" name="Book" placeholder="Book Name"><br>
                     <h5>If edition is unknown leave blank , 1 for 1st edition, 2 for 2nd, so on...</h5>
                     <input type="number" name="Edition" placeholder="Edition"><br>
@@ -698,9 +695,8 @@
 
         </div>
 
-                </div>
-            </div><!-- .animated -->
-        </div><!-- .content -->
+        </div><!-- .animated -->
+    </div><!-- .content -->
 
 
     </div><!-- /#right-panel -->
