@@ -108,7 +108,7 @@
     
                             $_SESSION['message']="Hi ". $name;
                             $_SESSION['username']=$tmp['username'];
-                            header("location: ./admin/");
+                            header("location: ./admin/home.php");
     
                         }
                         else{

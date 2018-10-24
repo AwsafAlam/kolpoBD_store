@@ -59,7 +59,7 @@
                 <div id="main-menu" class="main-menu collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            <a href="index.php"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                            <a href="home.php"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                         </li>
                         <li>
                             <a href="new-post.php"> <i class="menu-icon fa fa-th"></i>New Post </a>

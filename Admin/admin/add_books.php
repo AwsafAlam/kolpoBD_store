@@ -24,7 +24,8 @@
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
-     <?php include $_SERVER['DOCUMENT_ROOT'].'/../phpincludes/auth.php';
+     <?php 
+     include $_SERVER['DOCUMENT_ROOT'].'/../phpincludes/auth.php';
     require_once '../include/DbHandler.php';
     require_once '../include/PassHash.php';
     require '../libs/Slim/Slim.php';
@@ -97,7 +98,7 @@
                 <div id="main-menu" class="main-menu collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            <a href="index.php"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                            <a href="home.php"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                         </li>
                         <li>
                             <!-- <a href="new-post.php"> <i class="menu-icon fa fa-th"></i>New Post </a> -->
@@ -180,20 +181,20 @@
                 $Book= $con->escape_string($_POST['Book']);
                 $Edition= $con->escape_string($_POST['Edition']);
 
-                $Dept= $con->escape_string($_POST['Dept']);
-                $Sem= $con->escape_string($_POST['Sem']);
+                // $Dept= $con->escape_string($_POST['Dept']);
+                // $Sem= $con->escape_string($_POST['Sem']);
 
-                $Tag_1= $con->escape_string($_POST['Tag_1']);
-                $Tag_2= $con->escape_string($_POST['Tag_2']);
-                $Tag_3= $con->escape_string($_POST['Tag_3']);
-                $Tag_4= $con->escape_string($_POST['Tag_4']);
-                $Tag_5= $con->escape_string($_POST['Tag_5']);
-                $Tag_6= $con->escape_string($_POST['Tag_6']);
-                $Tag_7= $con->escape_string($_POST['Tag_7']);
-                $Tag_8= $con->escape_string($_POST['Tag_8']);
-                $Tag_9= $con->escape_string($_POST['Tag_9']);
-                $Tag_10= $con->escape_string($_POST['Tag_10']);
-                $Tag_11= $con->escape_string($_POST['Tag_11']);
+                // $Tag_1= $con->escape_string($_POST['Tag_1']);
+                // $Tag_2= $con->escape_string($_POST['Tag_2']);
+                // $Tag_3= $con->escape_string($_POST['Tag_3']);
+                // $Tag_4= $con->escape_string($_POST['Tag_4']);
+                // $Tag_5= $con->escape_string($_POST['Tag_5']);
+                // $Tag_6= $con->escape_string($_POST['Tag_6']);
+                // $Tag_7= $con->escape_string($_POST['Tag_7']);
+                // $Tag_8= $con->escape_string($_POST['Tag_8']);
+                // $Tag_9= $con->escape_string($_POST['Tag_9']);
+                // $Tag_10= $con->escape_string($_POST['Tag_10']);
+                // $Tag_11= $con->escape_string($_POST['Tag_11']);
                 
                 
                 $Price_W= $con->escape_string($_POST['Price_W']);
@@ -201,11 +202,11 @@
                 $Price_O= $con->escape_string($_POST['Price_O']);
                 $Price_S= $con->escape_string($_POST['Price_S']);
 
-                $Author_1= $con->escape_string($_POST['Author_1']);
-                $Author_2= $con->escape_string($_POST['Author_2']);
-                $Author_3= $con->escape_string($_POST['Author_3']);
-                $Author_4= $con->escape_string($_POST['Author_4']);
-                $Author_5= $con->escape_string($_POST['Author_5']);
+                // $Author_1= $con->escape_string($_POST['Author_1']);
+                // $Author_2= $con->escape_string($_POST['Author_2']);
+                // $Author_3= $con->escape_string($_POST['Author_3']);
+                // $Author_4= $con->escape_string($_POST['Author_4']);
+                // $Author_5= $con->escape_string($_POST['Author_5']);
                 
                 $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
 
