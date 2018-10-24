@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BUET Robotics Society</title>
+    <title>KolpoBd Admin</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -49,18 +49,19 @@
 
                 $valid=true;
                 $num=0;
-                if ($location = mysqli_prepare($con, "SELECT * FROM Admin WHERE username= ?")){
-                    mysqli_stmt_bind_param($location, "s", $username);
-                    mysqli_stmt_execute($location);
-                    $result = mysqli_stmt_get_result($location);
-                    $num2 = mysqli_num_rows($result);
-                }
+                // if ($location = mysqli_prepare($con, "SELECT * FROM Admin WHERE 1")){
+                //     mysqli_stmt_bind_param($location, "s", $username);
+                //     mysqli_stmt_execute($location);
+                //     $result = mysqli_stmt_get_result($location);
+                //     $num2 = mysqli_num_rows($result);
+                // }
                 
-                if ($num2>0){
-                    $err="The username already exists!";
-                    $valid=false;
-                }
-                elseif (strlen($password)<5){
+                // if ($num2>0){
+                //     $err="The username already exists!";
+                //     $valid=false;
+                // }
+                // else
+                if (strlen($password)<5){
                     $err="Please use a stronger password.";
                     $valid=false;
                 }
@@ -69,7 +70,7 @@
 
 
                 if ($valid){
-                    if ($location = mysqli_prepare($con, "INSERT INTO Admin (username, pass, admin_id) VALUES (?, ?, ?)")){
+                    if ($location = mysqli_prepare($con, "INSERT INTO Admin (username, password, admin_id) VALUES (?, ?, ?)")){
                         mysqli_stmt_bind_param($location, "sss", $username,$password, $id['admin_id']);
                         mysqli_stmt_execute($location);
 
