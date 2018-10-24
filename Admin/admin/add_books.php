@@ -194,15 +194,7 @@
                 $Tag_9= $con->escape_string($_POST['Tag_9']);
                 $Tag_10= $con->escape_string($_POST['Tag_10']);
                 $Tag_11= $con->escape_string($_POST['Tag_11']);
-                // $Tag_12= $con->escape_string($_POST['Tag_12']);
-                // $Tag_13= $con->escape_string($_POST['Tag_13']);
-                // $Tag_14= $con->escape_string($_POST['Tag_14']);
-                // $Tag_15= $con->escape_string($_POST['Tag_15']);
-                // $Tag_16= $con->escape_string($_POST['Tag_16']);
-                // $Tag_17= $con->escape_string($_POST['Tag_17']);
-                // $Tag_18= $con->escape_string($_POST['Tag_18']);
-                // $Tag_19= $con->escape_string($_POST['Tag_19']);
-                // $Tag_20= $con->escape_string($_POST['Tag_20']);
+                
                 
                 $Price_W= $con->escape_string($_POST['Price_W']);
                 $Price_N= $con->escape_string($_POST['Price_N']);
@@ -215,20 +207,19 @@
                 $Author_4= $con->escape_string($_POST['Author_4']);
                 $Author_5= $con->escape_string($_POST['Author_5']);
                 
-                // $strings="INSERT INTO questions(title,userid,username,question,category,anonymous,notification,image,tags,userpic) VALUES (" . "'". $title . "'". "," . "'". $userid . "'". "," . "'". $username . "'". "," . "'". $question . "'". "," . "'". $category. "'" ."," ."'" . $anonymous. "'" . "," . "'". $imagecount. "'" . "," . "'". $imagenames. "'" . ",". "'". $tags . "'". "," . "'". $fbpic . "'".  ")";
-                // $str= "INSERT INTO questions(username,question,category,notification,image) VALUES ( ";
-                // $result = $conn->query($strings);
+                $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
 
+                
                 if ($location = mysqli_prepare($con, "INSERT INTO Book (book_id, name , img) VALUES (?, ? , ?)")){
                     mysqli_stmt_bind_param($location, "sss", $id['bool_id'] , $Book , $id['bool_img']);
                     mysqli_stmt_execute($location);
 
-                    $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
                     $strings = "SELECT book_id FROM Book WHERE name = '".$Book."'";    
                     
                     $result = $conn->prepare($strings);
                     $result->execute();
                     $result->bind_result($book_id);
+
                     // $posts = array();
                     $tmp = array();
 
@@ -236,49 +227,49 @@
                         $tmp["book_id"] = $book_id;
                     }
 
-                    // $strings = "SELECT department_id FROM Department WHERE name = '".$Dept."'";    
+                    // $strings = "SELECT department_id FROM Department WHERE abbreviation = '".$Dept."'";    
                     
-                    //     $result = $conn->prepare($strings);
-                    //     $result->execute();
-                    //     $result->bind_result($dept_id);
-                    //     $tag = array();
+                    // $result1 = $conn->prepare($strings);
+                    // $result1->execute();
+                    // $result1->bind_result($dept_id);
+                    // $tag = array();
 
-                    //     while($result->fetch()) {       
+                    //     while($result1->fetch()) {       
                     //         $tag["dept_id"] = $dept_id;
                     //     }
                     
                     //     $strings = "SELECT semester_id FROM Semester WHERE number = '".$Sem."'";    
                     
-                    //     $result = $conn->prepare($strings);
-                    //     $result->execute();
-                    //     $result->bind_result($sem_id);
+                    //     $result2 = $conn->prepare($strings);
+                    //     $result2->execute();
+                    //     $result2->bind_result($sem_id);
                     //     // $posts = array();
                     //     //$tag = array();
 
-                    //     while($result->fetch()) {       
+                    //     while($result2->fetch()) {       
                     //         $tag["sem_id"] = $sem_id;
                     //     }
                     
                     // $strings = "INSERT INTO BookSemester (id , university_id , department_id , semester_id) VALUES  (NULL, 1 ,'".$tag["dept_id"]."','".$tag["sem_id"]."')";    
-                    // $result = $conn->prepare($strings);
-                    // $result->execute();
+                    // $result3 = $conn->prepare($strings);
+                    // $result3->execute();
 
                     $strings = "INSERT INTO BookEdition (id , book_id , edition_id) VALUES (NULL, '".$tmp["book_id"]."','".$Edition."')";    
-                    $result = $conn->prepare($strings);
-                    $result->execute();
-
+                    $result4 = $conn->prepare($strings);
+                    $result4->execute();
+                    $result->close();
 
                     if($Price_W != ""){
                         $strings = "INSERT INTO Price (price_id , book_id , quality_id , price) VALUES  (NULL, '".$tmp["book_id"]."', '1', '".$Price_W."')";    
                         $result = $conn->prepare($strings);
                         $result->execute();
                     }
-                    if($Price_W != ""){
+                    if($Price_N != ""){
                         $strings = "INSERT INTO Price (price_id , book_id , quality_id , price) VALUES  (NULL, '".$tmp["book_id"]."', '2', '".$Price_N."')";    
                         $result = $conn->prepare($strings);
                         $result->execute();
                     }
-                    if($Price_W != ""){
+                    if($Price_O != ""){
                         $strings = "INSERT INTO Price (price_id , book_id , quality_id , price) VALUES  (NULL, '".$tmp["book_id"]."', '3', '".$Price_O."')";    
                         $result = $conn->prepare($strings);
                         $result->execute();
@@ -289,346 +280,6 @@
                         $result->execute();
                     }
 
-                    if($Author_1 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Author (author_id, author_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['author_id'] , $Author_1);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT author_id FROM Author WHERE author_name = '".$Author_1."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($author_id);
-                        // $posts = array();
-                        $author = array();
-
-                        while($result->fetch()) {       
-                            $author["author_id"] = $author_id;
-                        }
-                        
-                        $strings = "INSERT INTO BookAuthor (id, book_id , author_id) VALUES ( NULL,'".$tmp["book_id"]."' , '".$author["author_id"]."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-
-                        
-                    }
-                    if($Author_2 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Author (author_id, author_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['author_id'] , $Author_2);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT author_id FROM Author WHERE author_name = '".$Author_2."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($author_id);
-                        // $posts = array();
-                        $author = array();
-
-                        while($result->fetch()) {       
-                            $author["author_id"] = $author_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookAuthor (id, book_id , author_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tmp["book_id"] , $author["author_id"]);
-                        mysqli_stmt_execute($location);
-                    }
-                    if($Author_3 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Author (author_id, author_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['author_id'] , $Author_3);
-                        mysqli_stmt_execute($location);
-                    
-                        $strings = "SELECT author_id FROM Author WHERE author_name = '".$Author_3."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($author_id);
-                        // $posts = array();
-                        $author = array();
-
-                        while($result->fetch()) {       
-                            $author["author_id"] = $author_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookAuthor (id, book_id , author_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tmp["book_id"] , $author["author_id"]);
-                        mysqli_stmt_execute($location);
-                    }
-                    if($Author_4 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Author (author_id, author_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['author_id'] , $Author_4);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT author_id FROM Author WHERE author_name = '".$Author_4."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($author_id);
-                        // $posts = array();
-                        $author = array();
-
-                        while($result->fetch()) {       
-                            $author["author_id"] = $author_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookAuthor (id, book_id , author_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tmp["book_id"] , $author["author_id"]);
-                        mysqli_stmt_execute($location);
-                    }
-                    if($Author_5 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Author (author_id, author_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['author_id'] , $Author_5);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT author_id FROM Author WHERE author_name = '".$Author_5."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($author_id);
-                        // $posts = array();
-                        $author = array();
-
-                        while($result->fetch()) {       
-                            $author["author_id"] = $author_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookAuthor (id, book_id , author_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tmp["book_id"] , $author["author_id"]);
-                        mysqli_stmt_execute($location);
-                    }
-                    
-                    if($Tag_1 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Tag (Tag_id, Tag_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['Tag_id'] , $Tag_1);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT tag_id FROM Tag WHERE tag_name = '".$Tag_1."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($tag_id);
-                        // $posts = array();
-                        $tag = array();
-
-                        while($result->fetch()) {       
-                            $tag["tag_id"] = $tag_id;
-                        }
-                        $strings = "INSERT INTO BookTag (id, tag_id , book_id) VALUES ( NULL,'".$tag["tag_id"]."' , '".$author["book_id"]."'";    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-
-                    }
-                    if($Tag_2 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Tag (Tag_id, Tag_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['Tag_id'] , $Tag_2);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT tag_id FROM Tag WHERE tag_name = '".$Tag_2."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($tag_id);
-                        // $posts = array();
-                        $tag = array();
-
-                        while($result->fetch()) {       
-                            $tag["tag_id"] = $tag_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookTag (id, tag_id , book_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tag["tag_id"] , $author["book_id"]);
-                        mysqli_stmt_execute($location);
-                    }
-                    if($Tag_3 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Tag (Tag_id, Tag_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['Tag_id'] , $Tag_3);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT tag_id FROM Tag WHERE tag_name = '".$Tag_3."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($tag_id);
-                        // $posts = array();
-                        $tag = array();
-
-                        while($result->fetch()) {       
-                            $tag["tag_id"] = $tag_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookTag (id, tag_id , book_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tag["tag_id"] , $author["book_id"]);
-                        mysqli_stmt_execute($location);
-                    }
-                    if($Tag_4 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Tag (Tag_id, Tag_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['Tag_id'] , $Tag_4);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT tag_id FROM Tag WHERE tag_name = '".$Tag_4."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($tag_id);
-                        // $posts = array();
-                        $tag = array();
-
-                        while($result->fetch()) {       
-                            $tag["tag_id"] = $tag_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookTag (id, tag_id , book_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tag["tag_id"] , $author["book_id"]);
-                        mysqli_stmt_execute($location);
-                    }
-                    if($Tag_5 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Tag (Tag_id, Tag_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['Tag_id'] , $Tag_5);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT tag_id FROM Tag WHERE tag_name = '".$Tag_5."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($tag_id);
-                        // $posts = array();
-                        $tag = array();
-
-                        while($result->fetch()) {       
-                            $tag["tag_id"] = $tag_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookTag (id, tag_id , book_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tag["tag_id"] , $author["book_id"]);
-                        mysqli_stmt_execute($location);
-                    }
-                    if($Tag_6 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Tag (Tag_id, Tag_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['Tag_id'] , $Tag_6);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT tag_id FROM Tag WHERE tag_name = '".$Tag_6."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($tag_id);
-                        // $posts = array();
-                        $tag = array();
-
-                        while($result->fetch()) {       
-                            $tag["tag_id"] = $tag_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookTag (id, tag_id , book_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tag["tag_id"] , $author["book_id"]);
-                        mysqli_stmt_execute($location);
-                    }
-                    if($Tag_7 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Tag (Tag_id, Tag_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['Tag_id'] , $Tag_7);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT tag_id FROM Tag WHERE tag_name = '".$Tag_7."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($tag_id);
-                        // $posts = array();
-                        $tag = array();
-
-                        while($result->fetch()) {       
-                            $tag["tag_id"] = $tag_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookTag (id, tag_id , book_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tag["tag_id"] , $author["book_id"]);
-                        mysqli_stmt_execute($location);
-                    }
-                    if($Tag_8 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Tag (Tag_id, Tag_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['Tag_id'] , $Tag_8);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT tag_id FROM Tag WHERE tag_name = '".$Tag_8."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($tag_id);
-                        // $posts = array();
-                        $tag = array();
-
-                        while($result->fetch()) {       
-                            $tag["tag_id"] = $tag_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookTag (id, tag_id , book_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tag["tag_id"] , $author["book_id"]);
-                        mysqli_stmt_execute($location);
-                    }
-                    if($Tag_9 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Tag (Tag_id, Tag_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['Tag_id'] , $Tag_9);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT tag_id FROM Tag WHERE tag_name = '".$Tag_9."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($tag_id);
-                        // $posts = array();
-                        $tag = array();
-
-                        while($result->fetch()) {       
-                            $tag["tag_id"] = $tag_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookTag (id, tag_id , book_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tag["tag_id"] , $author["book_id"]);
-                        mysqli_stmt_execute($location);
-                    }
-                    if($Tag_10 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Tag (Tag_id, Tag_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['Tag_id'] , $Tag_10);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT tag_id FROM Tag WHERE tag_name = '".$Tag_10."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($tag_id);
-                        // $posts = array();
-                        $tag = array();
-
-                        while($result->fetch()) {       
-                            $tag["tag_id"] = $tag_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookTag (id, tag_id , book_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tag["tag_id"] , $author["book_id"]);
-                        mysqli_stmt_execute($location);
-                    }
-                    if($Tag_11 != ""){
-                        $location = mysqli_prepare($con, "INSERT INTO Tag (Tag_id, Tag_name) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['Tag_id'] , $Tag_11);
-                        mysqli_stmt_execute($location);
-
-                        $strings = "SELECT tag_id FROM Tag WHERE tag_name = '".$Tag_11."'";    
-                    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                        $result->bind_result($tag_id);
-                        // $posts = array();
-                        $tag = array();
-
-                        while($result->fetch()) {       
-                            $tag["tag_id"] = $tag_id;
-                        }
-                        
-                        $location = mysqli_prepare($con, "INSERT INTO BookTag (id, tag_id , book_id) VALUES (?, ?)");
-                        mysqli_stmt_bind_param($location, "sss", $id['id'] , $tag["tag_id"] , $author["book_id"]);
-                        mysqli_stmt_execute($location);
-                    }
                     
                     
                     $_SESSION['message']="Add Book Successful!";
@@ -638,18 +289,21 @@
             ?>
 
             <div class="form-block">
-                <h1>Add Book ( Try to fill all the fields )</h1>
+                <h3>Add Book  fill all the fields!!!</h3>
                 <form action="add_books.php" method="post">
+                    <h5>Write book name plus authors plus edition togethor here</h5>
+
                     <input type="text" name="Book" placeholder="Book Name"><br>
                     <h5>If edition is unknown leave blank , 1 for 1st edition, 2 for 2nd, so on...</h5>
                     <input type="number" name="Edition" placeholder="Edition"><br>
-                    <h5>EEE , CSE , MME .. be careful to write only official abbreviation "only in BLOCK Letters"</h5><br>
+                    
+                    <!-- <h5>EEE , CSE , MME .. be careful to write only official abbreviation "only in BLOCK Letters"</h5><br>
                     <input type="text" name="Dept" placeholder="Department"><br>
                     <h5>1 for L1T1 , 2 for L2T2 and so on</h5><br>
                     <input type="number" name="Sem" placeholder="Semester"><br>
                     <h4>Write as many tags you can think of, this will help in search. e.g for Sadiku book -> you can add Node Analysis, Semiconductorn etc tags </h4><br>
-                    
-                    <input type="text" name="Tag_1" placeholder="Tag"><br>
+                     -->
+                    <!-- <input type="text" name="Tag_1" placeholder="Tag"><br>
                     <input type="text" name="Tag_2" placeholder="Tag"><br>
                     <input type="text" name="Tag_3" placeholder="Tag"><br>
                     <input type="text" name="Tag_4" placeholder="Tag"><br>
@@ -659,7 +313,7 @@
                     <input type="text" name="Tag_8" placeholder="Tag"><br>
                     <input type="text" name="Tag_9" placeholder="Tag"><br>
                     <input type="text" name="Tag_10" placeholder="Tag"><br>
-                    <input type="text" name="Tag_11" placeholder="Tag"><br>
+                    <input type="text" name="Tag_11" placeholder="Tag"><br> -->
                     <!-- <input type="text" name="Tag_12" placeholder="Tag"><br>
                     <input type="text" name="Tag_13" placeholder="Tag"><br>
                     <input type="text" name="Tag_14" placeholder="Tag"><br>
@@ -670,19 +324,17 @@
                     <input type="text" name="Tag_19" placeholder="Tag"><br>
                     <input type="text" name="Tag_20" placeholder="Tag"><br> -->
                     <br>
-                    <br>
-                    <br>
                     <input type="number" name="Price_W" placeholder="Price White Print"><br>
                     <input type="number" name="Price_N" placeholder="Price News Print"><br>
                     <input type="number" name="Price_O" placeholder="Price Original Print"><br>
                     <input type="number" name="Price_S" placeholder="Price Second hand Print"><br>
                     <br>
-                    <input type="text" name="Author_1" placeholder="Author 1"><br>
+                    <!-- <input type="text" name="Author_1" placeholder="Author 1"><br>
                     <input type="text" name="Author_2" placeholder="Author 2"><br>
                     <input type="text" name="Author_3" placeholder="Author 3"><br>
                     <input type="text" name="Author_4" placeholder="Author 4"><br>
                     <input type="text" name="Author_5" placeholder="Author 5"><br>
-                    
+                     -->
                     <a style="color: red;"><?php echo $err;?></a>
                     <input class="button" type="submit" value="Add">
                 </form>
