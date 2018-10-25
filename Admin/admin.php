@@ -8,14 +8,183 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Oswald|Oxygen" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/blog/admin.css">
-    <link rel="stylesheet" href="assets/css/blog/blog-styles.css">
+    <style>
+    
 
+body{
+  margin: 0px;
+  padding: 0px;
+  background: #1abc9d;
+}
+
+h1{
+  color: #fff;
+  text-align: center;
+  font-family: Arial;
+  font-weight: normal;
+  margin: 2em auto 0px;
+}
+.outer-screen{
+  background: #13202c;
+  width: 900px;
+  height: 540px;
+  margin: 50px auto;
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  position: relative;
+  padding-top: 35px;
+}
+
+.outer-screen:before{
+  content: "";
+  background: #3e4a53;
+  border-radius: 50px;
+  position: absolute;
+  bottom: 20px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  z-index: 9999;
+  width: 50px;
+  height: 50px;
+}
+.outer-screen:after{
+  content: "";
+  background: #ecf0f1;
+  width: 900px;
+  height: 88px;
+  position: absolute;
+  bottom: 0px;
+  border-radius: 0px 0px 20px 20px;
+  -moz-border-radius: 0px 0px 20px 20px;
+  -webkit-border-radius: 0px 0px 20px 20px;
+}
+
+.stand{
+  position: relative;  
+}
+
+.stand:before{
+  content: "";
+  position: absolute;
+  bottom: -150px;
+  border-bottom: 150px solid #bdc3c7;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  width: 200px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+}
+
+.stand:after{
+  content: "";
+  position: absolute;
+  width: 260px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  border-bottom: 30px solid #bdc3c7;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  bottom: -180px;
+  box-shadow: 0px 4px 0px #7e7e7e
+}
+
+.inner-screen{
+  width: 800px;
+  height: 340px;
+  background: #1abc9d;
+  margin: 0px auto;
+  padding-top: 80px;
+}
+
+.form{
+  width: 400px;
+  height: 230px;
+  background: #edeff1;
+  margin: 0px auto;
+  padding-top: 20px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+input[type="text"],
+input[type="password"]
+{
+  display: block;
+  width: 309px;
+  height: 35px;
+  margin: 15px auto;
+  background: #fff;
+  border: 0px;
+  padding: 5px;
+  font-size: 16px;
+   border: 2px solid #fff;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+input[type="text"]:focus{
+  border: 2px solid #1abc9d
+}
+
+input[type="submit"]{
+  display: block;
+  background: #1abc9d;
+  width: 314px;
+  padding: 12px;
+  cursor: pointer;
+  color: #fff;
+  border: 0px;
+  margin: auto;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  font-size: 17px;
+  transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover{
+  background: #09cca6
+}
+
+a{
+  text-align: center;
+  font-family: Arial;
+  color: gray;
+  display: block;
+  margin: 15px auto;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 12px;
+}
+
+a:hover{
+  color: #1abc9d;
+}
+
+
+::-webkit-input-placeholder {
+   color: gray;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: gray;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: gray;  
+}
+
+:-ms-input-placeholder {  
+   color: gray;  
+}
+    </style>
     <?php 
     
     include $_SERVER['DOCUMENT_ROOT'].'/../phpincludes/auth.php';
@@ -83,9 +252,7 @@
     
     <section>
 
-        <div class='content-wrap'>
-            <div class="form-block">
-            <?php
+           <?php
                 if ($_SERVER['REQUEST_METHOD']=='POST'){
                     
                     $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
@@ -125,19 +292,28 @@
                 else {
             ?>
 
-                    <h1>Login</h1>
-                    <form action="admin.php" method="post">
-                        <input type="text" name="username" placeholder="Username"><br>
-                        <input type="password" name="password" placeholder="Password">
-                        <input type="submit" value="Login">
-                    </form>
-                </div>
+                  
 
+                <!-- NEw -->
+            <h1>Kolpo BD</h1>
+            <div class="stand">
+            <div class="outer-screen">
+                <div class="inner-screen">
+                <div class="form">
+                <form action="admin.php" method="post">
+                    <input type="text" class="zocial-dribbble" name="username" placeholder="Username" />
+                    <input type="password" name="password" placeholder="Password" />
+                    <input type="submit" value="Login" />
+                </form>
+                </div> 
+                </div> 
+            </div> 
+            </div>
+  
             <?php
             }
             ?>
 
-        </div>
     </section>
 </body>
 </html>

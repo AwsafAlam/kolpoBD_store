@@ -80,8 +80,8 @@ $app->get('/admininfo', function() use ($app)  {
 
  $app->get('/book_info', function() use ($app)  {
 	
-  //$conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
-  $conn = new mysqli("localhost", "root", "", "kolpbdc_site");
+  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+  // $conn = new mysqli("localhost", "root", "", "kolpbdc_site");
   
   $strings = "SELECT * FROM Book";
   $result = $conn->prepare($strings);
@@ -122,7 +122,8 @@ $app->post('/insertbookdata', function() use ($app)  {
   $Dept = $app->request->post('dept');
   $Sem = $app->request->post('sem');
   
-  $conn = new mysqli("localhost", "root", "", "kolpbdc_site");
+  // $conn = new mysqli("localhost", "root", "", "kolpbdc_site");
+  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
 
   $strings ="INSERT INTO Book (book_id , name) VALUES (NULL , '".$book."')";
   $result = $conn->query($strings);

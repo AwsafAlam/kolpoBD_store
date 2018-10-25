@@ -171,19 +171,31 @@
 
         <div class="container">
             <div class="row">
-                <div class='content-wrap'>
+                <div class='col-sm-8'>
             <?php
             $err='';
             $_SESSION['message']='';
 
             if ($_SERVER['REQUEST_METHOD']=='POST'){
 
-                $Book= $con->escape_string($_POST['Book']);
-                $Edition= $con->escape_string($_POST['Edition']);
-
-                // $Dept= $con->escape_string($_POST['Dept']);
-                // $Sem= $con->escape_string($_POST['Sem']);
-
+                
+                $book = $_POST['name'];
+                $author = $_POST['author'];
+              
+                $Edition = $_POST['Edition'];
+              
+                $Price_W = $_POST['Price_W'];
+                $Price_N = $_POST['Price_N'];
+                $Price_O = $_POST['Price_O'];
+              
+                $Dept = $_POST['dept'];
+                $Sem = $_POST['sem'];
+                
+                $Author_2= $_POST['Author_2'];
+                $Author_3= $_POST['Author_3'];
+                $Author_4= $_POST['Author_4'];
+                $Author_5= $_POST['Author_5'];
+                
                 // $Tag_1= $con->escape_string($_POST['Tag_1']);
                 // $Tag_2= $con->escape_string($_POST['Tag_2']);
                 // $Tag_3= $con->escape_string($_POST['Tag_3']);
@@ -197,113 +209,239 @@
                 // $Tag_11= $con->escape_string($_POST['Tag_11']);
                 
                 
-                $Price_W= $con->escape_string($_POST['Price_W']);
-                $Price_N= $con->escape_string($_POST['Price_N']);
-                $Price_O= $con->escape_string($_POST['Price_O']);
-                $Price_S= $con->escape_string($_POST['Price_S']);
-
-                // $Author_1= $con->escape_string($_POST['Author_1']);
-                // $Author_2= $con->escape_string($_POST['Author_2']);
-                // $Author_3= $con->escape_string($_POST['Author_3']);
-                // $Author_4= $con->escape_string($_POST['Author_4']);
-                // $Author_5= $con->escape_string($_POST['Author_5']);
-                
                 $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
 
+                $strings ="INSERT INTO Book (book_id , name) VALUES (NULL , '".$book."')";
+                $result = $conn->query($strings);
                 
-                if ($location = mysqli_prepare($con, "INSERT INTO Book (book_id, name , img) VALUES (?, ? , ?)")){
-                    mysqli_stmt_bind_param($location, "sss", $id['bool_id'] , $Book , $id['bool_img']);
-                    mysqli_stmt_execute($location);
+                $strings ="SELECT book_id FROM Book WHERE name = '".$book."'";
+                
+                $result = $conn->prepare($strings);
+                $result->execute();
+                $result->bind_result($book_id);
+                $tmp = array();
 
-                    $strings = "SELECT book_id FROM Book WHERE name = '".$Book."'";    
+                while($result->fetch()) {       
+                    $tmp["book_id"] = $book_id;
+                }
+                $result->close();
+                
+                $strings ="INSERT INTO BookEdition (id ,book_id , edition_id) VALUES (NULL , '".$tmp["book_id"]."' , '".$Edition."')";
+                $result = $conn->query($strings);
+
+                $strings ="INSERT INTO Price (price_id ,book_id , quality_id , price) VALUES (NULL , '".$tmp["book_id"]."' ,'1' ,'".$Price_W."')";
+                $result = $conn->query($strings);
+
+                $strings ="INSERT INTO Price (price_id ,book_id , quality_id , price) VALUES (NULL , '".$tmp["book_id"]."' ,'2' ,'".$Price_N."')";
+                $result = $conn->query($strings);
+
+                $strings ="INSERT INTO Price (price_id ,book_id , quality_id , price) VALUES (NULL , '".$tmp["book_id"]."' ,'3' ,'".$Price_O."')";
+                $result = $conn->query($strings);
+
+                $strings ="INSERT INTO BookSemester (id ,university_id, department_id, semester_id , book_id) VALUES (NULL , '1' ,'".$Dept."' ,'".$Sem."', '".$tmp["book_id"]."')";
+                $result = $conn->query($strings);
+                
+
+                $strings ="INSERT INTO Author (author_id , author_name ) VALUES (NULL , '".$author."')";
+                $result = $conn->query($strings);
+                
+                $strings ="SELECT author_id FROM Author WHERE author_name = '".$author."'";
+                
+                $result = $conn->prepare($strings);
+                $result->execute();
+                $result->bind_result($id);
+                
+                while($result->fetch()) {       
+                    $tmp["author_id"] = $id;
+                }
+                $result->close();
+
+                $strings ="INSERT INTO BookAuthor (id ,book_id ,author_id) VALUES (NULL , '".$tmp["book_id"]."' , '".$tmp["author_id"]."')";
+                $result = $conn->query($strings);
+                
+                if($Author_2 != ""){
+                    $strings ="INSERT INTO Author (author_id , author_name ) VALUES (NULL , '".$Author_2."')";
+                    $result = $conn->query($strings);
+                    
+                    $strings ="SELECT author_id FROM Author WHERE author_name = '".$Author_2."'";
                     
                     $result = $conn->prepare($strings);
                     $result->execute();
-                    $result->bind_result($book_id);
-
-                    // $posts = array();
-                    $tmp = array();
-
+                    $result->bind_result($id);
+                    
                     while($result->fetch()) {       
-                        $tmp["book_id"] = $book_id;
+                        $tmp["author_id"] = $id;
                     }
-
-                    // $strings = "SELECT department_id FROM Department WHERE abbreviation = '".$Dept."'";    
-                    
-                    // $result1 = $conn->prepare($strings);
-                    // $result1->execute();
-                    // $result1->bind_result($dept_id);
-                    // $tag = array();
-
-                    //     while($result1->fetch()) {       
-                    //         $tag["dept_id"] = $dept_id;
-                    //     }
-                    
-                    //     $strings = "SELECT semester_id FROM Semester WHERE number = '".$Sem."'";    
-                    
-                    //     $result2 = $conn->prepare($strings);
-                    //     $result2->execute();
-                    //     $result2->bind_result($sem_id);
-                    //     // $posts = array();
-                    //     //$tag = array();
-
-                    //     while($result2->fetch()) {       
-                    //         $tag["sem_id"] = $sem_id;
-                    //     }
-                    
-                    // $strings = "INSERT INTO BookSemester (id , university_id , department_id , semester_id) VALUES  (NULL, 1 ,'".$tag["dept_id"]."','".$tag["sem_id"]."')";    
-                    // $result3 = $conn->prepare($strings);
-                    // $result3->execute();
-
-                    $strings = "INSERT INTO BookEdition (id , book_id , edition_id) VALUES (NULL, '".$tmp["book_id"]."','".$Edition."')";    
-                    $result4 = $conn->prepare($strings);
-                    $result4->execute();
                     $result->close();
-
-                    if($Price_W != ""){
-                        $strings = "INSERT INTO Price (price_id , book_id , quality_id , price) VALUES  (NULL, '".$tmp["book_id"]."', '1', '".$Price_W."')";    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                    }
-                    if($Price_N != ""){
-                        $strings = "INSERT INTO Price (price_id , book_id , quality_id , price) VALUES  (NULL, '".$tmp["book_id"]."', '2', '".$Price_N."')";    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                    }
-                    if($Price_O != ""){
-                        $strings = "INSERT INTO Price (price_id , book_id , quality_id , price) VALUES  (NULL, '".$tmp["book_id"]."', '3', '".$Price_O."')";    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                    }
-                    if($Price_S != ""){
-                        $strings = "INSERT INTO Price (price_id , book_id , quality_id , price) VALUES  (NULL, '".$tmp["book_id"]."', '4', '".$Price_S."')";    
-                        $result = $conn->prepare($strings);
-                        $result->execute();
-                    }
-
-                    
-                    
-                    $_SESSION['message']="Add Book Successful!";
+    
+                    $strings ="INSERT INTO BookAuthor (id ,book_id ,author_id) VALUES (NULL , '".$tmp["book_id"]."' , '".$tmp["author_id"]."')";
+                    $result = $conn->query($strings);
                 }
+                if($Author_3 != ""){
+                    $strings ="INSERT INTO Author (author_id , author_name ) VALUES (NULL , '".$Author_3."')";
+                    $result = $conn->query($strings);
+                    
+                    $strings ="SELECT author_id FROM Author WHERE author_name = '".$Author_3."'";
+                    
+                    $result = $conn->prepare($strings);
+                    $result->execute();
+                    $result->bind_result($id);
+                    
+                    while($result->fetch()) {       
+                        $tmp["author_id"] = $id;
+                    }
+                    $result->close();
+    
+                    $strings ="INSERT INTO BookAuthor (id ,book_id ,author_id) VALUES (NULL , '".$tmp["book_id"]."' , '".$tmp["author_id"]."')";
+                    $result = $conn->query($strings);
+                }
+                if($Author_4 != ""){
+                    $strings ="INSERT INTO Author (author_id , author_name ) VALUES (NULL , '".$Author_4."')";
+                    $result = $conn->query($strings);
+                    
+                    $strings ="SELECT author_id FROM Author WHERE author_name = '".$Author_4."'";
+                    
+                    $result = $conn->prepare($strings);
+                    $result->execute();
+                    $result->bind_result($id);
+                    
+                    while($result->fetch()) {       
+                        $tmp["author_id"] = $id;
+                    }
+                    $result->close();
+    
+                    $strings ="INSERT INTO BookAuthor (id ,book_id ,author_id) VALUES (NULL , '".$tmp["book_id"]."' , '".$tmp["author_id"]."')";
+                    $result = $conn->query($strings);
+                }
+                if($Author_5 != ""){
+                    $strings ="INSERT INTO Author (author_id , author_name ) VALUES (NULL , '".$Author_5."')";
+                    $result = $conn->query($strings);
+                    
+                    $strings ="SELECT author_id FROM Author WHERE author_name = '".$Author_5."'";
+                    
+                    $result = $conn->prepare($strings);
+                    $result->execute();
+                    $result->bind_result($id);
+                    
+                    while($result->fetch()) {       
+                        $tmp["author_id"] = $id;
+                    }
+                    $result->close();
+    
+                    $strings ="INSERT INTO BookAuthor (id ,book_id ,author_id) VALUES (NULL , '".$tmp["book_id"]."' , '".$tmp["author_id"]."')";
+                    $result = $conn->query($strings);
+                }
+                
+
+                $Price_S = $Price_N * 0.5;
+                $strings ="INSERT INTO Price (price_id ,book_id , quality_id , price) VALUES (NULL , '".$tmp["book_id"]."' ,'4' ,'".$Price_S."')";
+                $result = $conn->query($strings);
+                
+                
+                $_SESSION['message']="Add Book Successful!";
+                
             }
             else{
             ?>
 
-            <div class="form-block">
-                <h3>Add Book  fill all the fields!!!</h3>
-                <form action="add_books.php" method="post">
-                    <h5>Write book name plus authors plus edition togethor here</h5>
+<form action="add_books.php" method="post">
+  <div class="form-group">
+    <label>Book Name</label>
+    <input type="text" class="form-control" aria-describedby="Book Name" name="name" placeholder="Book Name"><br>
+    <small id="emailHelp" class="form-text text-muted">Only Enter the book Name</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEdition">Edition</label>
+    <select name="Edition" class="form-control">
+        <option>Select Edition.<option>
+        <option></option>
+        <option value="1">1st Edition</option>
+        <option value="2">2nd Edition</option>
+        <option value="3">3rd Edition</option>
+        <option value="4">4th Edition</option>
+        <option value="5">5th Edition</option>
+        <option value="6">6th Edition</option>
+        <option value="7">7th Edition</option>
+        <option value="8">8th Edition</option>
+        <option value="9">9th Edition</option>
+        <option value="10">10th Edition</option>
+        <option value="11">11th Edition</option>
+        <option value="12">12th Edition</option>
+        <option value="13">13th Edition</option>
+        <option value="14">14th Edition</option>
+        <option value="15">15th Edition</option>
+        <option value="16">16th Edition</option>
+        <option value="17">17th Edition</option>
+        <option value="18">18th Edition</option>
+        <option value="19">19th Edition</option>
+        <option value="20">20th Edition</option>
 
-                    <input type="text" name="Book" placeholder="Book Name"><br>
-                    <h5>If edition is unknown leave blank , 1 for 1st edition, 2 for 2nd, so on...</h5>
-                    <input type="number" name="Edition" placeholder="Edition"><br>
+    </select>
+    <!-- <input type="number" name="Edition" class="form-control" placeholder="Edition"><br> -->
+  </div>
+    <div class="form-group">
+    <select name="dept" class="form-control">
+        <option>Select Department</option>
+        <option value="1">CSE</option>
+        <option value="2">EEE</option>
+        <option value="3">Chemical</option>
+        <option value="4">BME</option>
+        <option value="5">ME</option>
+        <option value="6">IPE</option>
+        <option value="7">Architecture</option>
+        <option value="8">Civil</option>
+        <option value="9">MME</option>
+        <option value="10">NAME</option>
+        <option value="11">URP</option>
+        <option value="12">WRE</option>
+    </select>
+    </div>
+    <div class="form-group">
+    <select name="sem" class="form-control">
+        <option value="1">L1 T1</option>
+        <option value="2">L1 T2</option>
+        <option value="3">L2 T1</option>
+        <option value="4">L2 T2</option>
+        <option value="5">L3 T1</option>
+        <option value="6">L3 T2</option>
+        <option value="7">L4 T1</option>
+        <option value="8">L4 T2</option>
+        <option value="9">L5 T1</option>
+        <option value="10">L5 T2</option>
+    </select>
+        
+    </div>
+    <div class="form-group">
+        <label>Price White Print</label>
+        <input type="number" name="Price_W" class="form-control" placeholder="Price White Print">
+    </div>
+    <div class="form-group">
+        <input type="number" name="Price_N" class="form-control" placeholder="Price News Print"><br>
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="number" name="Price_O" placeholder="Price Original Print"><br>
+    </div>
+    <div class="form-group">
+        <label>Best Known Author of Book. (Mandatory)</label>
+        <input type="text" class="form-control" name="author" placeholder="author">
+    </div>
+    <div class="form-group">
+        <input type="text" name="Author_2" class="form-control" placeholder="Author 2"><br>
+    </div>
+    <div class="form-group">
+        <input type="text" name="Author_3" class="form-control" placeholder="Author 3"><br>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="Author_4" placeholder="Author 4"><br>
+    </div>
+    <div class="form-group">
+        <input type="text" name="Author_5" class="form-control" placeholder="Author 5"><br>
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
                     
-                    <!-- <h5>EEE , CSE , MME .. be careful to write only official abbreviation "only in BLOCK Letters"</h5><br>
-                    <input type="text" name="Dept" placeholder="Department"><br>
-                    <h5>1 for L1T1 , 2 for L2T2 and so on</h5><br>
-                    <input type="number" name="Sem" placeholder="Semester"><br>
-                    <h4>Write as many tags you can think of, this will help in search. e.g for Sadiku book -> you can add Node Analysis, Semiconductorn etc tags </h4><br>
-                     -->
+                    
                     <!-- <input type="text" name="Tag_1" placeholder="Tag"><br>
                     <input type="text" name="Tag_2" placeholder="Tag"><br>
                     <input type="text" name="Tag_3" placeholder="Tag"><br>
@@ -324,22 +462,8 @@
                     <input type="text" name="Tag_18" placeholder="Tag"><br>
                     <input type="text" name="Tag_19" placeholder="Tag"><br>
                     <input type="text" name="Tag_20" placeholder="Tag"><br> -->
-                    <br>
-                    <input type="number" name="Price_W" placeholder="Price White Print"><br>
-                    <input type="number" name="Price_N" placeholder="Price News Print"><br>
-                    <input type="number" name="Price_O" placeholder="Price Original Print"><br>
-                    <input type="number" name="Price_S" placeholder="Price Second hand Print"><br>
-                    <br>
-                    <!-- <input type="text" name="Author_1" placeholder="Author 1"><br>
-                    <input type="text" name="Author_2" placeholder="Author 2"><br>
-                    <input type="text" name="Author_3" placeholder="Author 3"><br>
-                    <input type="text" name="Author_4" placeholder="Author 4"><br>
-                    <input type="text" name="Author_5" placeholder="Author 5"><br>
-                     -->
-                    <a style="color: red;"><?php echo $err;?></a>
-                    <input class="button" type="submit" value="Add">
-                </form>
-
+    
+           
             </div>
             <?php
             }
