@@ -47,8 +47,8 @@ function authenticate(\Slim\Route $route)
     }
 }
 
-$app->post('/admininfo', function() use ($app)  {
-
+$app->get('/admininfo', function() use ($app)  {
+ 
   // $ansid = $app->request->post('ansid');
   //  $upvote_uid = $app->request->post('upvote_uid');
   //     $flag = $app->request->post('flag');
@@ -76,55 +76,113 @@ $app->post('/admininfo', function() use ($app)  {
            
  });
 
-$app->post('/answerUpVotefaz', function() use ($app)  {
 
- $ansid = $app->request->post('ansid');
-  $upvote_uid = $app->request->post('upvote_uid');
-     $flag = $app->request->post('flag');
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-    $strings="11";
-        if($flag==1){
-            $strings ="CALL UPVOTE_TRACK("."'".$ansid."','".$upvote_uid."')";
-        }
-        else{
-            $strings ="CALL ANS_VOTE_TRACE("."'".$ansid."','".$upvote_uid."')";
-        }
-    //  $strings = "UPDATE answers SET upvote=upvote+1 WHERE answer_id =". "'".$ansid."'";    
-      $result = $conn->query($strings);
-      //$result->close();
- echoRespnse(201,$strings);
-          
+
+ $app->get('/book_info', function() use ($app)  {
+	
+  //$conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+  $conn = new mysqli("localhost", "root", "", "kolpbdc_site");
+  
+  $strings = "SELECT * FROM Book";
+  $result = $conn->prepare($strings);
+       
+        
+  $result->execute();
+  $result->bind_result($book_id,$name);
+  $posts = array();
+  
+  while($result->fetch()) {
+    $tmp = array();
+    $tmp["book_id"] = $book_id;
+    $tmp["book_name"] = $name;
+    array_push($posts, $tmp);
+  }
+
+  $result->close();
+        
+        
+        
+  echoRespnse(201,$posts);  
+	
+	
 });
 
 
-$app->post('/checkexistencefaz', function() use ($app)  {
+$app->post('/insertbookdata', function() use ($app)  {
 
- $ansid = $app->request->post('ansid');
-  $upvote_uid = $app->request->post('upvote_uid');
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
- $strings ="SELECT * FROM answer_vote where answer_id=". "'".$ansid."'". "AND fbuserid="."'".$upvote_uid."'". "order by voteid desc";
-    
-     $result = $conn->prepare($strings);
+  $book = $app->request->post('name');
+  $author = $app->request->post('author');
+
+  $Edition = $app->request->post('Edition');
+
+  $Price_W = $app->request->post('Price_W');
+  $Price_N = $app->request->post('Price_N');
+  $Price_O = $app->request->post('Price_O');
+
+  $Dept = $app->request->post('dept');
+  $Sem = $app->request->post('sem');
+  
+  $conn = new mysqli("localhost", "root", "", "kolpbdc_site");
+
+  $strings ="INSERT INTO Book (book_id , name) VALUES (NULL , '".$book."')";
+  $result = $conn->query($strings);
+  
+  $strings ="SELECT book_id FROM Book WHERE name = '".$book."'";
+  
+  $result = $conn->prepare($strings);
   $result->execute();
-  $result->bind_result($voteid,$answer_id,$fbuserid,$upvote,$downvote);
-  $qanda=array();
-  $posts = array();
-  while($result->fetch()) {       
-      $tmp = array();
-          $tmp["voteid"] = $voteid;
-          $tmp["answer_id"] = $answer_id;
-          $tmp["fbuserid"] = $fbuserid;
-          $tmp["upvote"] = $upvote;
-          $tmp["downvote"] = $downvote;
-   
+  $result->bind_result($book_id);
+  $tmp = array();
 
-          array_push($posts, $tmp); 
-           
-       }
-    
-     
-     $result->close();
-        echoRespnse(201,$posts);
+  while($result->fetch()) {       
+    $tmp["book_id"] = $book_id;
+  }
+  $result->close();
+  
+  $strings ="INSERT INTO BookEdition (id ,book_id , edition_id) VALUES (NULL , '".$tmp["book_id"]."' , '".$Edition."')";
+  $result = $conn->query($strings);
+
+  $strings ="INSERT INTO Price (price_id ,book_id , quality_id , price) VALUES (NULL , '".$tmp["book_id"]."' ,'1' ,'".$Price_W."')";
+  $result = $conn->query($strings);
+
+  $strings ="INSERT INTO Price (price_id ,book_id , quality_id , price) VALUES (NULL , '".$tmp["book_id"]."' ,'2' ,'".$Price_N."')";
+  $result = $conn->query($strings);
+
+  $strings ="INSERT INTO Price (price_id ,book_id , quality_id , price) VALUES (NULL , '".$tmp["book_id"]."' ,'3' ,'".$Price_O."')";
+  $result = $conn->query($strings);
+
+  $strings ="INSERT INTO BookSemester (id ,university_id, department_id, semester_id , book_id) VALUES (NULL , '1' ,'".$Dept."' ,'".$Sem."', '".$tmp["book_id"]."')";
+  $result = $conn->query($strings);
+  
+
+  $strings ="INSERT INTO Author (author_id , author_name ) VALUES (NULL , '".$author."')";
+  $result = $conn->query($strings);
+  
+  $strings ="SELECT author_id FROM Author WHERE author_name = '".$author."'";
+  
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($id);
+  
+  while($result->fetch()) {       
+    $tmp["author_id"] = $id;
+  }
+
+  $result->close();
+
+  $strings ="INSERT INTO BookAuthor (id ,book_id ,author_id) VALUES (NULL , '".$tmp["book_id"]."' , '".$tmp["author_id"]."')";
+  $result = $conn->query($strings);
+  
+  $Price_S = $Price_N * 0.5;
+
+  $strings ="INSERT INTO Price (price_id ,book_id , quality_id , price) VALUES (NULL , '".$tmp["book_id"]."' ,'4' ,'".$Price_S."')";
+  $result = $conn->query($strings);
+
+
+  echoRespnse(201,$tmp);
+
+  
+
 });
 
 
@@ -1059,45 +1117,6 @@ $app->post('/uploadmyanswers', function() use ($app)  {
 });
 
 
-
-$app->get('/viewmyanswers', function() use ($app)  {
-	
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-  $strings="SELECT  *FROM answers where question_id=203 order by answer_id";
-  $result = $conn->prepare($strings);
-       
-        
-  $result->execute();
-  $result->bind_result($answer_id,$question_id,$username,$image,$string,$upvote,$downvote,$anonymous,$isright);
-  $posts = array();
-  
-  while($result->fetch()) {
-           
-           $tmp = array();
-           
-           
-           
-           $tmp["answer_id"] = $answer_id;
-      $tmp["question_id"] = $question_id;
-           $tmp["username"] = $username;
-             $tmp["string"] = $string;
-		   $tmp["anonymous"] = $anonymous;
-		   $tmp["image"] = $image;
-		   $tmp["upvote"] = $upvote;
-		   $tmp["downvote"] = $downvote;
-         $tmp["isright"] = $isright;
-		   
-		   
-           array_push($posts, $tmp);
-       }
-	   $result->close();
-        
-        
-        
-  echoRespnse(201,$posts);  
-	
-	
-});
 
 
 
