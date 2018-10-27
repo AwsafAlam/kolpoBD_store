@@ -88,7 +88,7 @@ $app->get('/admininfo', function() use ($app)  {
        
         
   $result->execute();
-  $result->bind_result($book_id,$name);
+  $result->bind_result($book_id,$name , $img);
   $posts = array();
   
   while($result->fetch()) {
@@ -189,1458 +189,1458 @@ $app->post('/insertbookdata', function() use ($app)  {
 
 
 
-$app->post('/answerDownVotefaz', function() use ($app)  {
+// $app->post('/answerDownVotefaz', function() use ($app)  {
 
-     $ansid = $app->request->post('ansid');
-  $upvote_uid = $app->request->post('upvote_uid');
-     $flag = $app->request->post('flag');
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-    $strings="11";
-        if($flag==1){
-            $strings ="CALL DOWNVOTE_TRACK("."'".$ansid."','".$upvote_uid."')";
-        }
-        else{
-            $strings ="CALL ANS_DOWNVOTE_TRACE("."'".$ansid."','".$upvote_uid."')";
-        }
-    //  $strings = "UPDATE answers SET upvote=upvote+1 WHERE answer_id =". "'".$ansid."'";    
-      $result = $conn->query($strings);
-      //$result->close();
- echoRespnse(201,$strings);
+//      $ansid = $app->request->post('ansid');
+//   $upvote_uid = $app->request->post('upvote_uid');
+//      $flag = $app->request->post('flag');
+//   $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//     $strings="11";
+//         if($flag==1){
+//             $strings ="CALL DOWNVOTE_TRACK("."'".$ansid."','".$upvote_uid."')";
+//         }
+//         else{
+//             $strings ="CALL ANS_DOWNVOTE_TRACE("."'".$ansid."','".$upvote_uid."')";
+//         }
+//     //  $strings = "UPDATE answers SET upvote=upvote+1 WHERE answer_id =". "'".$ansid."'";    
+//       $result = $conn->query($strings);
+//       //$result->close();
+//  echoRespnse(201,$strings);
       
     
     
     
-});
+// });
 
 
 
 
-$app->post('/viewanswerscount', function() use ($app)  {
+// $app->post('/viewanswerscount', function() use ($app)  {
 
-     $meid = $app->request->post('meid');
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//      $meid = $app->request->post('meid');
+//   $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
   
-  $strings="SELECT count(*),IFNULL((SELECT SUM(B.upvote) FROM answers A JOIN answer_vote B ON B.answer_id=A.answer_id group by A.userid HAVING L.userid=A.userid),0) As likeno,IFNULL((SELECT SUM(B.downvote) FROM answers A JOIN answer_vote B ON B.answer_id=A.answer_id group by A.userid HAVING L.userid=A.userid),0) As dislikeno ,(SELECT FIND_IN_SET( points,(SELECT GROUP_CONCAT( points ORDER BY points DESC ) FROM LeaderBoard ) ) FROM LeaderBoard WHERE userid=L.userid)AS rank ,(SELECT points FROM LeaderBoard where userid=L.userid)As pnts, (SELECT userpic FROM `questions` WHERE userid=". "'".$meid."'"."ORDER by id DESC LIMIT 1
-  ) As fbpic, (SELECT count(*) from questions  WHERE userid=". "'".$meid."'".")As queCount from answers L where userid=". "'".$meid."'";        
-      $result = $conn->prepare($strings);
-  $result->execute();
-  $result->bind_result($ansCount,$likeno,$dislikeno,$rank,$points,$fbpic,$queCount);
-  $posts = array();
-  while($result->fetch()) {       
-      $tmp = array();
-          $tmp["ansCount"] = $ansCount;
-            $tmp["likeno"] = $likeno;
-      $tmp["dislikeno"] = $dislikeno;
-      $tmp["rank"] = $rank;
-      $tmp["points"] = $points;
-      $tmp["fbpic"] = $fbpic;
-      $tmp["queCount"] = $queCount;
+//   $strings="SELECT count(*),IFNULL((SELECT SUM(B.upvote) FROM answers A JOIN answer_vote B ON B.answer_id=A.answer_id group by A.userid HAVING L.userid=A.userid),0) As likeno,IFNULL((SELECT SUM(B.downvote) FROM answers A JOIN answer_vote B ON B.answer_id=A.answer_id group by A.userid HAVING L.userid=A.userid),0) As dislikeno ,(SELECT FIND_IN_SET( points,(SELECT GROUP_CONCAT( points ORDER BY points DESC ) FROM LeaderBoard ) ) FROM LeaderBoard WHERE userid=L.userid)AS rank ,(SELECT points FROM LeaderBoard where userid=L.userid)As pnts, (SELECT userpic FROM `questions` WHERE userid=". "'".$meid."'"."ORDER by id DESC LIMIT 1
+//   ) As fbpic, (SELECT count(*) from questions  WHERE userid=". "'".$meid."'".")As queCount from answers L where userid=". "'".$meid."'";        
+//       $result = $conn->prepare($strings);
+//   $result->execute();
+//   $result->bind_result($ansCount,$likeno,$dislikeno,$rank,$points,$fbpic,$queCount);
+//   $posts = array();
+//   while($result->fetch()) {       
+//       $tmp = array();
+//           $tmp["ansCount"] = $ansCount;
+//             $tmp["likeno"] = $likeno;
+//       $tmp["dislikeno"] = $dislikeno;
+//       $tmp["rank"] = $rank;
+//       $tmp["points"] = $points;
+//       $tmp["fbpic"] = $fbpic;
+//       $tmp["queCount"] = $queCount;
       
-          array_push($posts, $tmp); 
+//           array_push($posts, $tmp); 
            
-       }
+//        }
     
      
-     $result->close();
-        echoRespnse(201,$posts);
+//      $result->close();
+//         echoRespnse(201,$posts);
     
-});
+// });
 
 
 
-$app->post('/uploadquestion', function() use ($app)  {
+// $app->post('/uploadquestion', function() use ($app)  {
     
-	$title=$app->request->post('title');
-	$userid=$app->request->post('userid');
-	$username=$app->request->post('username');
-	$question=$app->request->post('question');
-	$category=$app->request->post('category');
-	$anonymous=$app->request->post('anonymous');
-	$imagecount=$app->request->post('imagecount');
-	$tags=$app->request->post('tag');
-	$fbpic=$app->request->post('fbpics');
-	$imagenames="";
-	if($userid=="157927098325740" || $userid=="102929527287677"  || $userid=="110785063091217" || $userid=="108053220034996" || $userid=="113023396245441")//Block Sakhawat or Pria Jahan
-	{
+// 	$title=$app->request->post('title');
+// 	$userid=$app->request->post('userid');
+// 	$username=$app->request->post('username');
+// 	$question=$app->request->post('question');
+// 	$category=$app->request->post('category');
+// 	$anonymous=$app->request->post('anonymous');
+// 	$imagecount=$app->request->post('imagecount');
+// 	$tags=$app->request->post('tag');
+// 	$fbpic=$app->request->post('fbpics');
+// 	$imagenames="";
+// 	if($userid=="157927098325740" || $userid=="102929527287677"  || $userid=="110785063091217" || $userid=="108053220034996" || $userid=="113023396245441")//Block Sakhawat or Pria Jahan
+// 	{
 		
-	}
+// 	}
 	
-	else
-	{
+// 	else
+// 	{
 	
-	$image=$userid;
-	for($i=1;$i<=$imagecount;$i++)
-	{
-	  $image=$userid.$i;
-	  $imgmap= $app->request->post($image);
-	  $path=$image.".png";
+// 	$image=$userid;
+// 	for($i=1;$i<=$imagecount;$i++)
+// 	{
+// 	  $image=$userid.$i;
+// 	  $imgmap= $app->request->post($image);
+// 	  $path=$image.".png";
        
-		while(file_exists($path))
-           {
-              $image=$image."1";
-              $path=$image.".png";
+// 		while(file_exists($path))
+//            {
+//               $image=$image."1";
+//               $path=$image.".png";
               
-           }
+//            }
 		   
-		   $imagenames=$imagenames.$path;
-		   $imagenames=$imagenames.",";
+// 		   $imagenames=$imagenames.$path;
+// 		   $imagenames=$imagenames.",";
 		   
 
-    file_put_contents($path,base64_decode($imgmap));
+//     file_put_contents($path,base64_decode($imgmap));
 	
-	}
+// 	}
 	
 	
 	
 
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-  $title=mysqli_real_escape_string($conn,$title);
-	$question=mysqli_real_escape_string($conn,$question);
-  $strings="INSERT INTO questions(title,userid,username,question,category,anonymous,notification,image,tags,userpic) VALUES (" . "'". $title . "'". "," . "'". $userid . "'". "," . "'". $username . "'". "," . "'". $question . "'". "," . "'". $category. "'" ."," ."'" . $anonymous. "'" . "," . "'". $imagecount. "'" . "," . "'". $imagenames. "'" . ",". "'". $tags . "'". "," . "'". $fbpic . "'".  ")";
-  $str= "INSERT INTO questions(username,question,category,notification,image) VALUES ( ";
+//   $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   $title=mysqli_real_escape_string($conn,$title);
+// 	$question=mysqli_real_escape_string($conn,$question);
+//   $strings="INSERT INTO questions(title,userid,username,question,category,anonymous,notification,image,tags,userpic) VALUES (" . "'". $title . "'". "," . "'". $userid . "'". "," . "'". $username . "'". "," . "'". $question . "'". "," . "'". $category. "'" ."," ."'" . $anonymous. "'" . "," . "'". $imagecount. "'" . "," . "'". $imagenames. "'" . ",". "'". $tags . "'". "," . "'". $fbpic . "'".  ")";
+//   $str= "INSERT INTO questions(username,question,category,notification,image) VALUES ( ";
   
   
-  $result = $conn->query($strings);
+//   $result = $conn->query($strings);
   
-  uploadnotifications($userid,"question"); 
-  echoRespnse(201,$strings);  
+//   uploadnotifications($userid,"question"); 
+//   echoRespnse(201,$strings);  
 	
 	
-	}
+// 	}
   
      
-});
+// });
 
-function uploadnotifications($userid,$type)
-{
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");	
+// function uploadnotifications($userid,$type)
+// {
+//   $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");	
   
-    if($type=="question")
-  {
-	  $str="SELECT id from questions where userid=".$userid." order by id desc limit 1";
+//     if($type=="question")
+//   {
+// 	  $str="SELECT id from questions where userid=".$userid." order by id desc limit 1";
       
-	  $result = $conn->prepare($str);
-      $result->execute();
-      $result->bind_result($ids);
+// 	  $result = $conn->prepare($str);
+//       $result->execute();
+//       $result->bind_result($ids);
 
-      while($result->fetch()) {
+//       while($result->fetch()) {
            
            
-		   $myid=$ids;
+// 		   $myid=$ids;
            
-       }
-       $result->close();
-	   //echoRespnse(201,$myid);
+//        }
+//        $result->close();
+// 	   //echoRespnse(201,$myid);
 	   
-	   $newstr="q".$userid.".";
+// 	   $newstr="q".$userid.".";
 	   
 	   
-	   $str="INSERT into notificationstates(ques_id,userids) VALUES ( "."'". $myid . "'". "," . "'". $newstr . "'". ")"; 
-       $result = $conn->prepare($str);
-       $result->execute();
+// 	   $str="INSERT into notificationstates(ques_id,userids) VALUES ( "."'". $myid . "'". "," . "'". $newstr . "'". ")"; 
+//        $result = $conn->prepare($str);
+//        $result->execute();
 	   
-	   $result->close();
-	   //echoRespnse(201,$str);
+// 	   $result->close();
+// 	   //echoRespnse(201,$str);
 	   
   
-  }
-  else
-  {
-    $str="SELECT userid from questions where id=".$type." order by id desc limit 1";
+//   }
+//   else
+//   {
+//     $str="SELECT userid from questions where id=".$type." order by id desc limit 1";
       
-	  $result = $conn->prepare($str);
-      $result->execute();
-      $result->bind_result($ids);
-      $newstr="";
-      while($result->fetch()) {
+// 	  $result = $conn->prepare($str);
+//       $result->execute();
+//       $result->bind_result($ids);
+//       $newstr="";
+//       while($result->fetch()) {
            
            
-		   $myid=$ids;
+// 		   $myid=$ids;
            
-       }
-       $result->close();
-	   //echoRespnse(201,$myid);
-	   if($userid!=$myid)
-	   $newstr="q".$myid.".";
+//        }
+//        $result->close();
+// 	   //echoRespnse(201,$myid);
+// 	   if($userid!=$myid)
+// 	   $newstr="q".$myid.".";
       
 	
 	
 	
-	$str="SELECT userid from answers where question_id="."'".$type. "'"." order by answer_id desc";
+// 	$str="SELECT userid from answers where question_id="."'".$type. "'"." order by answer_id desc";
 	
 	
-	$result = $conn->prepare($str);
-	$result->execute();
-    $result->bind_result($newids);
+// 	$result = $conn->prepare($str);
+// 	$result->execute();
+//     $result->bind_result($newids);
 
-      while($result->fetch()) {
+//       while($result->fetch()) {
            
            
-		   $thisstr="a".$newids.".";
-		   if (stripos($newstr, $thisstr) != true ){
-		     if($userid!=$newids)
-			  $newstr=$newstr.$thisstr;
-			 else
-				$newstr=$newstr.".a."; 
+// 		   $thisstr="a".$newids.".";
+// 		   if (stripos($newstr, $thisstr) != true ){
+// 		     if($userid!=$newids)
+// 			  $newstr=$newstr.$thisstr;
+// 			 else
+// 				$newstr=$newstr.".a."; 
 		   
-		   }
+// 		   }
            
-       }
-       $result->close();
+//        }
+//        $result->close();
 	
-	   $str="UPDATE notificationstates SET userids= "."'". $newstr . "'". " where ques_id=" . "'". $type . "'"." order by id desc limit 1"; 
+// 	   $str="UPDATE notificationstates SET userids= "."'". $newstr . "'". " where ques_id=" . "'". $type . "'"." order by id desc limit 1"; 
        
-	   $result = $conn->prepare($str);
-       $result->execute();
+// 	   $result = $conn->prepare($str);
+//        $result->execute();
 	   
-	   $result->close();
+// 	   $result->close();
         
-  }	  
-}
+//   }	  
+// }
 
-$app->post('/checknotifs',function() use ($app)  {
+// $app->post('/checknotifs',function() use ($app)  {
 	
-  $userid=$app->request->post('userid');
-  $ansid="a".$userid.".";
-  $quesid="q".$userid.".";
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");	
-  $str= "SELECT ques_id,userids from notificationstates where userids LIKE " ."'%".$ansid."%' OR userids LIKE '%". $quesid."%' ";
-  $result = $conn->prepare($str);
-  $result->execute();
-  $result->bind_result($newids,$users);
-  //echoRespnse(201,$str);
-  $posts = array();
+//   $userid=$app->request->post('userid');
+//   $ansid="a".$userid.".";
+//   $quesid="q".$userid.".";
+//   $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");	
+//   $str= "SELECT ques_id,userids from notificationstates where userids LIKE " ."'%".$ansid."%' OR userids LIKE '%". $quesid."%' ";
+//   $result = $conn->prepare($str);
+//   $result->execute();
+//   $result->bind_result($newids,$users);
+//   //echoRespnse(201,$str);
+//   $posts = array();
   
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
-           $tmp = array();
-		   if(stripos($users,"a")!=false)
-		   {
-		   $tmp["id"]=$newids;
-		   array_push($posts, $tmp);
-		   }
+//            $tmp = array();
+// 		   if(stripos($users,"a")!=false)
+// 		   {
+// 		   $tmp["id"]=$newids;
+// 		   array_push($posts, $tmp);
+// 		   }
 	
-	};
-	$result->close();
-        echoRespnse(201,$posts);
-});
+// 	};
+// 	$result->close();
+//         echoRespnse(201,$posts);
+// });
 
-$app->post('/modifynotifs',function() use ($app)  {
+// $app->post('/modifynotifs',function() use ($app)  {
 	
-$userid=$app->request->post('userid');
-$quesid=$app->request->post('quesid');
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");	
+// $userid=$app->request->post('userid');
+// $quesid=$app->request->post('quesid');
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");	
   
   
-	  $str="SELECT userids from notificationstates where ques_id=".$quesid." order by id desc limit 1";
+// 	  $str="SELECT userids from notificationstates where ques_id=".$quesid." order by id desc limit 1";
       
-	  $result = $conn->prepare($str);
-      $result->execute();
-      $result->bind_result($ids);
-	  $newstr="";
+// 	  $result = $conn->prepare($str);
+//       $result->execute();
+//       $result->bind_result($ids);
+// 	  $newstr="";
 
-      while($result->fetch()) {
+//       while($result->fetch()) {
            
            
-		   $myid=$ids;
+// 		   $myid=$ids;
            
-       }
-       $result->close();
-	   $valu="q".$userid.".";
-	   $valuans="a".$userid.".";
-	   //echoRespnse(201,$myid);
+//        }
+//        $result->close();
+// 	   $valu="q".$userid.".";
+// 	   $valuans="a".$userid.".";
+// 	   //echoRespnse(201,$myid);
 	   
-	      $newstr=str_replace($valu,"",$myid);
-		  $newstr=str_replace($valuans,"",$newstr);
+// 	      $newstr=str_replace($valu,"",$myid);
+// 		  $newstr=str_replace($valuans,"",$newstr);
 	   
 	   
-	   $str="UPDATE notificationstates SET userids= "."'". $newstr . "'". " where ques_id=" . "'". $quesid . "'"." order by id desc limit 1"; 
+// 	   $str="UPDATE notificationstates SET userids= "."'". $newstr . "'". " where ques_id=" . "'". $quesid . "'"." order by id desc limit 1"; 
        
-	   $result = $conn->prepare($str);
-       $result->execute();
+// 	   $result = $conn->prepare($str);
+//        $result->execute();
 	   
-	   $result->close();
-	   echoRespnse(201,$str);
+// 	   $result->close();
+// 	   echoRespnse(201,$str);
 
 	   
-	   });
+// 	   });
 
-$app->post('/viewallquestions', function() use ($app)  {
+// $app->post('/viewallquestions', function() use ($app)  {
     
-	//$filter=$_GET["filter"];
-  $filter = $app->request->post('filter');
-  $quesids= $app->request->post('lastq');
-  //echoRespnse(201,$filter); 
+// 	//$filter=$_GET["filter"];
+//   $filter = $app->request->post('filter');
+//   $quesids= $app->request->post('lastq');
+//   //echoRespnse(201,$filter); 
   
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-    if($filter=="0")
-        $strings="SELECT * FROM questions order by id desc limit 50";
-	else if($filter=="1")
-        $strings="SELECT * FROM questions where id<". "'".$quesids."'".  " order by id desc limit 50";
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//     if($filter=="0")
+//         $strings="SELECT * FROM questions order by id desc limit 50";
+// 	else if($filter=="1")
+//         $strings="SELECT * FROM questions where id<". "'".$quesids."'".  " order by id desc limit 50";
 	
-	else if($filter=="hsc" || $filter=="ssc")
-        $strings="SELECT * FROM questions where tags=". "'".$filter."'".  " order by id desc limit 50";
-	else if($filter=="hscs")
-        $strings="SELECT * FROM questions where id<". "'".$quesids."'".  "and tags='hsc' order by id desc limit 50";
-	else if($filter=="sscs")
-        $strings="SELECT * FROM questions where id<". "'".$quesids."'".  "and tags='ssc' order by id desc limit 50";
+// 	else if($filter=="hsc" || $filter=="ssc")
+//         $strings="SELECT * FROM questions where tags=". "'".$filter."'".  " order by id desc limit 50";
+// 	else if($filter=="hscs")
+//         $strings="SELECT * FROM questions where id<". "'".$quesids."'".  "and tags='hsc' order by id desc limit 50";
+// 	else if($filter=="sscs")
+//         $strings="SELECT * FROM questions where id<". "'".$quesids."'".  "and tags='ssc' order by id desc limit 50";
 	
 	
-	else{
-         $strings="SELECT * FROM questions where userid=". "'".$filter."'". "order by id desc limit 50";
-    }
+// 	else{
+//          $strings="SELECT * FROM questions where userid=". "'".$filter."'". "order by id desc limit 50";
+//     }
     
     
-  $result = $conn->prepare($strings);
+//   $result = $conn->prepare($strings);
        
         
-  $result->execute();
-  $result->bind_result($id,$title,$userid,$username,$question,$category,$anonymous,$notification,$image,$tags,$upvote,$downvote,$fbpic);
-  $qanda=array();
-  $posts = array();
+//   $result->execute();
+//   $result->bind_result($id,$title,$userid,$username,$question,$category,$anonymous,$notification,$image,$tags,$upvote,$downvote,$fbpic);
+//   $qanda=array();
+//   $posts = array();
   
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
-           $tmp = array();
+//            $tmp = array();
            
            
            
-           $tmp["id"] = $id;
-		   $tmp["title"] = $title;
-		   $tmp["userid"]=$userid;
-           $tmp["username"] = $username;
-           $tmp["question"] = nl2br($question);
-           $tmp["category"] = $category;
-		   $tmp["anonymous"] = $anonymous;
-		   $tmp["image"] = $image;
-		   $tmp["upvote"] = $upvote;
-		   $tmp["downvote"] = $downvote;
-		   $tmp["tags"]=$tags;
-		   $tmp["fbpics"]=$fbpic;
-		   $tmp["answers"]=viewtheanswers($id);
+//            $tmp["id"] = $id;
+// 		   $tmp["title"] = $title;
+// 		   $tmp["userid"]=$userid;
+//            $tmp["username"] = $username;
+//            $tmp["question"] = nl2br($question);
+//            $tmp["category"] = $category;
+// 		   $tmp["anonymous"] = $anonymous;
+// 		   $tmp["image"] = $image;
+// 		   $tmp["upvote"] = $upvote;
+// 		   $tmp["downvote"] = $downvote;
+// 		   $tmp["tags"]=$tags;
+// 		   $tmp["fbpics"]=$fbpic;
+// 		   $tmp["answers"]=viewtheanswers($id);
 		   
 		   
-           array_push($posts, $tmp);
-       }
-	   //array_push($qanda,$posts);
+//            array_push($posts, $tmp);
+//        }
+// 	   //array_push($qanda,$posts);
 	   
-	   $result->close();
-        echoRespnse(201,$posts);
+// 	   $result->close();
+//         echoRespnse(201,$posts);
         
         
   
 	
 	
-});
+// });
 
-$app->post('/viewsearchanswer', function() use ($app)  {
+// $app->post('/viewsearchanswer', function() use ($app)  {
 
- $search = $app->request->post('search');
+//  $search = $app->request->post('search');
  
     
     
    
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
  
     
-   $strings="SELECT * FROM questions order by id desc";
-  $result = $conn->prepare($strings);
+//    $strings="SELECT * FROM questions order by id desc";
+//   $result = $conn->prepare($strings);
        
         
-  $result->execute();
-  $result->bind_result($id,$title,$userid,$username,$question,$category,$anonymous,$notification,$image,$tags,$upvote,$downvote,$userpic);
-  $qanda=array();
-  $posts = array();
+//   $result->execute();
+//   $result->bind_result($id,$title,$userid,$username,$question,$category,$anonymous,$notification,$image,$tags,$upvote,$downvote,$userpic);
+//   $qanda=array();
+//   $posts = array();
   
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
           
            
-           if (stripos($title, $search) !== false || stripos($question, $search) !== false) {
+//            if (stripos($title, $search) !== false || stripos($question, $search) !== false) {
                
-                $tmp = array();
-                       $tmp["id"] = $id;
-                       $tmp["title"] = $title;
-					   $tmp["userid"]=$userid;
-					   $tmp["fbpics"]=$userpic; 
-                       $tmp["username"] = $username;
-                       $tmp["question"] = $question;
-                       $tmp["category"] = $category;
-                       $tmp["anonymous"] = $anonymous;
-                       $tmp["image"] = $image;
-                       $tmp["upvote"] = $upvote;
-                       $tmp["downvote"] = $downvote;
-                       $tmp["tags"]=$tags;
-                       $tmp["answers"]=viewtheanswers($id);
+//                 $tmp = array();
+//                        $tmp["id"] = $id;
+//                        $tmp["title"] = $title;
+// 					   $tmp["userid"]=$userid;
+// 					   $tmp["fbpics"]=$userpic; 
+//                        $tmp["username"] = $username;
+//                        $tmp["question"] = $question;
+//                        $tmp["category"] = $category;
+//                        $tmp["anonymous"] = $anonymous;
+//                        $tmp["image"] = $image;
+//                        $tmp["upvote"] = $upvote;
+//                        $tmp["downvote"] = $downvote;
+//                        $tmp["tags"]=$tags;
+//                        $tmp["answers"]=viewtheanswers($id);
 
-               array_push($posts, $tmp);
-           }
+//                array_push($posts, $tmp);
+//            }
    
 		   
            
-       }
-	   //array_push($qanda,$posts);
+//        }
+// 	   //array_push($qanda,$posts);
 	   
-	   $result->close();
-        echoRespnse(201,$posts);
+// 	   $result->close();
+//         echoRespnse(201,$posts);
         
         
   
 	
 	
-});
+// });
 
 
-function viewtheanswers($titles)
-{   
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-  //$tile=(string)$titles;
-  //echoRespnse(201,$titles);
-  $strings= "SELECT  *FROM answers where question_id= $titles order by answer_id";
-  //$strings="SELECT  *FROM answers where question_id=". "'".$tile."'". "order by answer_id";
+// function viewtheanswers($titles)
+// {   
+//   $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   //$tile=(string)$titles;
+//   //echoRespnse(201,$titles);
+//   $strings= "SELECT  *FROM answers where question_id= $titles order by answer_id";
+//   //$strings="SELECT  *FROM answers where question_id=". "'".$tile."'". "order by answer_id";
   
-  $result = $conn->prepare($strings);
+//   $result = $conn->prepare($strings);
   
        
         
-  $result->execute();
+//   $result->execute();
   
-  $result->bind_result($answer_id,$question_id,$userid,$username,$image,$string,$upvote,$downvote,$anonymous,$isright,$imglin);
-  $posta = array();
+//   $result->bind_result($answer_id,$question_id,$userid,$username,$image,$string,$upvote,$downvote,$anonymous,$isright,$imglin);
+//   $posta = array();
   
   
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
-           $tmp = array();
+//            $tmp = array();
            
            
            
-           $tmp["answer_id"] = $answer_id;
-      $tmp["question_id"] = $question_id;
-	  $tmp["userid"]=$userid; 
-           $tmp["username"] = $username;
-             $tmp["string"] = $string;
-		   $tmp["anonymous"] = $anonymous;
-		   $tmp["image"] = $image;
-		   $tmp["upvote"] = $upvote;
-		   $tmp["downvote"] = $downvote;
-         $tmp["isright"] = $isright;
-		 $tmp["fbimg"]=$imglin;  
+//            $tmp["answer_id"] = $answer_id;
+//       $tmp["question_id"] = $question_id;
+// 	  $tmp["userid"]=$userid; 
+//            $tmp["username"] = $username;
+//              $tmp["string"] = $string;
+// 		   $tmp["anonymous"] = $anonymous;
+// 		   $tmp["image"] = $image;
+// 		   $tmp["upvote"] = $upvote;
+// 		   $tmp["downvote"] = $downvote;
+//          $tmp["isright"] = $isright;
+// 		 $tmp["fbimg"]=$imglin;  
 		   
-           array_push($posta, $tmp);
-       }
-	   $result->close();
-	   //echoRespnse(201,$posta);
+//            array_push($posta, $tmp);
+//        }
+// 	   $result->close();
+// 	   //echoRespnse(201,$posta);
 	   
-	   return $posta;
+// 	   return $posta;
         
-}
+// }
 
-function viewthecomments($titles)
-{   
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-  //$tile=(string)$titles;
-  //echoRespnse(201,$titles);
-  $strings= "SELECT  *FROM blog_comment where blog_id= $titles order by blog_comment_id";
-  //$strings="SELECT  *FROM answers where question_id=". "'".$tile."'". "order by answer_id";
+// function viewthecomments($titles)
+// {   
+//   $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   //$tile=(string)$titles;
+//   //echoRespnse(201,$titles);
+//   $strings= "SELECT  *FROM blog_comment where blog_id= $titles order by blog_comment_id";
+//   //$strings="SELECT  *FROM answers where question_id=". "'".$tile."'". "order by answer_id";
   
-  $result = $conn->prepare($strings);
+//   $result = $conn->prepare($strings);
   
        
         
-  $result->execute();
+//   $result->execute();
   
-  $result->bind_result($blog_comment_id,$username,$content,$image,$anonymous,$blog_id,$userid,$userpic);
-  $posta = array();
+//   $result->bind_result($blog_comment_id,$username,$content,$image,$anonymous,$blog_id,$userid,$userpic);
+//   $posta = array();
   
   
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
-           $tmp = array();
+//            $tmp = array();
            
            
            
-           $tmp["blog_comment_id"] = $blog_comment_id;
-      $tmp["blog_id"] = $blog_id;
-           $tmp["username"] = $username;
-             $tmp["content"] = $content;
-       $tmp["anonymous"] = $anonymous;
-       $tmp["image"] = $image;
-	   $tmp["fbpic"]=$userpic;
+//            $tmp["blog_comment_id"] = $blog_comment_id;
+//       $tmp["blog_id"] = $blog_id;
+//            $tmp["username"] = $username;
+//              $tmp["content"] = $content;
+//        $tmp["anonymous"] = $anonymous;
+//        $tmp["image"] = $image;
+// 	   $tmp["fbpic"]=$userpic;
        
        
        
-           array_push($posta, $tmp);
-       }
-     $result->close();
-     //echoRespnse(201,$posta);
+//            array_push($posta, $tmp);
+//        }
+//      $result->close();
+//      //echoRespnse(201,$posta);
      
-     return $posta;
+//      return $posta;
         
-}
+// }
 
 
 
 
 
-$app->post('/uploadanswers', function() use ($app)  {
+// $app->post('/uploadanswers', function() use ($app)  {
     
   
   
-  $imagenames="";
+//   $imagenames="";
   
 
-    $username = $app->request->post('username');
-	$userid=$app->request->post('userid');
-    $string = $app->request->post('string');
-    $upvote = $app->request->post('upvote');
-    $downvote = $app->request->post('downvote');
-    $anonymous = $app->request->post('anonymous');
-    $isright = $app->request->post('isright');
-    $fbpic=$app->request->post('fbpics');
-    $question_id = $app->request->post('question_id');
+//     $username = $app->request->post('username');
+// 	$userid=$app->request->post('userid');
+//     $string = $app->request->post('string');
+//     $upvote = $app->request->post('upvote');
+//     $downvote = $app->request->post('downvote');
+//     $anonymous = $app->request->post('anonymous');
+//     $isright = $app->request->post('isright');
+//     $fbpic=$app->request->post('fbpics');
+//     $question_id = $app->request->post('question_id');
   
-    $imagecount=$app->request->post('imagecount');
-	$imagenames="";
-	$imgmap="JJ";
+//     $imagecount=$app->request->post('imagecount');
+// 	$imagenames="";
+// 	$imgmap="JJ";
 	
-	$image=$userid;
+// 	$image=$userid;
 	
-  for($i=1;$i<=$imagecount;$i++)
-	{
-	  $image=$userid.$i;
-	  $imgmap= $app->request->post($image);
-	  echoRespnse(201,$image); 
+//   for($i=1;$i<=$imagecount;$i++)
+// 	{
+// 	  $image=$userid.$i;
+// 	  $imgmap= $app->request->post($image);
+// 	  echoRespnse(201,$image); 
 	  
-    $path=$image.".png";
+//     $path=$image.".png";
        
-		while(file_exists($path))
-           {
-              $image=$image."1";
-              $path=$image.".png";
+// 		while(file_exists($path))
+//            {
+//               $image=$image."1";
+//               $path=$image.".png";
               
-           }
+//            }
 		   
-		   $imagenames=$imagenames.$path;
-		   $imagenames=$imagenames.",";
+// 		   $imagenames=$imagenames.$path;
+// 		   $imagenames=$imagenames.",";
 		   
 
-    file_put_contents($path,base64_decode($imgmap));
+//     file_put_contents($path,base64_decode($imgmap));
 	
-	}
+// 	}
 
 
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-  $string=mysqli_real_escape_string($conn,$string);
+//   $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   $string=mysqli_real_escape_string($conn,$string);
 	
-  $strings="INSERT INTO answers(question_id, userid,username, image, string, upvote, downvote, anonymous, isright,proimg) VALUES (" . "'". $question_id . "'". "," . "'". $userid . "'". "," . "'". $username . "'". "," . "'". $imagenames. "'" ."," ."'" . $string . "'" . "," . "'". $upvote. "'" . "," . "'".$downvote. "'" . "," . "'". $imagecount. "'" . "," . "'". $isright . "'" . ",". "'" . $fbpic . "'" . ")";
-  $str= "INSERT INTO answers(question_id,username,image, string, upvote, downvote, anonymous, isright) VALUES ( ";
+//   $strings="INSERT INTO answers(question_id, userid,username, image, string, upvote, downvote, anonymous, isright,proimg) VALUES (" . "'". $question_id . "'". "," . "'". $userid . "'". "," . "'". $username . "'". "," . "'". $imagenames. "'" ."," ."'" . $string . "'" . "," . "'". $upvote. "'" . "," . "'".$downvote. "'" . "," . "'". $imagecount. "'" . "," . "'". $isright . "'" . ",". "'" . $fbpic . "'" . ")";
+//   $str= "INSERT INTO answers(question_id,username,image, string, upvote, downvote, anonymous, isright) VALUES ( ";
   
   
-  $result = $conn->query($strings);
-  uploadnotifications($userid,$question_id);
-  sendNotificationFb($userid,$question_id);  
+//   $result = $conn->query($strings);
+//   uploadnotifications($userid,$question_id);
+//   sendNotificationFb($userid,$question_id);  
   
-  echoRespnse(201,$strings);  
+//   echoRespnse(201,$strings);  
   
   
    
   
      
-});
+// });
 
 
-$app->post('/uploadblog', function() use ($app)  {
+// $app->post('/uploadblog', function() use ($app)  {
     
   
   
-  $imagenames="";
+//   $imagenames="";
   
-    $title=$app->request->post('title');
-    $username = $app->request->post('username');
-	$userid=$app->request->post('userid');
-    $content = $app->request->post('content');
-    $type = $app->request->post('type');
+//     $title=$app->request->post('title');
+//     $username = $app->request->post('username');
+// 	$userid=$app->request->post('userid');
+//     $content = $app->request->post('content');
+//     $type = $app->request->post('type');
     
     
     
     
   
-    $imagecount=$app->request->post('imagecount');
-	$imagenames="";
-	$imgmap="JJ";
+//     $imagecount=$app->request->post('imagecount');
+// 	$imagenames="";
+// 	$imgmap="JJ";
 	
-	$image=$userid;
+// 	$image=$userid;
 	
-  for($i=1;$i<=$imagecount;$i++)
-	{
-	  $image=$userid.$i;
-	  $imgmap= $app->request->post($image);
-	  echoRespnse(201,$image); 
+//   for($i=1;$i<=$imagecount;$i++)
+// 	{
+// 	  $image=$userid.$i;
+// 	  $imgmap= $app->request->post($image);
+// 	  echoRespnse(201,$image); 
 	  
-    $path=$image.".png";
+//     $path=$image.".png";
        
-		while(file_exists($path))
-           {
-              $image=$image."1";
-              $path=$image.".png";
+// 		while(file_exists($path))
+//            {
+//               $image=$image."1";
+//               $path=$image.".png";
               
-           }
+//            }
 		   
-		   $imagenames=$imagenames.$path;
-		   $imagenames=$imagenames.",";
+// 		   $imagenames=$imagenames.$path;
+// 		   $imagenames=$imagenames.",";
 		   
 
-    file_put_contents($path,base64_decode($imgmap));
+//     file_put_contents($path,base64_decode($imgmap));
 	
-	}
+// 	}
 
 
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-  $title=mysqli_real_escape_string($conn,$title);
-  $content=mysqli_real_escape_string($conn,$content);
-  $type=mysqli_real_escape_string($conn,$type);
+//   $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   $title=mysqli_real_escape_string($conn,$title);
+//   $content=mysqli_real_escape_string($conn,$content);
+//   $type=mysqli_real_escape_string($conn,$type);
 	
-  $strings="INSERT INTO blog(title,userid,username,content,type,image) VALUES (" . "'". $title . "'". "," . "'". $userid . "'". "," . "'". $username . "'". "," . "'". $content. "'"  . "," . "'" . $type . "'" . "," . "'" . $imagenames . "'" . ")";
-  $str= "INSERT INTO answers(title,username,userid,content,type,image) VALUES ( ";
+//   $strings="INSERT INTO blog(title,userid,username,content,type,image) VALUES (" . "'". $title . "'". "," . "'". $userid . "'". "," . "'". $username . "'". "," . "'". $content. "'"  . "," . "'" . $type . "'" . "," . "'" . $imagenames . "'" . ")";
+//   $str= "INSERT INTO answers(title,username,userid,content,type,image) VALUES ( ";
   
   
-  $result = $conn->query($strings);
+//   $result = $conn->query($strings);
   
-  echoRespnse(201,$strings);  
+//   echoRespnse(201,$strings);  
   
   
    
   
      
-});
+// });
 
 
-$app->post('/uploadblogcomment', function() use ($app)  {
+// $app->post('/uploadblogcomment', function() use ($app)  {
     
   
   
-  $imagenames="";
+//   $imagenames="";
   
-    $userpic=$app->request->post('userpic');
-    $username = $app->request->post('username');
-	$userid=$app->request->post('userid');
-    $content = $app->request->post('content');
-    $anonymous = $app->request->post('anonymous');
-	$blogid = $app->request->post('blogid');
+//     $userpic=$app->request->post('userpic');
+//     $username = $app->request->post('username');
+// 	$userid=$app->request->post('userid');
+//     $content = $app->request->post('content');
+//     $anonymous = $app->request->post('anonymous');
+// 	$blogid = $app->request->post('blogid');
     
     
     
     
   
-    $imagecount=$app->request->post('imagecount');
-	$imagenames="";
-	$imgmap="JJ";
+//     $imagecount=$app->request->post('imagecount');
+// 	$imagenames="";
+// 	$imgmap="JJ";
 	
-	$image=$userid;
+// 	$image=$userid;
 	
-  for($i=1;$i<=$imagecount;$i++)
-	{
-	  $image=$userid.$i;
-	  $imgmap= $app->request->post($image);
-	  echoRespnse(201,$image); 
+//   for($i=1;$i<=$imagecount;$i++)
+// 	{
+// 	  $image=$userid.$i;
+// 	  $imgmap= $app->request->post($image);
+// 	  echoRespnse(201,$image); 
 	  
-    $path=$image.".png";
+//     $path=$image.".png";
        
-		while(file_exists($path))
-           {
-              $image=$image."1";
-              $path=$image.".png";
+// 		while(file_exists($path))
+//            {
+//               $image=$image."1";
+//               $path=$image.".png";
               
-           }
+//            }
 		   
-		   $imagenames=$imagenames.$path;
-		   $imagenames=$imagenames.",";
+// 		   $imagenames=$imagenames.$path;
+// 		   $imagenames=$imagenames.",";
 		   
 
-    file_put_contents($path,base64_decode($imgmap));
+//     file_put_contents($path,base64_decode($imgmap));
 	
-	}
+// 	}
 
 
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-  $content=mysqli_real_escape_string($conn,$content);
-  $strings="INSERT INTO blog_comment(username,content,image,anonymous,blog_id,userid,userpic) VALUES (" . "'". $username. "'". "," . "'". $content . "'". "," . "'". $imagenames . "'". "," . "'". $anonymous. "'"  . "," . "'" . $blogid . "'" . "," . "'" . $userid . "'" . "," . "'" . $userpic . "'" . ")";
-  $str= "INSERT INTO answers(title,username,userid,content,type,image) VALUES ( ";
+//   $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   $content=mysqli_real_escape_string($conn,$content);
+//   $strings="INSERT INTO blog_comment(username,content,image,anonymous,blog_id,userid,userpic) VALUES (" . "'". $username. "'". "," . "'". $content . "'". "," . "'". $imagenames . "'". "," . "'". $anonymous. "'"  . "," . "'" . $blogid . "'" . "," . "'" . $userid . "'" . "," . "'" . $userpic . "'" . ")";
+//   $str= "INSERT INTO answers(title,username,userid,content,type,image) VALUES ( ";
   
   
-  $result = $conn->query($strings);
+//   $result = $conn->query($strings);
   
-  echoRespnse(201,$strings);  
+//   echoRespnse(201,$strings);  
   
   
    
   
      
-});
+// });
 
 
 
-function sendNotificationFb($useridme, $qid){
+// function sendNotificationFb($useridme, $qid){
   
-  $fb = new Facebook\Facebook([
-  'app_id' => '179014802653918',
-  'app_secret' => '62b225675f7b88c21f8b4214f4ebdd65',
-  'default_graph_version' => 'v2.11',
-]);
+//   $fb = new Facebook\Facebook([
+//   'app_id' => '179014802653918',
+//   'app_secret' => '62b225675f7b88c21f8b4214f4ebdd65',
+//   'default_graph_version' => 'v2.11',
+// ]);
   
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-  $strings="SELECT userid FROM questions where id=". "'".$qid."'";
+//   $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   $strings="SELECT userid FROM questions where id=". "'".$qid."'";
   
-  $result = $conn->prepare($strings);
-  $string="You have new responses. Please check. ";     
+//   $result = $conn->prepare($strings);
+//   $string="You have new responses. Please check. ";     
         
-  $result->execute();
-  $result->bind_result($userid);
-  //$posts = array();
+//   $result->execute();
+//   $result->bind_result($userid);
+//   //$posts = array();
   
   
-  while($result->fetch()) {
-      if($userid!=$useridme){  
-        try {
-  // Returns a `FacebookFacebookResponse` object
-  $response = $fb->post(
-    '/'.$userid.'/notifications',
-    array (
-      'href' => '?true=43',
-      'template' => $string
-    ),
-    '179014802653918|9l61E_wTOpOyI8ZcvIGQuPKiRe4'
-  );
-} catch(FacebookExceptionsFacebookResponseException $e) {
-  echo 'Graph returned an error: ' . $e->getMessage();
-  exit;
-} catch(FacebookExceptionsFacebookSDKException $e) {
-  echo 'Facebook SDK returned an error: ' . $e->getMessage();
-  exit;
-}
-$graphNode = $response->getGraphNode();		
-	  }    
-       }
-	   $result->close();
+//   while($result->fetch()) {
+//       if($userid!=$useridme){  
+//         try {
+//   // Returns a `FacebookFacebookResponse` object
+//   $response = $fb->post(
+//     '/'.$userid.'/notifications',
+//     array (
+//       'href' => '?true=43',
+//       'template' => $string
+//     ),
+//     '179014802653918|9l61E_wTOpOyI8ZcvIGQuPKiRe4'
+//   );
+// } catch(FacebookExceptionsFacebookResponseException $e) {
+//   echo 'Graph returned an error: ' . $e->getMessage();
+//   exit;
+// } catch(FacebookExceptionsFacebookSDKException $e) {
+//   echo 'Facebook SDK returned an error: ' . $e->getMessage();
+//   exit;
+// }
+// $graphNode = $response->getGraphNode();		
+// 	  }    
+//        }
+// 	   $result->close();
 	   
-$strings="SELECT userid FROM answers where question_id=". "'".$qid."'";
+// $strings="SELECT userid FROM answers where question_id=". "'".$qid."'";
 
   
-$result = $conn->prepare($strings);
+// $result = $conn->prepare($strings);
 
-$result->execute();
-  $result->bind_result($userid);
-  //$posts = array();
+// $result->execute();
+//   $result->bind_result($userid);
+//   //$posts = array();
   
   
-  while($result->fetch()) {
-      if($userid!=$useridme){  
-        try {
-  // Returns a `FacebookFacebookResponse` object
-  $response = $fb->post(
-    '/'.$userid.'/notifications',
-    array (
-      'href' => '?true=43',
-      'template' => $string
-    ),
-    '179014802653918|9l61E_wTOpOyI8ZcvIGQuPKiRe4'
-  );
-} catch(FacebookExceptionsFacebookResponseException $e) {
-  echo 'Graph returned an error: ' . $e->getMessage();
-  exit;
-} catch(FacebookExceptionsFacebookSDKException $e) {
-  echo 'Facebook SDK returned an error: ' . $e->getMessage();
-  exit;
-}
-$graphNode = $response->getGraphNode();		
-	  }    
-       }
-	   $result->close();
+//   while($result->fetch()) {
+//       if($userid!=$useridme){  
+//         try {
+//   // Returns a `FacebookFacebookResponse` object
+//   $response = $fb->post(
+//     '/'.$userid.'/notifications',
+//     array (
+//       'href' => '?true=43',
+//       'template' => $string
+//     ),
+//     '179014802653918|9l61E_wTOpOyI8ZcvIGQuPKiRe4'
+//   );
+// } catch(FacebookExceptionsFacebookResponseException $e) {
+//   echo 'Graph returned an error: ' . $e->getMessage();
+//   exit;
+// } catch(FacebookExceptionsFacebookSDKException $e) {
+//   echo 'Facebook SDK returned an error: ' . $e->getMessage();
+//   exit;
+// }
+// $graphNode = $response->getGraphNode();		
+// 	  }    
+//        }
+// 	   $result->close();
 
 	   
   
   
  
   
- }
+//  }
 
 
-$app->get('/viewallanswers', function() use ($app)  {
+// $app->get('/viewallanswers', function() use ($app)  {
 	
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-  $strings="SELECT  *FROM answers where question_id=123 order by answer_id";
-  $result = $conn->prepare($strings);
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   $strings="SELECT  *FROM answers where question_id=123 order by answer_id";
+//   $result = $conn->prepare($strings);
        
         
-  $result->execute();
-  $result->bind_result($answer_id,$question_id,$userid,$username,$image,$string,$upvote,$downvote,$anonymous,$isright,$imglin);
-  $posts = array();
+//   $result->execute();
+//   $result->bind_result($answer_id,$question_id,$userid,$username,$image,$string,$upvote,$downvote,$anonymous,$isright,$imglin);
+//   $posts = array();
   
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
-           $tmp = array();
+//            $tmp = array();
            
            
            
-           $tmp["answer_id"] = $answer_id;
-           $tmp["question_id"] = $question_id;
-	       $tmp["userid"] = $userid;
-           $tmp["username"] = $username;
-           $tmp["string"] = nl2br($string);
-		   $tmp["anonymous"] = $anonymous;
-		   $tmp["image"] = $image;
-		   $tmp["upvote"] = $upvote;
-		   $tmp["downvote"] = $downvote;
-         $tmp["isright"] = $isright;
-		 $tmp["fbimg"]=$imglin;  
+//            $tmp["answer_id"] = $answer_id;
+//            $tmp["question_id"] = $question_id;
+// 	       $tmp["userid"] = $userid;
+//            $tmp["username"] = $username;
+//            $tmp["string"] = nl2br($string);
+// 		   $tmp["anonymous"] = $anonymous;
+// 		   $tmp["image"] = $image;
+// 		   $tmp["upvote"] = $upvote;
+// 		   $tmp["downvote"] = $downvote;
+//          $tmp["isright"] = $isright;
+// 		 $tmp["fbimg"]=$imglin;  
 		   
 		   
-           array_push($posts, $tmp);
-       }
-	   $result->close();
+//            array_push($posts, $tmp);
+//        }
+// 	   $result->close();
         
         
-  echoRespnse(201,$posts);  
+//   echoRespnse(201,$posts);  
 	
 	
-});
+// });
 
 
-$app->post('/viewmyquestions', function() use ($app)  {
+// $app->post('/viewmyquestions', function() use ($app)  {
     
-	//$filter=$_GET["filter"];
-  $filter = $app->request->post('filter');
-  //echoRespnse(201,$filter); 
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-    if($filter!="0"){
-         $strings="SELECT * FROM questions where category=". "'".$filter."'"."AND username='shadman'". "order by id desc limit 30";
-    }
+// 	//$filter=$_GET["filter"];
+//   $filter = $app->request->post('filter');
+//   //echoRespnse(201,$filter); 
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//     if($filter!="0"){
+//          $strings="SELECT * FROM questions where category=". "'".$filter."'"."AND username='shadman'". "order by id desc limit 30";
+//     }
     
-    else
-        $strings="SELECT * FROM questions order by id desc limit 30";
-  $result = $conn->prepare($strings);
+//     else
+//         $strings="SELECT * FROM questions order by id desc limit 30";
+//   $result = $conn->prepare($strings);
        
         
-  $result->execute();
-  $result->bind_result($id,$username,$question,$category,$anonymous,$notification,$image,$upvote,$downvote);
-  $posts = array();
+//   $result->execute();
+//   $result->bind_result($id,$username,$question,$category,$anonymous,$notification,$image,$upvote,$downvote);
+//   $posts = array();
   
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
-           $tmp = array();
+//            $tmp = array();
            
            
            
-           $tmp["id"] = $id;
-           $tmp["username"] = $username;
-           $tmp["question"] = nl2br($question);
-           $tmp["category"] = $category;
-		   $tmp["anonymous"] = "0";
-		   $tmp["image"] = $image;
-		   $tmp["upvote"] = $upvote;
-		   $tmp["downvote"] = $downvote;
+//            $tmp["id"] = $id;
+//            $tmp["username"] = $username;
+//            $tmp["question"] = nl2br($question);
+//            $tmp["category"] = $category;
+// 		   $tmp["anonymous"] = "0";
+// 		   $tmp["image"] = $image;
+// 		   $tmp["upvote"] = $upvote;
+// 		   $tmp["downvote"] = $downvote;
 		   
 		   
-           array_push($posts, $tmp);
-       }
-	   $result->close();
+//            array_push($posts, $tmp);
+//        }
+// 	   $result->close();
         
         
         
-  echoRespnse(201,$posts);  
+//   echoRespnse(201,$posts);  
 	
 	
-});
+// });
 
 
-$app->post('/uploadmyanswers', function() use ($app)  {
+// $app->post('/uploadmyanswers', function() use ($app)  {
     
   
-  // $username=$app->request->post('username');
-  // $question=$app->request->post('question');
-  // $category=$app->request->post('category');
-  // $notifications=$app->request->post('notifications');
-  // $imagecount=$app->request->post('imagecount');
-  $imagenames="";
+//   // $username=$app->request->post('username');
+//   // $question=$app->request->post('question');
+//   // $category=$app->request->post('category');
+//   // $notifications=$app->request->post('notifications');
+//   // $imagecount=$app->request->post('imagecount');
+//   $imagenames="";
   
 
-    $username = $app->request->post('username');
-    $string = $app->request->post('string');
-    $upvote = $app->request->post('upvote');
-    $downvote = $app->request->post('downvote');
-    $anonymous = $app->request->post('anonymous');
-    $isright = $app->request->post('isright');
+//     $username = $app->request->post('username');
+//     $string = $app->request->post('string');
+//     $upvote = $app->request->post('upvote');
+//     $downvote = $app->request->post('downvote');
+//     $anonymous = $app->request->post('anonymous');
+//     $isright = $app->request->post('isright');
     
-    $question_id = $app->request->post('question_id');
+//     $question_id = $app->request->post('question_id');
   
-    $imagecount=$app->request->post('imagecount');
-	$imagenames="";
+//     $imagecount=$app->request->post('imagecount');
+// 	$imagenames="";
 	
-	$image=$username;
+// 	$image=$username;
 	
-  for($i=1;$i<=$imagecount;$i++)
-	{
-	  $image=$username.$i;
-	  $imgmap= $app->request->post($image);
+//   for($i=1;$i<=$imagecount;$i++)
+// 	{
+// 	  $image=$username.$i;
+// 	  $imgmap= $app->request->post($image);
 	  
-    $path=$image.".png";
+//     $path=$image.".png";
        
-		while(file_exists($path))
-           {
-              $image=$image."1";
-              $path=$image.".png";
+// 		while(file_exists($path))
+//            {
+//               $image=$image."1";
+//               $path=$image.".png";
               
-           }
+//            }
 		   
-		   $imagenames=$imagenames.$path;
-		   $imagenames=$imagenames.",";
+// 		   $imagenames=$imagenames.$path;
+// 		   $imagenames=$imagenames.",";
 		   
 
-    file_put_contents($path,base64_decode($imgmap));
+//     file_put_contents($path,base64_decode($imgmap));
 	
-	}
+// 	}
 
 
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-  $strings="INSERT INTO answers(question_id, username, image, string, upvote, downvote, anonymous, isright) VALUES (" . "'". $question_id . "'". "," . "'". $username . "'". "," . "'". $imagenames. "'" ."," ."'" . $string . "'" . "," . "'". $upvote. "'" . "," . "'".$downvote. "'" . "," . "'". $anonymous. "'" . "," . "'". $isright . "'" . ")";
-  $str= "INSERT INTO answers(question_id,username,image, string, upvote, downvote, anonymous, isright) VALUES ( ";
+//   $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   $strings="INSERT INTO answers(question_id, username, image, string, upvote, downvote, anonymous, isright) VALUES (" . "'". $question_id . "'". "," . "'". $username . "'". "," . "'". $imagenames. "'" ."," ."'" . $string . "'" . "," . "'". $upvote. "'" . "," . "'".$downvote. "'" . "," . "'". $anonymous. "'" . "," . "'". $isright . "'" . ")";
+//   $str= "INSERT INTO answers(question_id,username,image, string, upvote, downvote, anonymous, isright) VALUES ( ";
   
   
-  $result = $conn->query($strings);
+//   $result = $conn->query($strings);
   
-  //echoRespnse(201,$strings);  
+//   //echoRespnse(201,$strings);  
   
   
    
   
      
-});
+// });
 
 
 
 
 
  
-$app->post('/viewonequestion', function() use ($app)  {
+// $app->post('/viewonequestion', function() use ($app)  {
     
-	//$filter=$_GET["filter"];
-  $onequestion = $_GET['question'];
-  //echoRespnse(201,$filter); 
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+// 	//$filter=$_GET["filter"];
+//   $onequestion = $_GET['question'];
+//   //echoRespnse(201,$filter); 
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
 
-        $strings="SELECT * FROM questions where id=". "'".$onequestion."'"."";
-      $result = $conn->prepare($strings);
+//         $strings="SELECT * FROM questions where id=". "'".$onequestion."'"."";
+//       $result = $conn->prepare($strings);
        
         
-  $result->execute();
-  $result->bind_result($id,$title,$userid,$username,$question,$category,$anonymous,$notification,$image,$tags,$upvote,$downvote,$imglin);
-  $posts = array();
+//   $result->execute();
+//   $result->bind_result($id,$title,$userid,$username,$question,$category,$anonymous,$notification,$image,$tags,$upvote,$downvote,$imglin);
+//   $posts = array();
   
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
-           $tmp = array();
-          $tmp["id"] = $id;
-		   $tmp["title"] = $title;
-		   $tmp["userid"] = $userid;
-           $tmp["username"] = $username;
-           $tmp["question"] = $question;
-           $tmp["category"] = $category;
-		   $tmp["anonymous"] = $anonymous;
-		   $tmp["image"] = $image;
-		   $tmp["upvote"] = $upvote;
-		   $tmp["downvote"] = $downvote;
-		   $tmp["tags"]=$tags;
-		   $tmp["answers"]=viewtheanswers($id);
-		   $tmp["fbpic"]=$imglin;
+//            $tmp = array();
+//           $tmp["id"] = $id;
+// 		   $tmp["title"] = $title;
+// 		   $tmp["userid"] = $userid;
+//            $tmp["username"] = $username;
+//            $tmp["question"] = $question;
+//            $tmp["category"] = $category;
+// 		   $tmp["anonymous"] = $anonymous;
+// 		   $tmp["image"] = $image;
+// 		   $tmp["upvote"] = $upvote;
+// 		   $tmp["downvote"] = $downvote;
+// 		   $tmp["tags"]=$tags;
+// 		   $tmp["answers"]=viewtheanswers($id);
+// 		   $tmp["fbpic"]=$imglin;
 		   
 		   
-           array_push($posts, $tmp);
-       }
-	   $result->close();
+//            array_push($posts, $tmp);
+//        }
+// 	   $result->close();
         
         
         
-  echoRespnse(201,$posts);  
+//   echoRespnse(201,$posts);  
 	
 	
-});
+// });
 
-$app->post('/viewoneblog', function() use ($app)  {
+// $app->post('/viewoneblog', function() use ($app)  {
     
-  //$filter=$_GET["filter"];
-  $oneblog = $app->request->post('oneblog');
-  //echoRespnse(201,$filter); 
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   //$filter=$_GET["filter"];
+//   $oneblog = $app->request->post('oneblog');
+//   //echoRespnse(201,$filter); 
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
 
-        $strings="SELECT * FROM blog where id=". "'".$oneblog."'"."";
-      $result = $conn->prepare($strings);
+//         $strings="SELECT * FROM blog where id=". "'".$oneblog."'"."";
+//       $result = $conn->prepare($strings);
        
         
-  $result->execute();
-  $result->bind_result($id,$title,$userid,$username,$content,$type,$image,$likes);
-  $posts = array();
+//   $result->execute();
+//   $result->bind_result($id,$title,$userid,$username,$content,$type,$image,$likes);
+//   $posts = array();
   
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
-           $tmp = array();
-          $tmp["id"] = $id;
-       $tmp["title"] = $title;
-	   $tmp["userid"]=$userid;
-           $tmp["username"] = $username;
-           $tmp["content"] = $content;
-           $tmp["type"] = $type;
-       //$tmp["anonymous"] = $anonymous;
-       $tmp["image"] = $image;
-       $tmp["likes"] = $likes;
-       $tmp["comments"]=viewthecomments($id);
+//            $tmp = array();
+//           $tmp["id"] = $id;
+//        $tmp["title"] = $title;
+// 	   $tmp["userid"]=$userid;
+//            $tmp["username"] = $username;
+//            $tmp["content"] = $content;
+//            $tmp["type"] = $type;
+//        //$tmp["anonymous"] = $anonymous;
+//        $tmp["image"] = $image;
+//        $tmp["likes"] = $likes;
+//        $tmp["comments"]=viewthecomments($id);
        
        
-           array_push($posts, $tmp);
-       }
-     $result->close();
+//            array_push($posts, $tmp);
+//        }
+//      $result->close();
         
         
         
-  echoRespnse(201,$posts);  
+//   echoRespnse(201,$posts);  
   
   
-});
+// });
 
-$app->get('/viewallblogs', function() use ($app)  {
+// $app->get('/viewallblogs', function() use ($app)  {
     
-  $filter=$_GET["filter"];
+//   $filter=$_GET["filter"];
    
-  //echoRespnse(201,$filter); 
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   //echoRespnse(201,$filter); 
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
    
-        $strings="SELECT * FROM blog order by id desc limit 10";
-      $result = $conn->prepare($strings);
-      $search=$filter; 
+//         $strings="SELECT * FROM blog order by id desc limit 10";
+//       $result = $conn->prepare($strings);
+//       $search=$filter; 
         
-  $result->execute();
-  $result->bind_result($id,$title,$userid,$username,$content,$type,$image,$likes);
-  $posts = array();
- if($filter=="0")
- {	 
-  while($result->fetch()) {
+//   $result->execute();
+//   $result->bind_result($id,$title,$userid,$username,$content,$type,$image,$likes);
+//   $posts = array();
+//  if($filter=="0")
+//  {	 
+//   while($result->fetch()) {
            
-           $tmp = array();
-          $tmp["id"] = $id;
-       $tmp["title"] = $title;
-	   $tmp["userid"]=$userid;
-           $tmp["username"] = $username;
-           $tmp["content"] = nl2br($content);
-           $tmp["type"] = $type;
-       //$tmp["anonymous"] = $anonymous;
-       $tmp["image"] = $image;
-       $tmp["likes"] = $likes;
+//            $tmp = array();
+//           $tmp["id"] = $id;
+//        $tmp["title"] = $title;
+// 	   $tmp["userid"]=$userid;
+//            $tmp["username"] = $username;
+//            $tmp["content"] = nl2br($content);
+//            $tmp["type"] = $type;
+//        //$tmp["anonymous"] = $anonymous;
+//        $tmp["image"] = $image;
+//        $tmp["likes"] = $likes;
        
        
        
-           array_push($posts, $tmp);
-       }
+//            array_push($posts, $tmp);
+//        }
  
-     $result->close();
+//      $result->close();
         
- }
+//  }
  
-else
-{
+// else
+// {
  	
-  while($result->fetch()) {
-        if (stripos($title, $search) !== false){   
-           $tmp = array();
-          $tmp["id"] = $id;
-	$tmp["title"] = $title;
-	   $tmp["userid"]=$userid;
-           $tmp["username"] = $username;
-           $tmp["content"] = $content;
-           $tmp["type"] = $type;
-       //$tmp["anonymous"] = $anonymous;
-       $tmp["image"] = $image;
-       $tmp["likes"] = $likes;
+//   while($result->fetch()) {
+//         if (stripos($title, $search) !== false){   
+//            $tmp = array();
+//           $tmp["id"] = $id;
+// 	$tmp["title"] = $title;
+// 	   $tmp["userid"]=$userid;
+//            $tmp["username"] = $username;
+//            $tmp["content"] = $content;
+//            $tmp["type"] = $type;
+//        //$tmp["anonymous"] = $anonymous;
+//        $tmp["image"] = $image;
+//        $tmp["likes"] = $likes;
        
        
        
-           array_push($posts, $tmp);
-		}
-       }
-      $result->close();	   
+//            array_push($posts, $tmp);
+// 		}
+//        }
+//       $result->close();	   
   
-}	
+// }	
         
-  echoRespnse(201,$posts);  
+//   echoRespnse(201,$posts);  
   
   
-});
+// });
 
-$app->get('/viewallsuggestionblogs', function() use ($app)  {
+// $app->get('/viewallsuggestionblogs', function() use ($app)  {
     
-  $filter=$_GET["filter"];
+//   $filter=$_GET["filter"];
    
-  //echoRespnse(201,$filter); 
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   //echoRespnse(201,$filter); 
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
    
-        $strings="SELECT * FROM blog where type='suggestion' order by id desc limit 17";
-      $result = $conn->prepare($strings);
-      $search=$filter; 
+//         $strings="SELECT * FROM blog where type='suggestion' order by id desc limit 17";
+//       $result = $conn->prepare($strings);
+//       $search=$filter; 
         
-  $result->execute();
-  $result->bind_result($id,$title,$userid,$username,$content,$type,$image,$likes);
-  $posts = array();
- if($filter=="0")
- {	 
-  while($result->fetch()) {
+//   $result->execute();
+//   $result->bind_result($id,$title,$userid,$username,$content,$type,$image,$likes);
+//   $posts = array();
+//  if($filter=="0")
+//  {	 
+//   while($result->fetch()) {
            
-           $tmp = array();
-          $tmp["id"] = $id;
-       $tmp["title"] = $title;
-	   $tmp["userid"]=$userid;
-           $tmp["username"] = $username;
-           $tmp["content"] = nl2br($content);
-           $tmp["type"] = $type;
-       //$tmp["anonymous"] = $anonymous;
-       $tmp["image"] = $image;
-       $tmp["likes"] = $likes;
+//            $tmp = array();
+//           $tmp["id"] = $id;
+//        $tmp["title"] = $title;
+// 	   $tmp["userid"]=$userid;
+//            $tmp["username"] = $username;
+//            $tmp["content"] = nl2br($content);
+//            $tmp["type"] = $type;
+//        //$tmp["anonymous"] = $anonymous;
+//        $tmp["image"] = $image;
+//        $tmp["likes"] = $likes;
        
        
        
-           array_push($posts, $tmp);
-       }
+//            array_push($posts, $tmp);
+//        }
  
-     $result->close();
+//      $result->close();
         
- }
+//  }
  
-else
-{
+// else
+// {
  	
-  while($result->fetch()) {
-        if (stripos($title, $search) !== false){   
-           $tmp = array();
-          $tmp["id"] = $id;
-	$tmp["title"] = $title;
-	   $tmp["userid"]=$userid;
-           $tmp["username"] = $username;
-           $tmp["content"] = $content;
-           $tmp["type"] = $type;
-       //$tmp["anonymous"] = $anonymous;
-       $tmp["image"] = $image;
-       $tmp["likes"] = $likes;
+//   while($result->fetch()) {
+//         if (stripos($title, $search) !== false){   
+//            $tmp = array();
+//           $tmp["id"] = $id;
+// 	$tmp["title"] = $title;
+// 	   $tmp["userid"]=$userid;
+//            $tmp["username"] = $username;
+//            $tmp["content"] = $content;
+//            $tmp["type"] = $type;
+//        //$tmp["anonymous"] = $anonymous;
+//        $tmp["image"] = $image;
+//        $tmp["likes"] = $likes;
        
        
        
-           array_push($posts, $tmp);
-		}
-       }
-      $result->close();	   
+//            array_push($posts, $tmp);
+// 		}
+//        }
+//       $result->close();	   
   
-}	
+// }	
         
-  echoRespnse(201,$posts);  
+//   echoRespnse(201,$posts);  
   
   
-});
+// });
 
 
-$app->get('/categorylist', function() use ($app)  {
+// $app->get('/categorylist', function() use ($app)  {
 	
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
-  $strings="SELECT type FROM blog GROUP by type";
-  $result = $conn->prepare($strings);
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   $strings="SELECT type FROM blog GROUP by type";
+//   $result = $conn->prepare($strings);
        
         
-  $result->execute();
-  $result->bind_result($type);
-  $posts = array();
+//   $result->execute();
+//   $result->bind_result($type);
+//   $posts = array();
   
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
-           $tmp = array();
+//            $tmp = array();
            
            
            
-           $tmp["type"] = $type;
+//            $tmp["type"] = $type;
 		   
 		   
-           array_push($posts, $tmp);
-       }
-	   $result->close();
+//            array_push($posts, $tmp);
+//        }
+// 	   $result->close();
         
         
         
-  echoRespnse(201,$posts);  
+//   echoRespnse(201,$posts);  
 	
 	
-});
+// });
 
 
    
-$app->post('/categoryClickApi', function() use ($app)  {
+// $app->post('/categoryClickApi', function() use ($app)  {
 
- $catname = $app->request->post('category_name');
+//  $catname = $app->request->post('category_name');
  
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
 
-   $strings="SELECT * FROM blog WHERE type=". "'".$catname."'".  "";
+//    $strings="SELECT * FROM blog WHERE type=". "'".$catname."'".  "";
     
- $result = $conn->prepare($strings);    
-  $result->execute();
-  $result->bind_result($id,$title,$userid,$username,$content,$type,$image,$likes);
-  $posts = array();
+//  $result = $conn->prepare($strings);    
+//   $result->execute();
+//   $result->bind_result($id,$title,$userid,$username,$content,$type,$image,$likes);
+//   $posts = array();
     
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
-           $tmp = array();
-          $tmp["id"] = $id;
-       $tmp["title"] = $title;
-	   $tmp["userid"]=$userid;
-           $tmp["username"] = $username;
-           $tmp["content"] = nl2br($content);
-           $tmp["type"] = $type;
-       //$tmp["anonymous"] = $anonymous;
-       $tmp["image"] = $image;
-       $tmp["likes"] = $likes;
+//            $tmp = array();
+//           $tmp["id"] = $id;
+//        $tmp["title"] = $title;
+// 	   $tmp["userid"]=$userid;
+//            $tmp["username"] = $username;
+//            $tmp["content"] = nl2br($content);
+//            $tmp["type"] = $type;
+//        //$tmp["anonymous"] = $anonymous;
+//        $tmp["image"] = $image;
+//        $tmp["likes"] = $likes;
        
        
        
-           array_push($posts, $tmp);
-       }
+//            array_push($posts, $tmp);
+//        }
  
-     $result->close();
+//      $result->close();
         
-       echoRespnse(201,$posts);  
+//        echoRespnse(201,$posts);  
 	
-});
+// });
  
 
 
 
   
-$app->post('/deleteanswerfromdatabase', function() use ($app)  {
+// $app->post('/deleteanswerfromdatabase', function() use ($app)  {
 
- $delanswer = $app->request->post('delanswer');
+//  $delanswer = $app->request->post('delanswer');
  
     
     
    
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
  
     
-   $strings="DELETE FROM answers where answer_id=". "'".$delanswer."'".  "";
+//    $strings="DELETE FROM answers where answer_id=". "'".$delanswer."'".  "";
     
-     $result = $conn->query($strings);
+//      $result = $conn->query($strings);
 
-        echoRespnse(201,$strings);
+//         echoRespnse(201,$strings);
 	
-});
+// });
  
 
 
     
   
-$app->post('/delquestionfromdatabase', function() use ($app)  {
+// $app->post('/delquestionfromdatabase', function() use ($app)  {
 
- $delquestion = $app->request->post('delquestion');
+//  $delquestion = $app->request->post('delquestion');
  
     
     
    
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
  
     
-   $strings="CALL DELETE_QUESTION("."'".$delquestion."')";
+//    $strings="CALL DELETE_QUESTION("."'".$delquestion."')";
     
-     $result = $conn->query($strings);
+//      $result = $conn->query($strings);
 
-        echoRespnse(201,$strings);
+//         echoRespnse(201,$strings);
 	
-});
+// });
  
-$app->post('/delquestionfromdatabase', function() use ($app)  {
+// $app->post('/delquestionfromdatabase', function() use ($app)  {
 
- $delquestion = $app->request->post('delquestion');
+//  $delquestion = $app->request->post('delquestion');
  
     
     
    
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
  
     
-   $strings="CALL DELETE_QUESTION("."'".$delquestion."')";
+//    $strings="CALL DELETE_QUESTION("."'".$delquestion."')";
     
-     $result = $conn->query($strings);
+//      $result = $conn->query($strings);
 
-        echoRespnse(201,$strings);
+//         echoRespnse(201,$strings);
 	
-});
+// });
  
 
-$app->post('/loadsignupinfo', function() use ($app)  {
+// $app->post('/loadsignupinfo', function() use ($app)  {
 
-    $phn=$app->request->post('phn');
-    $pass = $app->request->post('pass');
- $username = $app->request->post('username');
+//     $phn=$app->request->post('phn');
+//     $pass = $app->request->post('pass');
+//  $username = $app->request->post('username');
     
 
 
 
-  $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
 
 	
-  $strings="INSERT INTO signupinfo(phone_num,password,username) VALUES (" . "'". $phn. "'". "," . "'". $pass . "'". "," . "'". $username . "'". ")";
-  $str= "INSERT INTO signupinfo(phone_num,password,username) VALUES ( ";
+//   $strings="INSERT INTO signupinfo(phone_num,password,username) VALUES (" . "'". $phn. "'". "," . "'". $pass . "'". "," . "'". $username . "'". ")";
+//   $str= "INSERT INTO signupinfo(phone_num,password,username) VALUES ( ";
   
   
-  $result = $conn->query($strings);
+//   $result = $conn->query($strings);
   
-  echoRespnse(201,$strings);  
+//   echoRespnse(201,$strings);  
   
   
    
   
      
-});
+// });
 
 
 
 
-$app->post('/submitinfocheck', function() use ($app)  {
+// $app->post('/submitinfocheck', function() use ($app)  {
     
-	$phn = $app->request->post('phn');
+// 	$phn = $app->request->post('phn');
     
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
     
-  $strings="SELECT  *FROM signupinfo where phone_num="."'".$phn."'"."";
-  $result = $conn->prepare($strings);
+//   $strings="SELECT  *FROM signupinfo where phone_num="."'".$phn."'"."";
+//   $result = $conn->prepare($strings);
        
         
-  $result->execute();
-  $result->bind_result($phn,$pass,$username);
-  $posts = array();
+//   $result->execute();
+//   $result->bind_result($phn,$pass,$username);
+//   $posts = array();
   
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
-           $tmp = array();
+//            $tmp = array();
            
            
            
-           $tmp["phone_num"] = $phn;
-           $tmp["password"] = $pass;
-           $tmp["username"] = $username;
+//            $tmp["phone_num"] = $phn;
+//            $tmp["password"] = $pass;
+//            $tmp["username"] = $username;
          
 		   
 		   
-           array_push($posts, $tmp);
-       }
-	   $result->close();
+//            array_push($posts, $tmp);
+//        }
+// 	   $result->close();
         
         
-  echoRespnse(201,$posts);  
+//   echoRespnse(201,$posts);  
 	
 	
-});
+// });
 
 
-$app->get('/loadbloginNEWfile', function() use ($app)  {
+// $app->get('/loadbloginNEWfile', function() use ($app)  {
     
    
-  //echoRespnse(201,$filter); 
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+//   //echoRespnse(201,$filter); 
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
    
-        $strings="SELECT * FROM blog order by id desc";
-      $result = $conn->prepare($strings);
+//         $strings="SELECT * FROM blog order by id desc";
+//       $result = $conn->prepare($strings);
         
-  $result->execute();
-  $result->bind_result($id,$title,$userid,$username,$content,$type,$image,$likes);
-  $posts = array();	 
-  while($result->fetch()) {
+//   $result->execute();
+//   $result->bind_result($id,$title,$userid,$username,$content,$type,$image,$likes);
+//   $posts = array();	 
+//   while($result->fetch()) {
            
-           $tmp = array();
-          $tmp["id"] = $id;
-       $tmp["title"] = $title;
-	   $tmp["userid"]=$userid;
-           $tmp["username"] = $username;
-           $tmp["content"] = nl2br($content);
-           $tmp["type"] = $type;
-       //$tmp["anonymous"] = $anonymous;
-       $tmp["image"] = $image;
-       $tmp["likes"] = $likes;
+//            $tmp = array();
+//           $tmp["id"] = $id;
+//        $tmp["title"] = $title;
+// 	   $tmp["userid"]=$userid;
+//            $tmp["username"] = $username;
+//            $tmp["content"] = nl2br($content);
+//            $tmp["type"] = $type;
+//        //$tmp["anonymous"] = $anonymous;
+//        $tmp["image"] = $image;
+//        $tmp["likes"] = $likes;
        
        
        
-           array_push($posts, $tmp);
-       }
+//            array_push($posts, $tmp);
+//        }
  
-     $result->close();
+//      $result->close();
 	
-  echoRespnse(201,$posts);  
+//   echoRespnse(201,$posts);  
   
   
-});
+// });
 
 
-$app->get('/viewleaderboard', function() use ($app)  {
+// $app->get('/viewleaderboard', function() use ($app)  {
     
 	
-$conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+// $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
 
-        $strings="SELECT username,points,IFNULL((SELECT SUM(B.upvote) FROM answers A JOIN answer_vote B ON B.answer_id=A.answer_id group by A.userid HAVING L.userid=A.userid),0) As upvote, IFNULL((SELECT SUM(B.downvote) FROM answers A JOIN answer_vote B ON B.answer_id=A.answer_id group by A.userid HAVING L.userid=A.userid),0) As downvote FROM `LeaderBoard` L ORDER BY points DESC";
-      $result = $conn->prepare($strings);
+//         $strings="SELECT username,points,IFNULL((SELECT SUM(B.upvote) FROM answers A JOIN answer_vote B ON B.answer_id=A.answer_id group by A.userid HAVING L.userid=A.userid),0) As upvote, IFNULL((SELECT SUM(B.downvote) FROM answers A JOIN answer_vote B ON B.answer_id=A.answer_id group by A.userid HAVING L.userid=A.userid),0) As downvote FROM `LeaderBoard` L ORDER BY points DESC";
+//       $result = $conn->prepare($strings);
        
         
-  $result->execute();
-  $result->bind_result($username,$points,$upvote,$downvote);
-  $posts = array();
+//   $result->execute();
+//   $result->bind_result($username,$points,$upvote,$downvote);
+//   $posts = array();
   
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
-           $tmp = array();
-          $tmp["username"] = $username;
-		   $tmp["points"] = $points;
-           $tmp["upvote"] = $upvote;
-           $tmp["downvote"] = $downvote;
+//            $tmp = array();
+//           $tmp["username"] = $username;
+// 		   $tmp["points"] = $points;
+//            $tmp["upvote"] = $upvote;
+//            $tmp["downvote"] = $downvote;
        
 		   
 		   
-           array_push($posts, $tmp);
-       }
-	   $result->close();
+//            array_push($posts, $tmp);
+//        }
+// 	   $result->close();
         
         
         
-  echoRespnse(201,$posts);  
+//   echoRespnse(201,$posts);  
 	
 	
-});
+// });
 
 
 
-$app->post('/logininfocheck', function() use ($app)  {
-    $phn=$app->request->post('phn');
-    $pass = $app->request->post('pass');
-    $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
+// $app->post('/logininfocheck', function() use ($app)  {
+//     $phn=$app->request->post('phn');
+//     $pass = $app->request->post('pass');
+//     $conn = new mysqli("localhost", "root", "aquarium201", "online_sohopathi");
 
- $strings="SELECT  phone_num, username FROM signupinfo where phone_num="."'".$phn."'"."and password="."'".$pass."'"."";
-  $result = $conn->prepare($strings);
-  $result->execute();
-  $result->bind_result($phn,$username);
-  $posts = array();
+//  $strings="SELECT  phone_num, username FROM signupinfo where phone_num="."'".$phn."'"."and password="."'".$pass."'"."";
+//   $result = $conn->prepare($strings);
+//   $result->execute();
+//   $result->bind_result($phn,$username);
+//   $posts = array();
   
-  while($result->fetch()) {
+//   while($result->fetch()) {
            
-           $tmp = array();
-           $tmp["phone_num"] = $phn;
-           $tmp["username"] = $username;
-           array_push($posts, $tmp);
-  }
+//            $tmp = array();
+//            $tmp["phone_num"] = $phn;
+//            $tmp["username"] = $username;
+//            array_push($posts, $tmp);
+//   }
 
-     $result->close();    
-  echoRespnse(201,$posts);  
+//      $result->close();    
+//   echoRespnse(201,$posts);  
   
   
-});
+// });
 
 
 

@@ -8,6 +8,7 @@ class MailSender{
     private $message_subject;
     private $message_body;
     private $message_title;
+
     public function __construct( $recipient, $subject, $title, $body) {
         $this->email_recipient = $recipient;
         $this->message_subject = $subject;
@@ -31,14 +32,14 @@ class MailSender{
             );
             $mail->SMTPDebug = 3;                                 // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp.gmail.com;';  // Specify main and backup SMTP servers
+            $mail->Host = 'mail.kolpobd.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'kolpobd15@gmail.com';                 // SMTP username (sender mail)
+            $mail->Username = 'info@kolpobd.com';                 // SMTP username (sender mail)
             $mail->Password = 'kolpoBD@15';                           // SMTP password (sender password)
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 587;                                    // TCP port to connect to
+            $mail->Port = 26;                                    // TCP port to connect to
             //Recipients
-            $mail->setFrom('no-reply@kolpobd.com', 'KolpoBD');
+            $mail->setFrom('info@kolpobd.com', 'KolpoBD');
             $mail->addAddress($this->email_recipient);     // Add a recipient
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
