@@ -187,6 +187,36 @@ $app->post('/insertbookdata', function() use ($app)  {
 });
 
 
+$app->get('/book_author_price', function() use ($app)  {
+	
+  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+  // $conn = new mysqli("localhost", "root", "", "kolpbdc_site");
+  
+  $strings = "SELECT author_id FROM BookAuthor a JOIN Book b WHERE a.book_id = b.book_id";
+  $result = $conn->prepare($strings);
+       
+        
+  $result->execute();
+  $result->bind_result($book_id,$name , $img);
+  $posts = array();
+  
+  while($result->fetch()) {
+    $tmp = array();
+    $tmp["book_id"] = $book_id;
+    $tmp["book_name"] = $name;
+
+    
+    array_push($posts, $tmp);
+  }
+
+  $result->close();
+        
+        
+        
+  echoRespnse(201,$posts);  
+	
+	
+});
 
 
 // $app->post('/answerDownVotefaz', function() use ($app)  {
