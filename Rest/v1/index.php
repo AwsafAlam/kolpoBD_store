@@ -210,9 +210,7 @@ $app->get('/book_author_price', function() use ($app)  {
   }
 
   $result->close();
-        
-        
-        
+    
   echoRespnse(201,$posts);  
 	
 	
