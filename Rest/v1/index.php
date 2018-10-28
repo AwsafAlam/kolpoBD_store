@@ -240,9 +240,11 @@ $app->get('/book_information', function() use ($app)  {
   $result = $conn->prepare($strings);
   $result->execute();
   $result->bind_result($book_id, $name , $author_name);
-  $tmp = array();
+  $posts = array();
   
   while($result->fetch()) {
+    $tmp = array();
+
     $tmp["book_id"] = $book_id; 
     $tmp["name"] = $name;
     $tmp["author_name"] = $author_name;
@@ -257,9 +259,6 @@ $app->get('/book_information', function() use ($app)  {
   /*
 
   ````````````````````````````````````````````````````````````````````
-
-  */
-
   $strings = "SELECT  Quality.quality_category,Price.price,Price.price_id
   FROM Quality , Price , Book
   where Price.book_id = Book.book_id
@@ -268,23 +267,66 @@ $app->get('/book_information', function() use ($app)  {
   ORDER BY Price.price_id";
 
 
-$result = $conn->prepare($strings);
+  $result = $conn->prepare($strings);
+        
+          
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($quality_category, $price , $price_id);
+  $temp = array();
+
+  while($result->fetch()) {
+    $temp["book_id"] = $quality_category; 
+    $temp["name"] = $price;
+    $temp["author_name"] = $price_id;
+    array_push($posts, $temp);
+  }
+
+
+  $result->close();
+  */
+
+  
+
+    
+  echoRespnse(201,$posts);  
+	
+	
+});
+
+$app->get('/book_pricelist', function() use ($app)  {
+	
+  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+  // $conn = new mysqli("localhost", "root", "", "kolpbdc_site");
+  
+  # There can be multiple authors
+  $strings = "SELECT Book.book_id ,Book.name , Author.author_name , Quality.quality_category,Price.price,Price.price_id
+  FROM Book,BookAuthor,Author,Price,Quality where Book.book_id = BookAuthor.book_id
+  and BookAuthor.author_id = Author.author_id and Price.book_id = Book.book_id and Price.quality_id = Quality.quality_id ORDER BY Price.price_id";
+
+  $result = $conn->prepare($strings);
        
         
-$result = $conn->prepare($strings);
-$result->execute();
-$result->bind_result($quality_category, $price , $price_id);
-$temp = array();
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($book_id, $name , $author_name , $quality_category,$price, $price_id);
+  $posts = array();
+  
+  while($result->fetch()) {
+    $tmp = array();
 
-while($result->fetch()) {
-  $temp["book_id"] = $quality_category; 
-  $temp["name"] = $price;
-  $temp["author_name"] = $price_id;
-  array_push($posts, $temp);
-}
+    $tmp["book_id"] = $book_id; 
+    $tmp["name"] = $name;
+    $tmp["author_name"] = $author_name;
+    $tmp["quality_category"] = $quality_category;
+    $tmp["price"] = $price;
+    $tmp["price_id"] = $price_id;
+    
+    array_push($posts, $tmp);
+  }
 
+  $result->close();
 
-$result->close();
 
     
   echoRespnse(201,$posts);  

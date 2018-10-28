@@ -128,17 +128,12 @@
         <table class="table-bordered table-hover" id="Emptable" class="table table-bordered table-striped">
           <thead class="thead-dark">
           <tr>
-            <th>Employee ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender </th>
-            <th>Phone Number</th>
-            <th>Address</th>
-            <th>Email ID</th>
-            <th>HireDate</th>
-            <th>Nationality</th>
-            <th>Salary</th>
-            <th>Designation</th>
+            <th>Book ID</th>
+            <th>Book Name</th>
+            <th>Author Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Price ID</th>
             <th></th>
           </tr>
           </thead>
@@ -216,12 +211,12 @@
 $(document).ready(function () {
   // body...
 
- 
+ console.log("Here");
   var Employeetable = document.getElementById('Emptable');
   var Submit = document.getElementById('EmpSubmit').addEventListener("click", validate);
 
   
-    var getFromDb="../v1/index.php/book_author_info";
+    var getFromDb="http://kolpobd.com/v1/index.php/book_pricelist";
    var Obj;
    xmlhttp = new XMLHttpRequest();
 
@@ -232,7 +227,7 @@ $(document).ready(function () {
       // console.log(this.responseText);
       Emplotable = this.responseText;
       MakeTable(Emplotable);
-   
+        console.log("Function...");
       // console.log(JSON.parse(Emplotable));
         // document.getElementById("table").innerHTML = this.responseText;
     }
@@ -255,40 +250,40 @@ function MakeTable(Emplotable) {
       tbody.append(tr);
     
       var td = document.createElement("td");
-      td.textContent = Empldata[i].Employee_id;
+      td.textContent = Empldata[i].book_id;
         tr.append(td);
       var td = document.createElement("td");
-            td.textContent = Empldata[i].FirstName;
+            td.textContent = Empldata[i].name;
               tr.append(td);
       var td = document.createElement("td");
-            td.textContent = Empldata[i].LastName;
+            td.textContent = Empldata[i].author_name;
               tr.append(td);
       var td = document.createElement("td");
-            td.textContent = Empldata[i].Gender;
+            td.textContent = Empldata[i].quality_category;
               tr.append(td);
       var td = document.createElement("td");
-            td.textContent = Empldata[i].PhoneNumber;
+            td.textContent = Empldata[i].price;
               tr.append(td);
       var td = document.createElement("td");
-            td.textContent = Empldata[i].Address;
+            td.textContent = Empldata[i].price_id;
               tr.append(td);
 
-      var td = document.createElement("td");
-                  td.textContent = Empldata[i].EmailID;
-                    tr.append(td);
-      var td = document.createElement("td");
-                  td.textContent = Empldata[i].HireDate;
-                    tr.append(td);
-      var td = document.createElement("td");
-                  td.textContent = Empldata[i].Nationality;
-                    tr.append(td);
+    //   var td = document.createElement("td");
+    //               td.textContent = Empldata[i].EmailID;
+    //                 tr.append(td);
+    //   var td = document.createElement("td");
+    //               td.textContent = Empldata[i].HireDate;
+    //                 tr.append(td);
+    //   var td = document.createElement("td");
+    //               td.textContent = Empldata[i].Nationality;
+    //                 tr.append(td);
 
-      var td = document.createElement("td");
-                  td.textContent = Empldata[i].Salary;
-                    tr.append(td);
-      var td = document.createElement("td");
-                  td.textContent = Empldata[i].Designation;
-                    tr.append(td);
+    //   var td = document.createElement("td");
+    //               td.textContent = Empldata[i].Salary;
+    //                 tr.append(td);
+    //   var td = document.createElement("td");
+    //               td.textContent = Empldata[i].Designation;
+    //                 tr.append(td);
 
       var td = document.createElement("td");
           td.style.cssText = 'display: flex;';
@@ -298,12 +293,12 @@ function MakeTable(Emplotable) {
           butt.classList.add('btn');
           butt.classList.add('btn-danger');
       
-          butt.id = 'delete'+Empldata[i].Employee_id;
+          butt.id = 'delete'+Empldata[i].book_id;
           td.append(butt);
           
           
           tr.append(td);
-          handleclick(Empldata[i].Employee_id);
+          handleclick(Empldata[i].book_id);
   }
 
   $('#Emptable').DataTable({
