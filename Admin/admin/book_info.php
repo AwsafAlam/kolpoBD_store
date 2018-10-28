@@ -227,33 +227,78 @@
 
       <div class="box box-primary">
       <div class="box-header with-border">
-        <h3 class="box-title">Update Book Price</h3>
+      <br><br><br><br><br><h4 class="box-title">Update Book Price. (Must fill all the fields)</h4>
       </div>
       <!-- /.box-header -->
       <!-- form start -->
-      <form role="form" id="myForm">
+      <?php
+            $err='';
+            $_SESSION['message']='';
+
+            if ($_SERVER['REQUEST_METHOD']=='POST'){
+
+                
+                $book = $_POST['book_id'];
+                
+                $Price_W = $_POST['Price_W'];
+                $Price_N = $_POST['Price_N'];
+                // $Price_O = $_POST['Price_O'];
+              
+                
+                $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+
+                $strings = "UPDATE Price
+                SET Price.price = '".$Price_W."'
+                where Price.book_id = '".$book."'
+                and Price.quality_id = 1";
+
+                // $strings ="INSERT INTO Book (book_id , name) VALUES (NULL , '".$book."')";
+
+                $result = $conn->query($strings);
+               
+                $strings2 = "UPDATE Price
+                SET Price.price = '".$Price_N."'
+                where Price.book_id = '".$book."'
+                and Price.quality_id = 2";
+                $result = $conn->query($strings);
+
+
+                // $result->close();
+                
+                
+                $_SESSION['message']="Price Update Successful!";
+                
+            }
+            else{
+            ?>
+
+      <form action="book_info.php" method="post">
         <div class="box-body">
           <div class="form-row">
           <div class="form-group col-md-4">
             <label for="exampleInputEmail1">Book_id</label>
-            <input type="email" class="form-control" id="FirstName" placeholder="Enter Book_id here">
+            <input type="text" class="form-control" name="book_id" placeholder="Enter Book_id here">
           </div>
           <div class="form-group  col-md-4">
             <label for="exampleInputEmail1">News Print</label>
-            <input type="email" class="form-control" id="LastName" placeholder="updated price">
+            <input type="email" class="form-control" name="Price_N" placeholder="updated News Print price">
           </div>
           <div class="form-group  col-md-4">
             <label for="exampleInputEmail1">White Print</label>
-            <input type="email" class="form-control" id="LastName" placeholder="Updated Price">
+            <input type="email" class="form-control" name="Price_W" placeholder="Updated White Print Price">
           </div>
           </div>
-   
+          <?php
+            }
+            echo "<h1>".$_SESSION['message']."</h1>";
+            ?>
         </div>
         </div>
         <!-- /.box-body -->
 
         <div class="box-footer" style="padding-left: 30px; padding-bottom: 20px;">
-          <a  class="btn btn-primary" id="EmpSubmit">Submit</a>
+          <button type="submit" class="btn btn-primary">Submit</button>
+
         </div>
       </form>
     </div>
@@ -304,217 +349,6 @@ $(document).ready(function () {
       'autoWidth'   : true
     });
 
-//   var Employeetable = document.getElementById('Emptable');
-//   var Submit = document.getElementById('EmpSubmit').addEventListener("click", validate);
-
-  
-//     var getFromDb="http://kolpobd.com/v1/index.php/book_pricelist";
-//    var Obj;
-//    xmlhttp = new XMLHttpRequest();
-
- 
-//   var Emplotable;
-//   xmlhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//       // console.log(this.responseText);
-//       Emplotable = this.responseText;
-//       MakeTable(Emplotable);
-//         console.log("Function...");
-//       // console.log(JSON.parse(Emplotable));
-//         // document.getElementById("table").innerHTML = this.responseText;
-//     }
-//   };
-//    xmlhttp.open("GET", getFromDb, true);
-
-//    xmlhttp.send();
-//     console.log("Request Done..");
-    
-// function MakeTable(Emplotable) {
-//   // body...
-//   var Empldata = JSON.parse(Emplotable);
-//   console.log(Empldata);
-//   var tbody = document.createElement("tbody");
-
-//   Employeetable.append(tbody);
-
-
-//   for(var i=0 ; i< Empldata.length ; i++){
-//       var tr = document.createElement("tr");
-//       tbody.append(tr);
-    
-//       var td = document.createElement("td");
-//       td.textContent = Empldata[i].book_id;
-//         tr.append(td);
-//       var td = document.createElement("td");
-//             td.textContent = Empldata[i].name;
-//               tr.append(td);
-//       var td = document.createElement("td");
-//             td.textContent = Empldata[i].author_name;
-//               tr.append(td);
-//       var td = document.createElement("td");
-//             td.textContent = Empldata[i].quality_category;
-//               tr.append(td);
-//       var td = document.createElement("td");
-//             td.textContent = Empldata[i].price;
-//               tr.append(td);
-//       var td = document.createElement("td");
-//             td.textContent = Empldata[i].price_id;
-//               tr.append(td);
-
-//     //   var td = document.createElement("td");
-//     //               td.textContent = Empldata[i].EmailID;
-//     //                 tr.append(td);
-//     //   var td = document.createElement("td");
-//     //               td.textContent = Empldata[i].HireDate;
-//     //                 tr.append(td);
-//     //   var td = document.createElement("td");
-//     //               td.textContent = Empldata[i].Nationality;
-//     //                 tr.append(td);
-
-//     //   var td = document.createElement("td");
-//     //               td.textContent = Empldata[i].Salary;
-//     //                 tr.append(td);
-//     //   var td = document.createElement("td");
-//     //               td.textContent = Empldata[i].Designation;
-//     //                 tr.append(td);
-
-//       var td = document.createElement("td");
-//           td.style.cssText = 'display: flex;';
-
-//           var butt = document.createElement('button');
-//           butt.textContent = "Resign";
-//           butt.classList.add('btn');
-//           butt.classList.add('btn-danger');
-      
-//           butt.id = 'delete'+Empldata[i].book_id;
-//           td.append(butt);
-          
-          
-//           tr.append(td);
-//           handleclick(Empldata[i].book_id);
-//   }
-
-  
-// }
-
-// function handleclick(id) {
-//   // body...
-//   document.getElementById("delete"+id).addEventListener("click", function () {
-//     // body...
-//     console.log("Clicked");
-//     console.log("Del Clicked "+ this.parentElement.parentElement.cells[0].innerHTML);
-
-//     if(confirm("Are you sure you want to disable all prices in this route?"))
-//     {  
-
-//       var getFromDb="../../v1/index.php?table=DelEmp&Flight="+this.parentElement.parentElement.cells[0].innerHTML;
-//            xmlhttp = new XMLHttpRequest();
-
-         
-//           xmlhttp.onreadystatechange = function() {
-//             if (this.readyState == 4 && this.status == 200) {
-//               console.log(this.responseText);
-//               location.reload();
-//             }
-//           };
-//            xmlhttp.open("GET", getFromDb, true);
-
-//            xmlhttp.send();
-//            location.reload();
-//     }
-//     else{
-//       return false;
-//     }
-//   });
-  
-// }
-
-function validate() {
-  // body...
-  console.log("Validation start");
-  var FirstName = document.querySelector('#FirstName').value;
-  var LastName = document.querySelector('#LastName').value;
-  var PhoneNumber = document.querySelector('#PhoneNumber').value;
-  var Address = document.querySelector('#Address').value;
-  var EmailID = document.querySelector('#EmailID').value;
-  var Nationality = document.querySelector('#Nationality').value;
-  var Salary = document.querySelector('#Salary').value;
-  var Designation = document.getElementById('Designation').textContent;
-  // var Gender = document.querySelector('#Male').value;
-  var Gender =  $('input[name=optionsRadios]:checked', '#myForm').val();
-
-  var data=new FormData();
-  data.append('FirstName',FirstName);
-  data.append('LastName',LastName);
-  data.append('PhoneNumber',PhoneNumber);
-  data.append('Address',Address);
-  data.append('EmailID',EmailID);
-  data.append('Nationality',Nationality);
-  data.append('Salary',Salary);
-  data.append('Designation',Designation);
-  data.append('Gender',Gender);
-
-  console.log(Gender+Salary);
-  var txt = document.getElementById('Designation').textContent;
-
-  if(txt == "Admin"){
-     data.append('Password',document.getElementById('Password').value);
-    var PosttoDb="../../v1/Admin_insert.php";
-    var Obj;
-    xmlhttp = new XMLHttpRequest();
-   
-    xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      console.log("Data sent");
-      console.log(this.responseText+"   Admin post   ......");
-      location.reload();
-    }
-   };
-   xmlhttp.open("POST", PosttoDb , true);
-
-   xmlhttp.send(data);
-    return;
-   }
-   else if (txt.split(" ")[1] == "Engineer") {
-
-    var PosttoDb="../../v1/Engineer_insert.php";
-    var Obj;
-    xmlhttp = new XMLHttpRequest();
-   
-    xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      console.log("Data sent");
-      console.log(this.responseText+"   Admin post   ......");
-      location.reload();
-    }
-   };
-   xmlhttp.open("POST", PosttoDb , true);
-
-   xmlhttp.send(data);
-    return;
-   
-
-   }
-
-  //Insert New Passenger
-  var PosttoDb="../../v1/Employee_insert.php";
-    var Obj;
-    xmlhttp = new XMLHttpRequest();
-   
-  //   var flightresponse;
-    xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      console.log("Data sent");
-      console.log(this.responseText+"   Posted   ......");
-      location.reload();
-    }
-  };
-   xmlhttp.open("POST", PosttoDb , true);
-
-   xmlhttp.send(data);
-
-
-}
 
 
 });
