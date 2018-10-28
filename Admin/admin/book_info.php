@@ -24,7 +24,60 @@
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
+     <?php 
+     include $_SERVER['DOCUMENT_ROOT'].'/../phpincludes/auth.php';
+    require_once '../include/DbHandler.php';
+    require_once '../include/PassHash.php';
+    require '../libs/Slim/Slim.php';
     
+    \Slim\Slim::registerAutoloader();
+    
+    $app = new \Slim\Slim();
+    
+    
+    $user_id = NULL;
+    
+    
+    function authenticate(\Slim\Route $route)
+    {
+        // Getting request headers
+        $headers = apache_request_headers();
+        $response = array();
+        $app = \Slim\Slim::getInstance();
+    
+        // Verifying Authorization Header
+        if (isset($headers['Authorization'])) {
+            $db = new DbHandler();
+    
+            // get the api key
+            $api_key = $headers['Authorization'];
+            // validating api key
+            if (!$db->isValidApiKey($api_key)) {
+                // api key is not present in users table
+                $response["error"] = true;
+                $response["message"] = "Access Denied. Invalid Api key";
+                echoRespnse(401, $response);
+                $app->stop();
+            } else {
+                global $user_id;
+                // get user primary key id
+                $user_id = $db->getUserId($api_key);
+            }
+        } else {
+            // api key is missing in header
+            $response["error"] = true;
+            $response["message"] = "Api key is misssing";
+            echoRespnse(400, $response);
+            $app->stop();
+        }
+    }
+    if (mysqli_connect_errno()) {
+        echo "COULD NOT CONNECT TO DATABASE";
+        exit();
+    }
+
+  
+    ?>
 </head>
 <body>
         <!-- Left Panel -->
@@ -48,7 +101,7 @@
                         <li>
                             <!-- <a href="new-post.php"> <i class="menu-icon fa fa-th"></i>New Post </a> -->
                             <!-- <a href="stats.php"> <i class="menu-icon fa fa-bar-chart"></i>Stats </a> -->
-                            <a href="book-info.php"> <i class="menu-icon fa fa-area-chart"></i>Book Info </a>
+                            <a href="book_info.php"> <i class="menu-icon fa fa-area-chart"></i>Book Info </a>
                             <a href="add_books.php"> <i class="menu-icon fa fa-area-chart"></i>Add Books </a>
                         </li>
 
@@ -134,9 +187,39 @@
             <th>Category</th>
             <th>Price</th>
             <th>Price ID</th>
-            <th></th>
           </tr>
           </thead>
+          <?php
+          $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+          // $conn = new mysqli("localhost", "root", "", "kolpbdc_site");
+          
+          # There can be multiple authors
+          $strings = "SELECT Book.book_id ,Book.name , Author.author_name , Quality.quality_category,Price.price,Price.price_id
+          FROM Book,BookAuthor,Author,Price,Quality where Book.book_id = BookAuthor.book_id
+          and BookAuthor.author_id = Author.author_id and Price.book_id = Book.book_id and Price.quality_id = Quality.quality_id ORDER BY Price.price_id";
+        
+          $result = $conn->prepare($strings);
+               
+                
+          $result = $conn->prepare($strings);
+          $result->execute();
+          $result->bind_result($book_id, $name , $author_name , $quality_category,$price, $price_id);
+          $posts = array();
+
+          while($result->fetch()) {
+          ?>
+            <tr>
+              <td> <?php echo $book_id;?></td>
+              <td> <?php echo $name;?></td>
+              <td> <?php echo $author_name;?></td>
+              <td> <?php echo $quality_category;?></td>
+              <td> <?php echo $price;?></td>
+              <td> <?php echo $price_id;?></td>
+              
+            </tr>
+          <?php } 
+          $result->close();
+          ?>
 
         </table>
       </div>
@@ -153,15 +236,15 @@
           <div class="form-row">
           <div class="form-group col-md-4">
             <label for="exampleInputEmail1">Book_id</label>
-            <input type="email" class="form-control" id="FirstName" placeholder="First Name">
+            <input type="email" class="form-control" id="FirstName" placeholder="Enter Book_id here">
           </div>
           <div class="form-group  col-md-4">
             <label for="exampleInputEmail1">News Print</label>
-            <input type="email" class="form-control" id="LastName" placeholder="Last Name">
+            <input type="email" class="form-control" id="LastName" placeholder="updated price">
           </div>
           <div class="form-group  col-md-4">
             <label for="exampleInputEmail1">White Print</label>
-            <input type="email" class="form-control" id="LastName" placeholder="Last Name">
+            <input type="email" class="form-control" id="LastName" placeholder="Updated Price">
           </div>
           </div>
    
@@ -212,96 +295,7 @@ $(document).ready(function () {
   // body...
 
  console.log("Here");
-  var Employeetable = document.getElementById('Emptable');
-  var Submit = document.getElementById('EmpSubmit').addEventListener("click", validate);
-
-  
-    var getFromDb="http://kolpobd.com/v1/index.php/book_pricelist";
-   var Obj;
-   xmlhttp = new XMLHttpRequest();
-
- 
-  var Emplotable;
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      // console.log(this.responseText);
-      Emplotable = this.responseText;
-      MakeTable(Emplotable);
-        console.log("Function...");
-      // console.log(JSON.parse(Emplotable));
-        // document.getElementById("table").innerHTML = this.responseText;
-    }
-  };
-   xmlhttp.open("GET", getFromDb, true);
-
-   xmlhttp.send();
-
-function MakeTable(Emplotable) {
-  // body...
-  var Empldata = JSON.parse(Emplotable);
-  console.log(Empldata);
-  var tbody = document.createElement("tbody");
-
-  Employeetable.append(tbody);
-
-
-  for(var i=0 ; i< Empldata.length ; i++){
-      var tr = document.createElement("tr");
-      tbody.append(tr);
-    
-      var td = document.createElement("td");
-      td.textContent = Empldata[i].book_id;
-        tr.append(td);
-      var td = document.createElement("td");
-            td.textContent = Empldata[i].name;
-              tr.append(td);
-      var td = document.createElement("td");
-            td.textContent = Empldata[i].author_name;
-              tr.append(td);
-      var td = document.createElement("td");
-            td.textContent = Empldata[i].quality_category;
-              tr.append(td);
-      var td = document.createElement("td");
-            td.textContent = Empldata[i].price;
-              tr.append(td);
-      var td = document.createElement("td");
-            td.textContent = Empldata[i].price_id;
-              tr.append(td);
-
-    //   var td = document.createElement("td");
-    //               td.textContent = Empldata[i].EmailID;
-    //                 tr.append(td);
-    //   var td = document.createElement("td");
-    //               td.textContent = Empldata[i].HireDate;
-    //                 tr.append(td);
-    //   var td = document.createElement("td");
-    //               td.textContent = Empldata[i].Nationality;
-    //                 tr.append(td);
-
-    //   var td = document.createElement("td");
-    //               td.textContent = Empldata[i].Salary;
-    //                 tr.append(td);
-    //   var td = document.createElement("td");
-    //               td.textContent = Empldata[i].Designation;
-    //                 tr.append(td);
-
-      var td = document.createElement("td");
-          td.style.cssText = 'display: flex;';
-
-          var butt = document.createElement('button');
-          butt.textContent = "Resign";
-          butt.classList.add('btn');
-          butt.classList.add('btn-danger');
-      
-          butt.id = 'delete'+Empldata[i].book_id;
-          td.append(butt);
-          
-          
-          tr.append(td);
-          handleclick(Empldata[i].book_id);
-  }
-
-  $('#Emptable').DataTable({
+ $('#Emptable').DataTable({
       'paging'      : true,
       'lengthChange': true,
       'searching'   : true,
@@ -309,39 +303,131 @@ function MakeTable(Emplotable) {
       'info'        : true,
       'autoWidth'   : true
     });
-}
 
-function handleclick(id) {
-  // body...
-  document.getElementById("delete"+id).addEventListener("click", function () {
-    // body...
-    console.log("Clicked");
-    console.log("Del Clicked "+ this.parentElement.parentElement.cells[0].innerHTML);
+//   var Employeetable = document.getElementById('Emptable');
+//   var Submit = document.getElementById('EmpSubmit').addEventListener("click", validate);
 
-    if(confirm("Are you sure you want to disable all prices in this route?"))
-    {  
+  
+//     var getFromDb="http://kolpobd.com/v1/index.php/book_pricelist";
+//    var Obj;
+//    xmlhttp = new XMLHttpRequest();
 
-      var getFromDb="../../v1/index.php?table=DelEmp&Flight="+this.parentElement.parentElement.cells[0].innerHTML;
-           xmlhttp = new XMLHttpRequest();
+ 
+//   var Emplotable;
+//   xmlhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//       // console.log(this.responseText);
+//       Emplotable = this.responseText;
+//       MakeTable(Emplotable);
+//         console.log("Function...");
+//       // console.log(JSON.parse(Emplotable));
+//         // document.getElementById("table").innerHTML = this.responseText;
+//     }
+//   };
+//    xmlhttp.open("GET", getFromDb, true);
+
+//    xmlhttp.send();
+//     console.log("Request Done..");
+    
+// function MakeTable(Emplotable) {
+//   // body...
+//   var Empldata = JSON.parse(Emplotable);
+//   console.log(Empldata);
+//   var tbody = document.createElement("tbody");
+
+//   Employeetable.append(tbody);
+
+
+//   for(var i=0 ; i< Empldata.length ; i++){
+//       var tr = document.createElement("tr");
+//       tbody.append(tr);
+    
+//       var td = document.createElement("td");
+//       td.textContent = Empldata[i].book_id;
+//         tr.append(td);
+//       var td = document.createElement("td");
+//             td.textContent = Empldata[i].name;
+//               tr.append(td);
+//       var td = document.createElement("td");
+//             td.textContent = Empldata[i].author_name;
+//               tr.append(td);
+//       var td = document.createElement("td");
+//             td.textContent = Empldata[i].quality_category;
+//               tr.append(td);
+//       var td = document.createElement("td");
+//             td.textContent = Empldata[i].price;
+//               tr.append(td);
+//       var td = document.createElement("td");
+//             td.textContent = Empldata[i].price_id;
+//               tr.append(td);
+
+//     //   var td = document.createElement("td");
+//     //               td.textContent = Empldata[i].EmailID;
+//     //                 tr.append(td);
+//     //   var td = document.createElement("td");
+//     //               td.textContent = Empldata[i].HireDate;
+//     //                 tr.append(td);
+//     //   var td = document.createElement("td");
+//     //               td.textContent = Empldata[i].Nationality;
+//     //                 tr.append(td);
+
+//     //   var td = document.createElement("td");
+//     //               td.textContent = Empldata[i].Salary;
+//     //                 tr.append(td);
+//     //   var td = document.createElement("td");
+//     //               td.textContent = Empldata[i].Designation;
+//     //                 tr.append(td);
+
+//       var td = document.createElement("td");
+//           td.style.cssText = 'display: flex;';
+
+//           var butt = document.createElement('button');
+//           butt.textContent = "Resign";
+//           butt.classList.add('btn');
+//           butt.classList.add('btn-danger');
+      
+//           butt.id = 'delete'+Empldata[i].book_id;
+//           td.append(butt);
+          
+          
+//           tr.append(td);
+//           handleclick(Empldata[i].book_id);
+//   }
+
+  
+// }
+
+// function handleclick(id) {
+//   // body...
+//   document.getElementById("delete"+id).addEventListener("click", function () {
+//     // body...
+//     console.log("Clicked");
+//     console.log("Del Clicked "+ this.parentElement.parentElement.cells[0].innerHTML);
+
+//     if(confirm("Are you sure you want to disable all prices in this route?"))
+//     {  
+
+//       var getFromDb="../../v1/index.php?table=DelEmp&Flight="+this.parentElement.parentElement.cells[0].innerHTML;
+//            xmlhttp = new XMLHttpRequest();
 
          
-          xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              console.log(this.responseText);
-              location.reload();
-            }
-          };
-           xmlhttp.open("GET", getFromDb, true);
+//           xmlhttp.onreadystatechange = function() {
+//             if (this.readyState == 4 && this.status == 200) {
+//               console.log(this.responseText);
+//               location.reload();
+//             }
+//           };
+//            xmlhttp.open("GET", getFromDb, true);
 
-           xmlhttp.send();
-           location.reload();
-    }
-    else{
-      return false;
-    }
-  });
+//            xmlhttp.send();
+//            location.reload();
+//     }
+//     else{
+//       return false;
+//     }
+//   });
   
-}
+// }
 
 function validate() {
   // body...
