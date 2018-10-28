@@ -96,6 +96,7 @@ $app->get('/admininfo', function() use ($app)  {
     $tmp["book_id"] = $book_id;
     $tmp["book_name"] = $name;
     array_push($posts, $tmp);
+    #why array_push ?
   }
 
   $result->close();
@@ -137,6 +138,7 @@ $app->post('/insertbookdata', function() use ($app)  {
 
   while($result->fetch()) {       
     $tmp["book_id"] = $book_id;
+    #no array_push here
   }
   $result->close();
   
@@ -152,6 +154,7 @@ $app->post('/insertbookdata', function() use ($app)  {
   $strings ="INSERT INTO Price (price_id ,book_id , quality_id , price) VALUES (NULL , '".$tmp["book_id"]."' ,'3' ,'".$Price_O."')";
   $result = $conn->query($strings);
 
+  # tow quality_id = 1
   $strings ="INSERT INTO BookSemester (id ,university_id, department_id, semester_id , book_id) VALUES (NULL , '1' ,'".$Dept."' ,'".$Sem."', '".$tmp["book_id"]."')";
   $result = $conn->query($strings);
   
@@ -182,7 +185,7 @@ $app->post('/insertbookdata', function() use ($app)  {
 
   echoRespnse(201,$tmp);
 
-  
+  # quality_id --  1 = WhitePrint , 2 = NEw , 3 = USED
 
 });
 
@@ -192,6 +195,7 @@ $app->get('/book_author_price', function() use ($app)  {
   $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
   // $conn = new mysqli("localhost", "root", "", "kolpbdc_site");
   
+  # There can be multiple authors
   $strings = "SELECT author_id FROM BookAuthor a JOIN Book b WHERE a.book_id = b.book_id";
   $result = $conn->prepare($strings);
        
@@ -215,6 +219,120 @@ $app->get('/book_author_price', function() use ($app)  {
 	
 	
 });
+
+
+
+
+$app->get('/book_information', function() use ($app)  {
+	
+  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+  // $conn = new mysqli("localhost", "root", "", "kolpbdc_site");
+  
+  # There can be multiple authors
+  $strings = "SELECT Book.name , Author.author_name ,Book.book_id
+  FROM Book,BookAuthor,Author
+  where Book.book_id = BookAuthor.book_id 
+  and BookAuthor.author_id = Author.author_id";
+
+  $result = $conn->prepare($strings);
+       
+        
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($book_id, $name , $author_name);
+  $tmp = array();
+  
+  while($result->fetch()) {
+    $tmp["book_id"] = $book_id; 
+    $tmp["name"] = $name;
+    $tmp["author_name"] = $author_name;
+    array_push($posts, $tmp);
+  }
+
+  $result->close();
+
+
+
+
+  /*
+
+  ````````````````````````````````````````````````````````````````````
+
+  */
+
+  $strings = "SELECT  Quality.quality_category,Price.price,Price.price_id
+  FROM Quality , Price , Book
+  where Price.book_id = Book.book_id
+  and Price.quality_id = Quality.quality_id
+  and '".$tmp["book_id"]."' = Book.book_id 
+  ORDER BY Price.price_id";
+
+
+$result = $conn->prepare($strings);
+       
+        
+$result = $conn->prepare($strings);
+$result->execute();
+$result->bind_result($quality_category, $price , $price_id);
+$temp = array();
+
+while($result->fetch()) {
+  $temp["book_id"] = $quality_category; 
+  $temp["name"] = $price;
+  $temp["author_name"] = $price_id;
+  array_push($posts, $temp);
+}
+
+
+$result->close();
+
+    
+  echoRespnse(201,$posts);  
+	
+	
+});
+
+
+
+/*
+
+SELECT book.name , author.author_name , quality.quality_category,price.price,price.price_id,price.quality_id,quality.quality_id
+FROM book,bookauthor,author,price,quality
+where book.book_id = bookauthor.book_id
+and bookauthor.author_id = author.author_id
+and price.book_id = book.book_id
+and price.quality_id = quality.quality_id
+GROUP BY price.quality_id
+ORDER BY price.price_id
+
+
+
+
+
+SELECT book.name , author.author_name , quality.quality_category,price.price,price.price_id,price.quality_id,quality.quality_id
+FROM book,bookauthor,author a1,price,quality
+where book.book_id = bookauthor.book_id
+and bookauthor.author_id = author.author_id
+and price.book_id = book.book_id
+and price.quality_id = quality.quality_id
+and price.price_id IN
+(
+	SELECT price.price_id
+    FROM price
+    
+);
+
+
+
+
+
+SELECT Book.name , Author.author_name , Quality.quality_category,Price.price,Price.price_id,Price.quality_id,Quality.quality_id
+ FROM Book,BookAuthor,Author,Price,Quality where Book.book_id = BookAuthor.book_id 
+ and BookAuthor.author_id = Author.author_id and Price.book_id = Book.book_id and Price.quality_id = Quality.quality_id ORDER BY Price.price_id
+
+*/
+
+
 
 
 // $app->post('/answerDownVotefaz', function() use ($app)  {
