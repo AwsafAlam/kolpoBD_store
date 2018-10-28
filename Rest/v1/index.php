@@ -277,10 +277,10 @@ $result->bind_result($quality_category, $price , $price_id);
 $temp = array();
 
 while($result->fetch()) {
-  $temp["book_id"] = $book_id; 
-  $temp["name"] = $name;
-  $temp["author_name"] = $author_name;
-  array_push($posts, $tmp);
+  $temp["book_id"] = $quality_category; 
+  $temp["name"] = $price;
+  $temp["author_name"] = $price_id;
+  array_push($posts, $temp);
 }
 
 
