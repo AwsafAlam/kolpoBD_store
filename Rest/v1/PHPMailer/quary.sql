@@ -64,3 +64,24 @@ VALUES (NULL,2,(SELECT user.address FROM user where user.user_id = 2),1390,0,NUL
 INSERT INTO bookorder
 (bookorder.book_order_id,bookorder.user_id,bookorder.shipping_address,bookorder.total_cost,bookorder.delivery_confirmed,bookorder.order_issue)
 VALUES (NULL,2,"bosundhora",1390,0,NULL)
+
+
+/* Updating order .... we can keep 2 buttons .. one for update, one for delete  */
+
+/* if update order, then this. number_of_items should be > 0*/
+
+
+UPDATE cartitem
+SET cartitem.number_of_item = 5
+WHERE cartitem.book_id = 5
+and cartitem.book_order_id = 1
+
+/*if we want to cancel order */
+
+DELETE FROM cartitem
+WHERE cartitem.book_order_id = 1
+
+DELETE FROM bookorder
+WHERE bookorder.book_order_id = 1
+
+/* done updating order */
