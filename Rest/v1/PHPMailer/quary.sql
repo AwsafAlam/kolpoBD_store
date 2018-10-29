@@ -8,29 +8,29 @@ and price.quality_id = 1
 
 /* Book price update  */
 UPDATE price
-SET price.price = price.price + 10
-WHERE price.price <= 120
+SET Price.price = Price.price + 10
+WHERE Price.price <= 120
 
 /*                   */
 
 UPDATE price
-SET price.price = price.price + 15
-WHERE price.price >= 130
-and price.price <= 220
+SET Price.price = Price.price + 15
+WHERE Price.Price >= 130
+and Price.Price <= 220
 
 
 /*        */
 
 UPDATE price
-SET price.price = price.price + 20
-WHERE price.price > 220
-and price.price <= 500
+SET Price.price = Price.price + 20
+WHERE Price.price > 220
+and Price.price <= 500
 
-/*    */
 
-UPDATE price
-SET price.price = price.price + 10
-WHERE price.price > 500
+
+UPDATE Price
+SET Price.price = Price.price + 10
+WHERE Price.price > 500
 
 
 
