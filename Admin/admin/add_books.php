@@ -102,10 +102,10 @@
                         </li>
                         <li>
                             <!-- <a href="new-post.php"> <i class="menu-icon fa fa-th"></i>New Post </a> -->
-                            <!-- <a href="stats.php"> <i class="menu-icon fa fa-bar-chart"></i>Stats </a> -->
                             <a href="book_info.php"> <i class="menu-icon fa fa-area-chart"></i>Book Info </a>
                             <a href="add_books.php"> <i class="menu-icon fa fa-area-chart"></i>Add Books </a>
-                        </li>
+                            <a href="order.php"> <i class="menu-icon fa fa-bar-chart"></i>Orders</a>
+                            </li>
 
                     </ul>
                 </div><!-- /.navbar-collapse -->
