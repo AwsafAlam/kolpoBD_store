@@ -51,8 +51,16 @@ INSERT INTO cartitem
 VALUES (NULL,1,(SELECT MAX(bookorder.book_order_id) FROM bookorder),1,1)
 
 
-/*          */
+/*If shipping address is default.  (OEDER placement)    */
 
 INSERT INTO bookorder
-(bookorder.book_order_id,bookorder.user_id,bookorder.shipping_address,bookorder.total_cost,bookorder.delivery_confirmed)
-VALUES (NULL,)
+(bookorder.book_order_id,bookorder.user_id,bookorder.shipping_address,bookorder.total_cost,bookorder.delivery_confirmed,bookorder.order_issue)
+VALUES (NULL,2,(SELECT user.address FROM user where user.user_id = 2),1390,0,NULL)
+
+
+
+/*If shipping address is default.  (OEDER placement)    */
+
+INSERT INTO bookorder
+(bookorder.book_order_id,bookorder.user_id,bookorder.shipping_address,bookorder.total_cost,bookorder.delivery_confirmed,bookorder.order_issue)
+VALUES (NULL,2,"bosundhora",1390,0,NULL)
