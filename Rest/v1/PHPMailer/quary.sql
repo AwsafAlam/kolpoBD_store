@@ -59,7 +59,7 @@ VALUES (NULL,2,(SELECT user.address FROM user where user.user_id = 2),1390,0,NUL
 
 
 
-/*If shipping address is default.  (OEDER placement)    */
+/*If shipping address is NNNOOOTTTT default.  (OEDER placement)    */
 
 INSERT INTO bookorder
 (bookorder.book_order_id,bookorder.user_id,bookorder.shipping_address,bookorder.total_cost,bookorder.delivery_confirmed,bookorder.order_issue)
