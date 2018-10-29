@@ -198,7 +198,7 @@
           FROM Book,BookAuthor,Author,Price,Quality where Book.book_id = BookAuthor.book_id
           and BookAuthor.author_id = Author.author_id and Price.book_id = Book.book_id and Price.quality_id = Quality.quality_id ORDER BY Price.price_id";
         
-          $result = $conn->prepare($strings);
+        //   $result = $conn->prepare($strings);
                
                 
           $result = $conn->prepare($strings);
