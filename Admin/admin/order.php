@@ -238,59 +238,64 @@
 
             if ($_SERVER['REQUEST_METHOD']=='POST'){
 
-                
-                $bookid = $_POST['book_id_1'];
-                
                 $user_name = $_POST['username'];
                 $mobile_no = $_POST['mobile'];
                 $address = $_POST['delivery_address'];
-                $quality = $_POST['quality_id'];
-                $quantity = $_POST['quantity'];
                 
-                
-                
-                $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
-                // $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_devtesting");
+                // $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+                $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_devtesting");
 
-                $strings ="INSERT INTO user
-                (user.user_id,user.created_at,user.name,user.email,user.password,user.mobile,user.address)
-                VALUES(NULL,NULL,'". $user_name."',"no_email","no_password",'". $mobile_no."','". $address."')";
+                $strings ="INSERT INTO User (user_id , created_at, name, email, password, mobile, address)
+                    VALUES(NULL,NULL,'". $user_name."','no_email', 'no_password','". $mobile_no."','". $address."')";
+                    
                 $result = $conn->query($strings);
-                $result->close();
+                    
+                for ($i=0; $i < 10; $i++) { 
+                    # code...
+                    $bookid = $_POST['book_id'.$i];
+                    $quality = $_POST['quality_id'.$i];
+                    $quantity = $_POST['quantity'.$i];
 
-
+                    if($book_id == NULL)
+                    {
+                        break;
+                    }
                 
- 
-                /******************************************************************* 
-                 * 
-                 * 
-                 * price should be calculated
-                 * 
-                 * 
-                */
-                $strings ="INSERT INTO bookorder
-                (bookorder.book_order_id,bookorder.user_id,bookorder.shipping_address,bookorder.total_cost,bookorder.delivery_confirmed,bookorder.order_issue)
-                VALUES (NULL,(SELECT MAX(user.user_id) FROM user),
-                (SELECT user.address FROM user where user.user_id = (SELECT MAX(user.user_id) FROM user)),
-                1390,0,NULL)";
-                $result = $conn->query($strings);
-                $result->close();
+                    //$result->close();
 
-                /********************
-                 * 
-                 * it should be in for loop. should insert one item in promo codes
-                 * 
-                 */
-               
-                $strings ="INSERT INTO cartitem 
-                (cartitem.item_id,cartitem.book_id,cartitem.book_order_id,cartitem.price_id,cartitem.promo_id,cartitem.number_of_item)
-                VALUES (NULL,'". $bookid."',(SELECT MAX(bookorder.book_order_id) FROM bookorder),
-                (SELECT DISTINCT price.price_id FROM price,book where price.book_id = '". $bookid."' and price.quality_id = '". $quality."' ),
-                1,'". $quantity."')";
+                    /******************************************************************* 
+                     * 
+                     * 
+                     * price should be calculated
+                     * 
+                     * 
+                    */
+                    $TotalPrice = $quantity * 120;
+                    if($TotalPrice == 0)
+                    {
+                        continue;
+                    }
 
-                $result = $conn->query($strings);
-                $result->close();
+                    $strings ="INSERT INTO BookOrder (book_order_id, user_id, shipping_address, total_cost, delivery_confirmed,order_issue)
+                    VALUES (NULL,(SELECT MAX(User.user_id) FROM User),
+                    (SELECT User.address FROM User where User.user_id = (SELECT MAX(User.user_id) FROM User)), '".$TotalPrice."' , '0' ,NULL)";
+                    $result = $conn->query($strings);
+                    //$result->close();
+
+                    /********************
+                     * 
+                     * it should be in for loop. should insert one item in promo codes
+                     * 
+                     */
                 
+                    $strings ="INSERT INTO CartItem ( item_id, book_id, book_order_id, price_id, promo_id, number_of_item)
+                    VALUES (NULL,'". $bookid."',(SELECT MAX(BookOrder.book_order_id) FROM BookOrder),
+                    (SELECT DISTINCT Price.price_id FROM Price,Book where Price.book_id = '". $bookid."' and Price.quality_id = '". $quality."' ), '1','". $quantity."')";
+
+                    $result = $conn->query($strings);
+                    //$result->close();
+                
+                    }
                 
                 
                 $_SESSION['message']="ORDER PLACED";
@@ -299,7 +304,7 @@
             else{
             ?>
 
-      <form action="book_info.php" method="post">
+      <form action="order.php" method="post">
         <div class="box-body">
           <div class="form-row">
           <div class="form-group col-md-4">
@@ -322,27 +327,38 @@
                 <a href="" id="Add" class="btn btn-primary">Add Book to order</a>
             </div>
           </div> -->
+        <?php
+            for ($i=0; $i < 10; $i++) { 
+                # code...
+            ?>
+
+                <div class="form-row">
+                <div class="form-group  col-md-4">
+                  <label for="exampleInputEmail1">Book Id</label>
+                  <input type="number" class="form-control" name="<?php echo "book_id".$i;?>" placeholder="Book ID" >
+                </div>
+                <div class="form-group  col-md-3">
+                <label for="exampleInputEmail1">Quality</label>
+                  <select name="<?php echo "quality_id".$i;?>" class="form-control">
+                      <option>Select Quality</option>
+                      <option value="1">News Print</option>
+                      <option value="2">White Print</option>
+                      <option value="3">Original</option>
+                      <option value="4">Second Hand</option>
+                  </select>  
+                 </div>
+                <div class="form-group  col-md-3">
+                  <label for="exampleInputEmail1">Quantity</label>
+                  <input type="number" class="form-control" name="<?php echo "quantity".$i;?>" placeholder="Quantity of book">
+                </div>
+              </div>
+
+        <?php
+
+            }
+        ?>
+
         
-        <div class="form-row">
-          <div class="form-group  col-md-4">
-            <label for="exampleInputEmail1">Book Id</label>
-            <input type="number" class="form-control" name="book_id_1" placeholder="Book ID" required="true">
-          </div>
-          <div class="form-group  col-md-3">
-          <label for="exampleInputEmail1">Quality</label>
-            <select name="quality_id" class="form-control">
-                <option>Select Quality</option>
-                <option value="1">News Print</option>
-                <option value="2">White Print</option>
-                <option value="3">Original</option>
-                <option value="4">Second Hand</option>
-            </select>  
-           </div>
-          <div class="form-group  col-md-3">
-            <label for="exampleInputEmail1">Quantity</label>
-            <input type="number" class="form-control" name="quantity" placeholder="Quantity of book" required="true">
-          </div>
-        </div>
 
           <?php
             }
