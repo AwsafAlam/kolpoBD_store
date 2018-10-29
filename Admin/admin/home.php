@@ -54,7 +54,8 @@
                     <li>
                         <a href="book_info.php"> <i class="menu-icon fa fa-bar-chart"></i>Book Info</a>
                         <a href="add_books.php"> <i class="menu-icon fa fa-area-chart"></i>Add Books </a>
-                        <a href="order.php"> <i class="menu-icon fa fa-th"></i>Order</a>
+                        <a href="order.php"> <i class="menu-icon fa fa-th"></i>Create Order</a>
+                        <a href="delivery_status.php"> <i class="menu-icon fa fa-th"></i>Delivery Status</a>
                     </li>
 
                 </ul>

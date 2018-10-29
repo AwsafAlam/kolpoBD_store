@@ -102,7 +102,8 @@
                             <!-- <a href="new-post.php"> <i class="menu-icon fa fa-th"></i>New Post </a> -->
                             <a href="book_info.php"> <i class="menu-icon fa fa-area-chart"></i>Book Info </a>
                             <a href="add_books.php"> <i class="menu-icon fa fa-area-chart"></i>Add Books </a>
-                            <a href="order.php"> <i class="menu-icon fa fa-bar-chart"></i>Orders</a>
+                            <a href="order.php"> <i class="menu-icon fa fa-bar-chart"></i>Create Order</a>
+                            <a href="delivery_status.php"> <i class="menu-icon fa fa-th"></i>Delivery Status</a>
                             </li>
 
                     </ul>
@@ -242,28 +243,15 @@
                 
                 $Price_W = $_POST['Price_W'];
                 $Price_N = $_POST['Price_N'];
-                // $Price_O = $_POST['Price_O'];
-              
+                
+                
                 
                 // $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
                 // $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_devtesting");
 
-                $strings = "UPDATE Price
-                SET Price.price = '".$Price_W."'
-                where Price.book_id = '".$book."'
-                and Price.quality_id = 1";
-
                 // $strings ="INSERT INTO Book (book_id , name) VALUES (NULL , '".$book."')";
-
                 $result = $conn->query($strings);
                
-                $strings2 = "UPDATE Price
-                SET Price.price = '".$Price_N."'
-                where Price.book_id = '".$book."'
-                and Price.quality_id = 2";
-                $result = $conn->query($strings2);
-
-
                 // $result->close();
                 
                 
@@ -303,6 +291,7 @@
             <input type="number" class="form-control" name="book_id" placeholder="Book ID" required="true">
           </div>
           <div class="form-group  col-md-3">
+          <label for="exampleInputEmail1">Quality</label>
             <select name="quality_id" class="form-control">
                 <option>Select Quality</option>
                 <option value="1">News Print</option>
@@ -316,8 +305,6 @@
             <input type="number" class="form-control" name="quantity" placeholder="Quantity of book" required="true">
           </div>
         </div>
-        
-        
 
           <?php
             }

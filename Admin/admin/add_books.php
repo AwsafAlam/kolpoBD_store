@@ -104,7 +104,8 @@
                             <!-- <a href="new-post.php"> <i class="menu-icon fa fa-th"></i>New Post </a> -->
                             <a href="book_info.php"> <i class="menu-icon fa fa-area-chart"></i>Book Info </a>
                             <a href="add_books.php"> <i class="menu-icon fa fa-area-chart"></i>Add Books </a>
-                            <a href="order.php"> <i class="menu-icon fa fa-bar-chart"></i>Orders</a>
+                            <a href="order.php"> <i class="menu-icon fa fa-bar-chart"></i>Create Order</a>
+                            <a href="delivery_status.php"> <i class="menu-icon fa fa-th"></i>Delivery Status</a>
                             </li>
 
                     </ul>
