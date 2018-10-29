@@ -1,339 +1,339 @@
 <style>
   
-    @import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400,900,700,500,300,100);
-    *{
-      margin: 0;
-      box-sizing: border-box;
-    
-    }
-    body{
-      background: #E0E0E0;
-      font-family: 'Roboto', sans-serif;
-      background-image: url('');
-      background-repeat: repeat-y;
-      background-size: 100%;
-    }
-    ::selection {background: #f31544; color: #FFF;}
-    ::moz-selection {background: #f31544; color: #FFF;}
-    h1{
-      font-size: 1.5em;
-      color: #222;
-    }
-    h2{font-size: .9em;}
-    h3{
-      font-size: 1.2em;
-      font-weight: 300;
-      line-height: 2em;
-    }
-    p{
-      font-size: .7em;
-      color: #666;
-      line-height: 1.2em;
-    }
-    
-    #invoiceholder{
-      width:100%;
-      hieght: 100%;
-      padding-top: 50px;
-    }
-    #headerimage{
-      z-index:-1;
-      position:relative;
-      top: -50px;
-      height: 350px;
-      background-image: url('http://michaeltruong.ca/images/invoicebg.jpg');
-    
-      -webkit-box-shadow:inset 0 2px 4px rgba(0,0,0,.15), inset 0 -2px 4px rgba(0,0,0,.15);
-        -moz-box-shadow:inset 0 2px 4px rgba(0,0,0,.15), inset 0 -2px 4px rgba(0,0,0,.15);
-        box-shadow:inset 0 2px 4px rgba(0,0,0,.15), inset 0 -2px 4px rgba(0,0,0,.15);
-      overflow:hidden;
-      background-attachment: fixed;
-      background-size: 1920px 80%;
-      background-position: 50% -90%;
-    }
-    #invoice{
-      position: relative;
-      top: -290px;
-      margin: 0 auto;
-      width: 700px;
-      background: #FFF;
-    }
-    
-    [id*='invoice-']{ /* Targets all id with 'col-' */
-      border-bottom: 1px solid #EEE;
-      padding: 30px;
-    }
-    
-    #invoice-top{min-height: 120px;}
-    #invoice-mid{min-height: 120px;}
-    #invoice-bot{ min-height: 250px;}
-    
-    .logo{
-      float: left;
-        height: 60px;
-        width: 60px;
-        background: url(http://michaeltruong.ca/images/logo1.png) no-repeat;
-        background-size: 60px 60px;
-    }
-    .clientlogo{
-      float: left;
-        height: 60px;
-        width: 60px;
-        background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
-        background-size: 60px 60px;
-      border-radius: 50px;
-    }
-    .info{
-      display: block;
-      float:left;
-      margin-left: 20px;
-    }
-    .title{
-      float: right;
-    }
-    .title p{text-align: right;}
-    #project{margin-left: 52%;}
-    table{
-      width: 100%;
-      border-collapse: collapse;
-    }
-    td{
-      padding: 5px 0 5px 15px;
-      border: 1px solid #EEE
-    }
-    .tabletitle{
-      padding: 5px;
-      background: #EEE;
-    }
-    .service{border: 1px solid #EEE;}
-    .item{width: 50%;}
-    .itemtext{font-size: .9em;}
-    
-    #legalcopy{
-      margin-top: 30px;
-    }
-    form{
-      float:right;
-      margin-top: 30px;
-      text-align: right;
-    }
-    
-    
-    .effect2
-    {
-      position: relative;
-    }
-    .effect2:before, .effect2:after
-    {
-      z-index: -1;
-      position: absolute;
-      content: "";
-      bottom: 15px;
-      left: 10px;
-      width: 50%;
-      top: 80%;
-      max-width:300px;
-      background: #777;
-      -webkit-box-shadow: 0 15px 10px #777;
-      -moz-box-shadow: 0 15px 10px #777;
-      box-shadow: 0 15px 10px #777;
-      -webkit-transform: rotate(-3deg);
-      -moz-transform: rotate(-3deg);
-      -o-transform: rotate(-3deg);
-      -ms-transform: rotate(-3deg);
-      transform: rotate(-3deg);
-    }
-    .effect2:after
-    {
-      -webkit-transform: rotate(3deg);
-      -moz-transform: rotate(3deg);
-      -o-transform: rotate(3deg);
-      -ms-transform: rotate(3deg);
-      transform: rotate(3deg);
-      right: 10px;
-      left: auto;
-    }
-    
-    
-    
-    .legal{
-      width:70%;
-    }
-    </style>
-    <div id="invoiceholder" style="width: 100%;hieght: 100%;padding-top: 50px;">
-    
-      <div id="headerimage" style="z-index: -1;position: relative;top: -50px;height: 350px;background-image: url(http://michaeltruong.ca/images/invoicebg.jpg);-webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), inset 0 -2px 4px rgba(0,0,0,.15);-moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), inset 0 -2px 4px rgba(0,0,0,.15);box-shadow: inset 0 2px 4px rgba(0,0,0,.15), inset 0 -2px 4px rgba(0,0,0,.15);overflow: hidden;background-attachment: fixed;background-size: 1920px 80%;background-position: 50% -90%;"></div>
-      <div id="invoice" class="effect2" style="position: relative;top: -290px;margin: 0 auto;width: 700px;background: #FFF;">
-    
-        <div id="invoice-top" style="min-height: 120px;">
-          <div class="logo" style="float: left;height: 60px;width: 60px;background: url(http://michaeltruong.ca/images/logo1.png) no-repeat;background-size: 60px 60px;"></div>
-          <div class="info" style="display: block;float: left;margin-left: 20px;">
-            <h2 style="font-size: .9em;">KolpoBD</h2>
-            <p style="font-size: .7em;color: #666;line-height: 1.2em;">info@kolpobd.com 
-              01630246627
-            </p>
-          </div>
-          <!--End Info-->
-          <div class="title" style="float: right;">
-            <h1 style="font-size: 1.5em;color: #222;">Invoice #1069</h1>
-            <p style="font-size: .7em;color: #666;line-height: 1.2em;text-align: right;">Issued: Oct 31, 2018
-              Payment Due: Oct 31, 2018
-            </p>
-          </div>
-          <!--End Title-->
+  @import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400,900,700,500,300,100);
+  *{
+    margin: 0;
+    box-sizing: border-box;
+  
+  }
+  body{
+    background: #E0E0E0;
+    font-family: 'Roboto', sans-serif;
+    background-image: url('');
+    background-repeat: repeat-y;
+    background-size: 100%;
+  }
+  ::selection {background: #f31544; color: #FFF;}
+  ::moz-selection {background: #f31544; color: #FFF;}
+  h1{
+    font-size: 1.5em;
+    color: #222;
+  }
+  h2{font-size: .9em;}
+  h3{
+    font-size: 1.2em;
+    font-weight: 300;
+    line-height: 2em;
+  }
+  p{
+    font-size: .7em;
+    color: #666;
+    line-height: 1.2em;
+  }
+  
+  #invoiceholder{
+    width:100%;
+    hieght: 100%;
+    padding-top: 50px;
+  }
+  #headerimage{
+    z-index:-1;
+    position:relative;
+    top: -50px;
+    height: 350px;
+    background-image: url('http://michaeltruong.ca/images/invoicebg.jpg');
+  
+    -webkit-box-shadow:inset 0 2px 4px rgba(0,0,0,.15), inset 0 -2px 4px rgba(0,0,0,.15);
+    -moz-box-shadow:inset 0 2px 4px rgba(0,0,0,.15), inset 0 -2px 4px rgba(0,0,0,.15);
+    box-shadow:inset 0 2px 4px rgba(0,0,0,.15), inset 0 -2px 4px rgba(0,0,0,.15);
+    overflow:hidden;
+    background-attachment: fixed;
+    background-size: 1920px 80%;
+    background-position: 50% -90%;
+  }
+  #invoice{
+    position: relative;
+    top: -290px;
+    margin: 0 auto;
+    width: 700px;
+    background: #FFF;
+  }
+  
+  [id*='invoice-']{ /* Targets all id with 'col-' */
+    border-bottom: 1px solid #EEE;
+    padding: 30px;
+  }
+  
+  #invoice-top{min-height: 120px;}
+  #invoice-mid{min-height: 120px;}
+  #invoice-bot{ min-height: 250px;}
+  
+  .logo{
+    float: left;
+    height: 60px;
+    width: 60px;
+    background: url(http://michaeltruong.ca/images/logo1.png) no-repeat;
+    background-size: 60px 60px;
+  }
+  .clientlogo{
+    float: left;
+    height: 60px;
+    width: 60px;
+    background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
+    background-size: 60px 60px;
+    border-radius: 50px;
+  }
+  .info{
+    display: block;
+    float:left;
+    margin-left: 20px;
+  }
+  .title{
+    float: right;
+  }
+  .title p{text-align: right;}
+  #project{margin-left: 52%;}
+  table{
+    width: 100%;
+    border-collapse: collapse;
+  }
+  td{
+    padding: 5px 0 5px 15px;
+    border: 1px solid #EEE
+  }
+  .tabletitle{
+    padding: 5px;
+    background: #EEE;
+  }
+  .service{border: 1px solid #EEE;}
+  .item{width: 50%;}
+  .itemtext{font-size: .9em;}
+  
+  #legalcopy{
+    margin-top: 30px;
+  }
+  form{
+    float:right;
+    margin-top: 30px;
+    text-align: right;
+  }
+  
+  
+  .effect2
+  {
+    position: relative;
+  }
+  .effect2:before, .effect2:after
+  {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width:300px;
+    background: #777;
+    -webkit-box-shadow: 0 15px 10px #777;
+    -moz-box-shadow: 0 15px 10px #777;
+    box-shadow: 0 15px 10px #777;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    transform: rotate(-3deg);
+  }
+  .effect2:after
+  {
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    transform: rotate(3deg);
+    right: 10px;
+    left: auto;
+  }
+  
+  
+  
+  .legal{
+    width:70%;
+  }
+  </style>
+  <div id="invoiceholder">
+  
+    <div id="headerimage"></div>
+    <div id="invoice" class="effect2">
+  
+      <div id="invoice-top">
+        <div class="logo"></div>
+        <div class="info">
+          <h2>KolpoBD</h2>
+          <p>info@kolpobd.com </br>
+            01630246627
+          </p>
         </div>
-        <!--End InvoiceTop-->
-    
-        <div id="invoice-mid" style="min-height: 120px;">
-    
-          <div class="clientlogo" style="float: left;height: 60px;width: 60px;background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;background-size: 60px 60px;border-radius: 50px;"></div>
-          <div class="info" style="display: block;float: left;margin-left: 20px;">
-            <h2 style="font-size: .9em;">Awsaf Alam</h2>
-            <p style="font-size: .7em;color: #666;line-height: 1.2em;">awsafalam@gmail.com
-              01729732
-          </p></div>
-    
+        <!--End Info-->
+        <div class="title">
+          <h1>Invoice #1069</h1>
+          <p>Issued: Oct 31, 2018</br>
+            Payment Due: Oct 31, 2018
+          </p>
         </div>
-        <!--End Invoice Mid-->
-    
-        <div id="invoice-bot" style="min-height: 250px;">
-    
-          <div id="table">
-            <table style="width: 100%;border-collapse: collapse;">
-              <tr class="tabletitle" style="padding: 5px;background: #EEE;">
-                <td class="item" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;width: 50%;">
-                  <h2 style="font-size: .9em;">Item Description</h2>
-                </td>
-                <td class="Hours" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <h2 style="font-size: .9em;">Quantity</h2>
-                </td>
-                <td class="Rate" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <h2 style="font-size: .9em;">Price</h2>
-                </td>
-                <td class="subtotal" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <h2 style="font-size: .9em;">Sub-total</h2>
-                </td>
-              </tr>
-    
-              <tr class="service" style="border: 1px solid #EEE;">
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">Communication</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">5</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">$75</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">$375.00</p>
-                </td>
-              </tr>
-    
-              <tr class="service" style="border: 1px solid #EEE;">
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">Asset Gathering</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">3</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">$75</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">$225.00</p>
-                </td>
-              </tr>
-    
-              <tr class="service" style="border: 1px solid #EEE;">
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">Design Development</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">5</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">$75</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">$375.00</p>
-                </td>
-              </tr>
-    
-              <tr class="service" style="border: 1px solid #EEE;">
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">Animation</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">20</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">$75</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">$1,500.00</p>
-                </td>
-              </tr>
-    
-              <tr class="service" style="border: 1px solid #EEE;">
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">Animation Revisions</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">10</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">$75</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">$750.00</p>
-                </td>
-              </tr>
-    
-              <tr class="service" style="border: 1px solid #EEE;">
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;"></p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">HST</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">13%</p>
-                </td>
-                <td class="tableitem" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <p class="itemtext" style="font-size: .9em;color: #666;line-height: 1.2em;">$419.25</p>
-                </td>
-              </tr>
-    
-              <tr class="tabletitle" style="padding: 5px;background: #EEE;">
-                <td style="padding: 5px 0 5px 15px;border: 1px solid #EEE;"></td>
-                <td style="padding: 5px 0 5px 15px;border: 1px solid #EEE;"></td>
-                <td class="Rate" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <h2 style="font-size: .9em;">Total</h2>
-                </td>
-                <td class="payment" style="padding: 5px 0 5px 15px;border: 1px solid #EEE;">
-                  <h2 style="font-size: .9em;">$3,644.25</h2>
-                </td>
-              </tr>
-    
-            </table>
-          </div>
-          <!--End Table-->
-    
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="float: right;margin-top: 30px;text-align: right;">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="QRZ7QTM9XRPJ6">
-            <input type="image" src="http://michaeltruong.ca/images/paypal.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-          </form>
-    
-          <div id="legalcopy" style="margin-top: 30px;">
-            <p class="legal" style="font-size: .7em;color: #666;line-height: 1.2em;width: 70%;"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices.
-            </p>
-          </div>
-    
-        </div>
-        <!--End InvoiceBot-->
+        <!--End Title-->
       </div>
-      <!--End Invoice-->
+      <!--End InvoiceTop-->
+  
+      <div id="invoice-mid">
+  
+        <div class="clientlogo"></div>
+        <div class="info">
+          <h2>Awsaf Alam</h2>
+          <p>awsafalam@gmail.com</br>
+            01729732</br>
+        </div>
+  
+      </div>
+      <!--End Invoice Mid-->
+  
+      <div id="invoice-bot">
+  
+        <div id="table">
+          <table>
+            <tr class="tabletitle">
+              <td class="item">
+                <h2>Item Description</h2>
+              </td>
+              <td class="Hours">
+                <h2>Quantity</h2>
+              </td>
+              <td class="Rate">
+                <h2>Price</h2>
+              </td>
+              <td class="subtotal">
+                <h2>Sub-total</h2>
+              </td>
+            </tr>
+  
+            <tr class="service">
+              <td class="tableitem">
+                <p class="itemtext">Communication</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">5</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">$75</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">$375.00</p>
+              </td>
+            </tr>
+  
+            <tr class="service">
+              <td class="tableitem">
+                <p class="itemtext">Asset Gathering</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">3</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">$75</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">$225.00</p>
+              </td>
+            </tr>
+  
+            <tr class="service">
+              <td class="tableitem">
+                <p class="itemtext">Design Development</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">5</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">$75</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">$375.00</p>
+              </td>
+            </tr>
+  
+            <tr class="service">
+              <td class="tableitem">
+                <p class="itemtext">Animation</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">20</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">$75</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">$1,500.00</p>
+              </td>
+            </tr>
+  
+            <tr class="service">
+              <td class="tableitem">
+                <p class="itemtext">Animation Revisions</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">10</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">$75</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">$750.00</p>
+              </td>
+            </tr>
+  
+            <tr class="service">
+              <td class="tableitem">
+                <p class="itemtext"></p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">HST</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">13%</p>
+              </td>
+              <td class="tableitem">
+                <p class="itemtext">$419.25</p>
+              </td>
+            </tr>
+  
+            <tr class="tabletitle">
+              <td></td>
+              <td></td>
+              <td class="Rate">
+                <h2>Total</h2>
+              </td>
+              <td class="payment">
+                <h2>$3,644.25</h2>
+              </td>
+            </tr>
+  
+          </table>
+        </div>
+        <!--End Table-->
+  
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="QRZ7QTM9XRPJ6">
+          <input type="image" src="http://michaeltruong.ca/images/paypal.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        </form>
+  
+        <div id="legalcopy">
+          <p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices.
+          </p>
+        </div>
+  
+      </div>
+      <!--End InvoiceBot-->
     </div>
-    <!-- End Invoice Holder-->
+    <!--End Invoice-->
+  </div>
+  <!-- End Invoice Holder-->
