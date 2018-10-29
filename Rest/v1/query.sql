@@ -42,7 +42,15 @@ WHERE Price.price > 800
 
 
 
+/*************************************************************************************************************************
 
+
+
+                                            PLACING AN ORDER
+
+
+
+**************************************************************************************************************************/
 
 /* Inseerting into cartitem  */
 
@@ -51,7 +59,7 @@ INSERT INTO cartitem
 VALUES (NULL,1,(SELECT MAX(bookorder.book_order_id) FROM bookorder),1,1)
 
 
-/*If shipping address is default.  (OEDER placement)    */
+/*If shipping address is default.  (OEDER placement).  WE CAN GIVE AN OPTION IN THE USEREND. FUTURE PLAN */
 
 INSERT INTO bookorder
 (bookorder.book_order_id,bookorder.user_id,bookorder.shipping_address,bookorder.total_cost,bookorder.delivery_confirmed,bookorder.order_issue)
@@ -66,15 +74,75 @@ INSERT INTO bookorder
 VALUES (NULL,2,"bosundhora",1390,0,NULL)
 
 
-/* Updating order .... we can keep 2 buttons .. one for update, one for delete  */
 
-/* if update order, then this. number_of_items should be > 0*/
+/* insert into user */
+
+INSERT INTO user
+(user.user_id,user.name,user.email,user.password,user.mobile,user.address,user.created_at)
+VALUES(NULL,"INSERT NAME","NULL","NULL","01521420915","Titumir hall 5002,BUET",NULL)
+
+
+
+
+
+/*************************************************************************************************************************
+
+
+
+                                        PLACING AN ORDER QUERY DONE
+
+
+
+**************************************************************************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+/*************************************************************************************************************************
+
+
+
+                                        UPDATING AN ORDER QUERY
+
+
+
+**************************************************************************************************************************/
+
+
+
+
+/**************************************************
+
+
+        SUB SECTION : IF ANYONE WANT TO UPDATE SAME ITEM , THEN RUN THIS QUERY
+
+        if update order, then this. number_of_items should be > 0
+
+
+***************************************************/
+
 
 
 UPDATE cartitem
 SET cartitem.number_of_item = 5
 WHERE cartitem.book_id = 5
 and cartitem.book_order_id = 1
+
+
+/**************************************************
+
+
+        SUB SECTION : IF ANYONE WANT TO CANCEL ORDER , THEN RUN THIS QUERY
+
+
+***************************************************/
 
 /*if we want to cancel order */
 
@@ -85,3 +153,43 @@ DELETE FROM bookorder
 WHERE bookorder.book_order_id = 1
 
 /* done updating order */
+
+
+
+/**************************************************
+
+
+        SUB SECTION : IF ANYONE WANT TO ADD NEW PRODUCT IN THE SAME ORDER NUMBER , THEN RUN THIS QUERY
+
+        !!!! SHOULD REMEMBER TO ADD AN ELEMENT IN PROMO CODE
+
+        
+***************************************************/
+
+INSERT INTO cartitem 
+(cartitem.item_id,cartitem.book_id,cartitem.book_order_id,cartitem.price_id,cartitem.promo_id)
+VALUES (NULL,"give book id","give same book_order_id (got from UI)",1,1)
+
+/******                         IMPORTANT NOTE 
+
+            if we want to set price id from UI, then it is fine. IF NOTTTTT, then , code is given below --->>>>
+
+
+*********/
+
+INSERT INTO cartitem 
+(cartitem.item_id,cartitem.book_id,cartitem.book_order_id,cartitem.price_id,cartitem.promo_id)
+VALUES (NULL,"give book id","give same book_order_id (got from UI)",(SELECT price.price_id FROM price 
+WHERE price.book_id = "value of book_id "
+and price.quality_id = " value of quality id"),1)
+
+
+/*************************************************************************************************************************
+
+
+
+                                        UPDATING AN ORDER QUERY DONE
+
+
+
+**************************************************************************************************************************/
