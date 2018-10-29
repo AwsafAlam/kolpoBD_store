@@ -227,7 +227,7 @@
 
       <div class="box box-primary container">
       <div class="box-header with-border">
-      <br><br><br><h4 class="box-title">Update Book Price. (Must fill all the fields)</h4><br><br>
+      <br><br><br><h4 class="box-title">Add new Order</h4><br><br>
       </div>
       <!-- /.box-header -->
       <!-- form start -->
@@ -245,7 +245,7 @@
                 // $Price_O = $_POST['Price_O'];
               
                 
-                $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+                // $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
                 // $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_devtesting");
 
                 $strings = "UPDATE Price
