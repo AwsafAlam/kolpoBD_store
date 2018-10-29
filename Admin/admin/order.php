@@ -296,27 +296,6 @@
                 <a href="" id="Add" class="btn btn-primary">Add Book to order</a>
             </div>
           </div> -->
-        <div class="form-row">
-          <div class="form-group  col-md-4">
-            <label for="exampleInputEmail1">Book Id</label>
-            <input type="number" class="form-control" name="Price_W" placeholder="Book ID" required="true">
-          </div>
-          <div class="form-group  col-md-3">
-            <label for="exampleInputEmail1">Delivery Address</label>
-            <input type="text" class="form-control" name="Price_W" placeholder="Delivery Address" required="true">
-            <select name="sem" class="form-control">
-                <option>Select Quality</option>
-                <option value="1">News Print</option>
-                <option value="2">White Print</option>
-                <option value="3">Original</option>
-                <option value="4">Second Hand</option>
-            </select>  
-           </div>
-          <div class="form-group  col-md-3">
-            <label for="exampleInputEmail1">Quantity</label>
-            <input type="number" class="form-control" name="Price_W" placeholder="Quantity of book" required="true">
-          </div>
-        </div>
         
         <div class="form-row">
           <div class="form-group  col-md-4">
@@ -324,8 +303,6 @@
             <input type="number" class="form-control" name="book_id" placeholder="Book ID" required="true">
           </div>
           <div class="form-group  col-md-3">
-            <label for="exampleInputEmail1">Delivery Address</label>
-            <input type="text" class="form-control" name="address" placeholder="Delivery Address" required="true">
             <select name="quality_id" class="form-control">
                 <option>Select Quality</option>
                 <option value="1">News Print</option>
