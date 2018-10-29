@@ -239,23 +239,61 @@
             if ($_SERVER['REQUEST_METHOD']=='POST'){
 
                 
-                $book = $_POST['book_id'];
+                $bookid = $_POST['book_id_1'];
                 
-                $Price_W = $_POST['Price_W'];
-                $Price_N = $_POST['Price_N'];
+                $user_name = $_POST['username'];
+                $mobile_no = $_POST['mobile'];
+                $address = $_POST['delivery_address'];
+                $quality = $_POST['quality_id'];
+                $quantity = $_POST['quantity'];
                 
                 
                 
-                // $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+                $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
                 // $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_devtesting");
 
-                // $strings ="INSERT INTO Book (book_id , name) VALUES (NULL , '".$book."')";
+                $strings ="INSERT INTO user
+                (user.user_id,user.created_at,user.name,user.email,user.password,user.mobile,user.address)
+                VALUES(NULL,NULL,'". $user_name."',"no_email","no_password",'". $mobile_no."','". $address."')";
                 $result = $conn->query($strings);
+                $result->close();
+
+
+                
+ 
+                /******************************************************************* 
+                 * 
+                 * 
+                 * price should be calculated
+                 * 
+                 * 
+                */
+                $strings ="INSERT INTO bookorder
+                (bookorder.book_order_id,bookorder.user_id,bookorder.shipping_address,bookorder.total_cost,bookorder.delivery_confirmed,bookorder.order_issue)
+                VALUES (NULL,(SELECT MAX(user.user_id) FROM user),
+                (SELECT user.address FROM user where user.user_id = (SELECT MAX(user.user_id) FROM user)),
+                1390,0,NULL)";
+                $result = $conn->query($strings);
+                $result->close();
+
+                /********************
+                 * 
+                 * it should be in for loop. should insert one item in promo codes
+                 * 
+                 */
                
-                // $result->close();
+                $strings ="INSERT INTO cartitem 
+                (cartitem.item_id,cartitem.book_id,cartitem.book_order_id,cartitem.price_id,cartitem.promo_id,cartitem.number_of_item)
+                VALUES (NULL,'". $bookid."',(SELECT MAX(bookorder.book_order_id) FROM bookorder),
+                (SELECT DISTINCT price.price_id FROM price,book where price.book_id = '". $bookid."' and price.quality_id = '". $quality."' ),
+                1,'". $quantity."')";
+
+                $result = $conn->query($strings);
+                $result->close();
                 
                 
-                $_SESSION['message']="Price Update Successful!";
+                
+                $_SESSION['message']="ORDER PLACED";
                 
             }
             else{
@@ -276,7 +314,7 @@
           <div class="form-row">
           <div class="form-group  col-md-9">
             <label for="exampleInputEmail1">Delivery Address</label>
-            <input type="text" class="form-control" name="Price_W" placeholder="Delivery Address" required="true">
+            <input type="text" class="form-control" name="delivery_address" placeholder="Delivery Address" required="true">
           </div>
           </div>
           <!-- <div class="form-row">
@@ -288,7 +326,7 @@
         <div class="form-row">
           <div class="form-group  col-md-4">
             <label for="exampleInputEmail1">Book Id</label>
-            <input type="number" class="form-control" name="book_id" placeholder="Book ID" required="true">
+            <input type="number" class="form-control" name="book_id_1" placeholder="Book ID" required="true">
           </div>
           <div class="form-group  col-md-3">
           <label for="exampleInputEmail1">Quality</label>
