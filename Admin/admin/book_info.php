@@ -225,9 +225,9 @@
       </div>
   </div>
 
-      <div class="box box-primary">
+      <div class="box box-primary container">
       <div class="box-header with-border">
-      <br><br><br><br><br><h4 class="box-title">Update Book Price. (Must fill all the fields)</h4>
+      <br><br><br><h4 class="box-title">Update Book Price. (Must fill all the fields)</h4><br><br>
       </div>
       <!-- /.box-header -->
       <!-- form start -->
