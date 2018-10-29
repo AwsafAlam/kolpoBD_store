@@ -277,21 +277,74 @@
         <div class="box-body">
           <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="exampleInputEmail1">Book_id</label>
-            <input type="text" class="form-control" name="book_id" placeholder="Enter Book_id here" required="true">
+            <label for="exampleInputEmail1">Username</label>
+            <input type="text" class="form-control" name="username" placeholder="Username" required="true">
           </div>
           <div class="form-group  col-md-4">
-            <label for="exampleInputEmail1">News Print</label>
-            <input type="text" class="form-control" name="Price_N" placeholder="updated News Print price" required="true">
+            <label for="exampleInputEmail1">Mobile</label>
+            <input type="text" class="form-control" name="mobile" placeholder="Mobile" required="true">
           </div>
+          </div>
+          <div class="form-row">
+          <div class="form-group  col-md-9">
+            <label for="exampleInputEmail1">Delivery Address</label>
+            <input type="text" class="form-control" name="Price_W" placeholder="Delivery Address" required="true">
+          </div>
+          </div>
+          <!-- <div class="form-row">
+            <div class="form-group  col-md-3">
+                <a href="" id="Add" class="btn btn-primary">Add Book to order</a>
+            </div>
+          </div> -->
+        <div class="form-row">
           <div class="form-group  col-md-4">
-            <label for="exampleInputEmail1">White Print</label>
-            <input type="text" class="form-control" name="Price_W" placeholder="Updated White Print Price" required="true">
+            <label for="exampleInputEmail1">Book Id</label>
+            <input type="number" class="form-control" name="Price_W" placeholder="Book ID" required="true">
           </div>
+          <div class="form-group  col-md-3">
+            <label for="exampleInputEmail1">Delivery Address</label>
+            <input type="text" class="form-control" name="Price_W" placeholder="Delivery Address" required="true">
+            <select name="sem" class="form-control">
+                <option>Select Quality</option>
+                <option value="1">News Print</option>
+                <option value="2">White Print</option>
+                <option value="3">Original</option>
+                <option value="4">Second Hand</option>
+            </select>  
+           </div>
+          <div class="form-group  col-md-3">
+            <label for="exampleInputEmail1">Quantity</label>
+            <input type="number" class="form-control" name="Price_W" placeholder="Quantity of book" required="true">
           </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group  col-md-4">
+            <label for="exampleInputEmail1">Book Id</label>
+            <input type="number" class="form-control" name="book_id" placeholder="Book ID" required="true">
+          </div>
+          <div class="form-group  col-md-3">
+            <label for="exampleInputEmail1">Delivery Address</label>
+            <input type="text" class="form-control" name="address" placeholder="Delivery Address" required="true">
+            <select name="quality_id" class="form-control">
+                <option>Select Quality</option>
+                <option value="1">News Print</option>
+                <option value="2">White Print</option>
+                <option value="3">Original</option>
+                <option value="4">Second Hand</option>
+            </select>  
+           </div>
+          <div class="form-group  col-md-3">
+            <label for="exampleInputEmail1">Quantity</label>
+            <input type="number" class="form-control" name="quantity" placeholder="Quantity of book" required="true">
+          </div>
+        </div>
+        
+        
+
           <?php
             }
-            echo "<h1>".$_SESSION['message']."</h1>";
+            echo "<div>".$_SESSION['message']."</div>";
             ?>
         </div>
         </div>
