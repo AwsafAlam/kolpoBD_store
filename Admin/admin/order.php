@@ -206,10 +206,11 @@
           $result->execute();
           $result->bind_result($book_id, $name , $author_name , $quality_category,$price, $price_id);
           $posts = array();
+          $i = 0;
 
           while($result->fetch()) {
           ?>
-            <tr>
+            <tr <?php echo "id=".$i?>>
               <td> <?php echo $book_id;?></td>
               <td> <?php echo $name;?></td>
               <td> <?php echo $author_name;?></td>
@@ -218,7 +219,7 @@
               <td> <?php echo $price_id;?></td>
               
             </tr>
-          <?php } 
+          <?php $i++; } 
           $result->close();
           ?>
 
@@ -256,28 +257,37 @@
                     (SELECT User.address FROM User where User.user_id = (SELECT MAX(User.user_id) FROM User)), '".$TotalPrice."' , '0' ,NULL)";
                 $result = $conn->query($strings);
 
+                $order = array();
+
                 for ($i=0; $i < 10; $i++) { 
                     # code...
-                    $bookid = $_POST['book_id'.$i];
+                    $book_item = array();
+
+                    $book_id = $_POST['book_id'.$i];
                     $quality = $_POST['quality_id'.$i];
                     $quantity = $_POST['quantity'.$i];
+
+                    $book_item["quality"] = $quality;
 
                     if($book_id == NULL)
                     {
                         break;
                     }
+                    
+                    $strings ="SELECT name FROM Book WHERE book_id = '".$book_id."'";
                 
+                    $result = $conn->prepare($strings);
+                    $result->execute();
+                    $result->bind_result($book_name);
+                    
+                    while($result->fetch()) {       
+                        $book_item["name"] = $book_name;
+                    }
+
                     //$result->close();
 
-                    /******************************************************************* 
-                     * 
-                     * 
-                     * price should be calculated
-                     * 
-                     * 
-                    */
-
-                    $strings ="SELECT DISTINCT Price.price FROM Price,Book where Price.book_id = '". $bookid."' and Price.quality_id = '". $quality."'";
+                    $strings ="SELECT DISTINCT Price.price FROM Price,Book where Price.book_id = '". $book_id."' and Price.quality_id = '". $quality."'";
+                    
                     $result = $conn->prepare($strings);
                     $result->execute();
                     $result->bind_result($price);
@@ -287,6 +297,11 @@
                         $tmp["price"] = $price;
                     }
                 
+                    if(sizeof($tmp)  == 0){
+
+                        array_push($order, $book_item);
+                        continue;
+                    }
 
                     $TotalPrice += $quantity * $tmp["price"];
                     if($quantity == 0)
@@ -294,14 +309,17 @@
                         continue;
                     }
 
-
+                    $book_item["price"] = $tmp["price"];
+                    $book_item["quantity"] = $quantity;
                 
                     $strings ="INSERT INTO CartItem ( item_id, book_id, book_order_id, price_id, promo_id, number_of_item)
-                    VALUES (NULL,'". $bookid."',(SELECT MAX(BookOrder.book_order_id) FROM BookOrder),
-                    (SELECT DISTINCT Price.price_id FROM Price,Book where Price.book_id = '". $bookid."' and Price.quality_id = '". $quality."' ), '1','". $quantity."')";
+                    VALUES (NULL,'". $book_id."',(SELECT MAX(BookOrder.book_order_id) FROM BookOrder),
+                    (SELECT DISTINCT Price.price_id FROM Price,Book where Price.book_id = '". $book_id."' and Price.quality_id = '". $quality."' ), '1','". $quantity."')";
 
                     $result = $conn->query($strings);
                     //$result->close();
+
+                    array_push($order, $book_item);
                 
                     }
 
@@ -311,8 +329,15 @@
 
                 $result = $conn->query($strings);
                 
+                foreach ($order as $value) {
                 
-                $_SESSION['message']="<div id=\"invoiceholder\" style=\"width: 100%;hieght: 100%;padding: 150px;\">
+                  $_SESSION['message'] .= "<h3>".$value["name"]."</h3><br>";
+                  $_SESSION['message'] .= "<h3>".$value["price"]."</h3><br>";
+                  $_SESSION['message'] .= "<h3>".$value["quantity"]."</h3><br>";
+
+                }
+
+                $msg = json_encode($order)." <div id=\"invoiceholder\" style=\"width: 100%;hieght: 100%;padding: 150px;\">
 
                 
                 <div id=\"invoice\" class=\"effect2\" style=\"position: relative;top: -290px;margin: 0 auto;width: 700px;background: #FFF;\">
@@ -366,7 +391,6 @@
                             <h2 style=\"font-size: .9em;\">Sub-total</h2>
                           </td>
                         </tr>
-              
                         <tr class=\"service\" style=\"border: 1px solid #EEE;\">
                           <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
                             <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">Communication</p>

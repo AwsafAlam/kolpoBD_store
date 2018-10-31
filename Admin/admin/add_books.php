@@ -226,12 +226,12 @@
 
                 $result->close();
 
-                if(sizeof($temp_1) > 0)
+                if(sizeof($temp_1) == 0)
                 {
                     $strings ="INSERT INTO Book (book_id , name) VALUES (NULL , '".$book."')";
                     $result = $conn->query($strings);
                 
-                $strings ="SELECT book_id FROM Book WHERE name = '".$book."'";
+                    $strings ="SELECT book_id FROM Book WHERE name = '".$book."'";
                 
                 $result = $conn->prepare($strings);
                 $result->execute();
