@@ -181,12 +181,12 @@
         <table class="table-bordered table-hover" id="Emptable" class="table table-bordered table-striped">
           <thead class="thead-dark">
           <tr>
-            <th>Book ID</th>
-            <th>Book Name</th>
-            <th>Author Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Price ID</th>
+            <td>Book ID</td>
+            <td>Book Name</td>
+            <td>Author Name</td>
+            <td>Category</td>
+            <td>Price</td>
+            <td>Price ID</td>
           </tr>
           </thead>
           <?php
@@ -205,10 +205,11 @@
           $result->execute();
           $result->bind_result($book_id, $name , $author_name , $quality_category,$price, $price_id);
           $posts = array();
-
+          
+          $i =0;
           while($result->fetch()) {
           ?>
-            <tr>
+            <tr <?php echo "id=row".$i?> >
               <td> <?php echo $book_id;?></td>
               <td> <?php echo $name;?></td>
               <td> <?php echo $author_name;?></td>
@@ -217,7 +218,7 @@
               <td> <?php echo $price_id;?></td>
               
             </tr>
-          <?php } 
+          <?php $i++; } 
           $result->close();
           ?>
 
@@ -330,7 +331,6 @@
 $(document).ready(function () {
   // body...
 
- console.log("Here");
  $('#Emptable').DataTable({
       'paging'      : true,
       'lengthChange': true,
@@ -339,6 +339,43 @@ $(document).ready(function () {
       'info'        : true,
       'autoWidth'   : true
     });
+
+   for(var i=0 ; i< 10 ; i++){
+     console.log("Here");
+        handleClick(i);
+   }
+
+   function handleClick(id) {
+    // body...
+      document.getElementById("row"+id).addEventListener("click", function () {
+    // body...
+    console.log("Clicked");
+    console.log("Del Clicked "+ this.parentElement.parentElement.cells[0].innerHTML);
+
+    // if(confirm("Are you sure you want to disable all prices in this route?"))
+    // {  
+
+    //   var getFromDb="../../v1/index.php?table=DelEmp&Flight="+this.parentElement.parentElement.cells[0].innerHTML;
+    //        xmlhttp = new XMLHttpRequest();
+
+         
+    //       xmlhttp.onreadystatechange = function() {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //           console.log(this.responseText);
+    //           location.reload();
+    //         }
+    //       };
+    //        xmlhttp.open("GET", getFromDb, true);
+
+    //        xmlhttp.send();
+    //        location.reload();
+    // }
+    // else{
+    //   return false;
+    // }
+  });
+  
+}
 
 
 
