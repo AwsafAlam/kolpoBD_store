@@ -224,6 +224,11 @@
                     $temp_1["book_id"] = $book_id;
                 }
 
+<<<<<<< HEAD
+=======
+                $result->close();
+
+>>>>>>> 66b8755e6c489166c70660cf1cf1245cfcc55c5d
                 if(sizeof($temp_1) == 0)
                 {
                     $strings ="INSERT INTO Book (book_id , name) VALUES (NULL , '".$book."')";

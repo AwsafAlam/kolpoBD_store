@@ -194,16 +194,23 @@
           // $conn = new mysqli("localhost", "root", "", "kolpbdc_site");
           
           # There can be multiple authors
-          $strings = "SELECT Book.book_id ,Book.name , Author.author_name , Quality.quality_category,Price.price,Price.price_id
-          FROM Book,BookAuthor,Author,Price,Quality where Book.book_id = BookAuthor.book_id
-          and BookAuthor.author_id = Author.author_id and Price.book_id = Book.book_id and Price.quality_id = Quality.quality_id ORDER BY Price.price_id";
+        //   $strings = "SELECT Book.book_id ,Book.name , Quality.quality_category,Price.price,Price.price_id
+        //   FROM Book,BookAuthor,Author,Price,Quality where Book.book_id = BookAuthor.book_id
+        //   and BookAuthor.author_id = Author.author_id and Price.book_id = Book.book_id and Price.quality_id = Quality.quality_id ORDER BY Price.price_id";
         
+        $strings = "SELECT Book.book_id ,Book.name ,Author.author_name , Quality.quality_category,Price.price,Price.price_id
+        FROM Book JOIN BookAuthor ON (Book.book_id = BookAuthor.book_id)
+        JOIN Author ON (Author.author_id = BookAuthor.author_id)
+        JOIN Price ON (Price.book_id = Book.book_id)
+        JOIN Quality On (Price.quality_id = Quality.quality_id)
+        ORDER BY Book.book_id , Price.price_id";
+
         //   $result = $conn->prepare($strings);
                
                 
           $result = $conn->prepare($strings);
           $result->execute();
-          $result->bind_result($book_id, $name , $author_name , $quality_category,$price, $price_id);
+          $result->bind_result($book_id, $name,$author , $quality_category,$price, $price_id);
           $posts = array();
 
           while($result->fetch()) {
@@ -211,7 +218,7 @@
             <tr>
               <td> <?php echo $book_id;?></td>
               <td> <?php echo $name;?></td>
-              <td> <?php echo $author_name;?></td>
+              <td> <?php echo $author;?></td>
               <td> <?php echo $quality_category;?></td>
               <td> <?php echo $price;?></td>
               <td> <?php echo $price_id;?></td>
@@ -278,7 +285,7 @@
           <div class="form-row">
           <div class="form-group col-md-4">
             <label for="exampleInputEmail1">Book_id</label>
-            <input type="text" class="form-control" name="book_id" placeholder="Enter Book_id here" required="true">
+            <input type="number" class="form-control" name="book_id" placeholder="Enter Book_id here" required="true">
           </div>
           <div class="form-group  col-md-4">
             <label for="exampleInputEmail1">News Print</label>
