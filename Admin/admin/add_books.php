@@ -179,7 +179,6 @@
             $_SESSION['message']='';
 
             if ($_SERVER['REQUEST_METHOD']=='POST'){
-
                 
                 $book = $_POST['name'];
                 $author = $_POST['author'];
