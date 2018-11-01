@@ -163,7 +163,7 @@ WHERE bookorder.book_order_id = 1
 
         !!!! SHOULD REMEMBER TO ADD AN ELEMENT IN PROMO CODE
 
-        
+
 ***************************************************/
 
 INSERT INTO cartitem 
@@ -193,3 +193,9 @@ and price.quality_id = " value of quality id"),1)
 
 
 **************************************************************************************************************************/
+
+INSERT INTO cartitem 
+                (cartitem.item_id,cartitem.book_id,cartitem.book_order_id,cartitem.price_id,cartitem.promo_id,cartitem.number_of_item)
+                VALUES (NULL,'". $bookid."',(SELECT MAX(bookorder.book_order_id) FROM bookorder),
+                (SELECT DISTINCT price.price_id FROM price,book where price.book_id = '". $bookid."' and price.quality_id = '". $quality."' ),
+                1,'". $quantity."')
