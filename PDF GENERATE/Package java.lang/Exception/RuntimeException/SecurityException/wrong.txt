@@ -1,0 +1,45 @@
+public static void openFile()
+{
+   try
+   {
+      output = new Formatter("clients.txt"); // open the file
+   }
+   catch (SecurityException securityException)
+   {
+      System.err.println("Write permission denied. Terminating.");
+      System.exit(1); // terminate the program
+   } 
+}
+
+
+
+
+
+
+/*************************************************************************/
+
+
+
+private synchronized String privGetCanonicalPath(final File file)
+{
+    actionCode = REGULAR_FILE_GET_CANONICALPATH_ACTION;
+    actionRegularFile = file;
+
+    try
+    {
+        return (String) AccessController.doPrivileged( this);
+    }
+    catch( PrivilegedActionException pae) { 
+        return null;
+    } // does not throw an exception
+    catch(SecurityException se) { 
+        // there are no permission to get canonical path 
+        // just return null.
+        return null;
+    }
+    finally
+    {
+        actionRegularFile = null;
+    }
+}
+ 

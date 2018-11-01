@@ -1,0 +1,7 @@
+public void test(TestHarness harness)
+{
+    InstantiationException object1 = new InstantiationException();
+    harness.check(object1.toString(), "java.lang.InstantiationException");
+
+  
+}

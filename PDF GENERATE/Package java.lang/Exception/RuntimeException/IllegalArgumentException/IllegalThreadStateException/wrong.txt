@@ -1,0 +1,11 @@
+public void readCommand() {
+    readThread = new Thread("Thread for reading") {
+        public void run() {
+            while (running) {
+                readBuffer = usbservice.receiveData();
+                put(readBuffer);
+            }
+        }
+    };
+    readThread.start();
+}

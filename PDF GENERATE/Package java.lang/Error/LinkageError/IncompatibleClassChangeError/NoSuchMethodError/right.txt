@@ -1,0 +1,22 @@
+public class TestClass {
+
+    public void hello()
+	{
+ 		System.out.println("Hello from Java Code Geeks!");
+	}
+
+}
+
+
+
+
+public class NoSuchFieldErrorExample {
+
+    public static void main(String[] args) {
+	
+	TestClass tst = new TestClass();
+        tst.hello();
+
+    }
+
+}

@@ -1,0 +1,14 @@
+public static String getDescription(UUID serviceId)
+{
+	Field[] fields = BluetoothCommonServiceIds.class.getDeclaredFields();
+
+	for(Field f: fields)
+	{
+		
+		BluetoothServiceId id = (BluetoothServiceId)f.get(null);
+
+	}
+
+	return null;
+}
+ 

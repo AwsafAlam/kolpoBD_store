@@ -1,0 +1,17 @@
+class Shutdown {    
+...
+
+   /* Add a new shutdown hook.  Checks the shutdown state and the hook itself,
+    * but does not do any security checks.
+    */
+    static void add(int slot, Runnable hook) {
+        synchronized (lock) {
+            if (state > RUNNING)
+                throw new IllegalStateException("Shutdown in progress");
+
+            if (hooks[slot] != null)
+                throw new InternalError("Shutdown hook at slot " + slot + " already registered");
+
+            hooks[slot] = hook;
+        }
+    }

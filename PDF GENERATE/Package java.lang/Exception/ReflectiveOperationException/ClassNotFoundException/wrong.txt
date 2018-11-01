@@ -1,0 +1,21 @@
+package main.java;
+
+ 
+
+public class ClassNotFoundExceptionExample {
+
+ 
+
+    private static final String CLASS_TO_LOAD = "main.java.Utils";
+
+ 
+
+    public static void main(String[] args) {
+
+
+            Class loadedClass = Class.forName(CLASS_TO_LOAD);
+
+
+    }
+
+}

@@ -1,0 +1,20 @@
+public class NoClassDefFoundErrorDemo {
+    public static void main(String[] args) {
+        
+        // The following line would cause NoClassDefFoundError
+        SimpleCalculator calculator2 = new SimpleCalculator();
+    }
+
+}
+
+
+
+
+
+
+
+public class SimpleCalculator {
+    static int undefined = 10; //Should be a defined number
+}
+
+

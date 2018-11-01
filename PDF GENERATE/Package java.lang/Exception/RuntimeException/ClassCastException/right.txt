@@ -1,0 +1,3 @@
+At Another t5 = (Another) new Goat(): you will get a
+ ClassCastException because you cannot 
+create an instance of the Another class using Goat

@@ -1,0 +1,4 @@
+Here is an example in the JDK.
+ There is a package private class called java.lang.Shutdown. 
+If the system is shutting down and you attempt 
+to add a new hook, it throws the IllegalStateException. 

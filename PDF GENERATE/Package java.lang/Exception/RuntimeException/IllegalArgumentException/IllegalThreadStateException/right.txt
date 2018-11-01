@@ -1,0 +1,29 @@
+You are storing the thread in a field.
+ If the method(readCommand()) is called in two threads,
+ the readThread.start() can be called twice for the same thread. 
+You need to ensure readCommand is not called 
+multiple times and perhaps not start the readThread again
+ if its already running. e.g. you can synchronized the method 
+and check readThread before you start.
+
+
+
+/* Another Solution */
+
+A thread will throw the exception when calling start
+ if the thread's state
+ (as retrieved by Thread.currentThread().getState() is anything other than NEW.
+
+
+public synchronized void start() {
+    /*
+     * A zero status value corresponds to state "NEW".
+     */
+    if (threadStatus != 0)
+        throw new IllegalThreadStateException();
+    group.add(this);
+    start0();
+    if (stopBeforeStart) {
+        stop0(throwableFromStop);
+    }
+}

@@ -1,0 +1,21 @@
+public class DemoThread extends Thread implements Cloneable {
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        DemoThread t = new DemoThread();
+        t.cloned();
+    }
+
+    public DemoThread cloned()
+    {
+        try {
+            return (DemoThread) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+}

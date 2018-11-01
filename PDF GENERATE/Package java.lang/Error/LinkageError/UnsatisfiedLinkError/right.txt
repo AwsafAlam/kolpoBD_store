@@ -1,0 +1,7 @@
+In this example, we define a native method called CFunction,
+ which exists in the library under the name clibrary.
+ In our main function we try to call that native method, 
+but the library is not found
+
+
+We should load clibrary before calling CFunction

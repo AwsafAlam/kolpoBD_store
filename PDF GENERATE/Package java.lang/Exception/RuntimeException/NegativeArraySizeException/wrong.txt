@@ -1,0 +1,6 @@
+int arrSize = -8;
+try {
+    int[] myArray = new int[arrSize];
+} catch (NegativeArraySizeException ex) {
+    System.out.println("Can't create array of negative size");
+}
