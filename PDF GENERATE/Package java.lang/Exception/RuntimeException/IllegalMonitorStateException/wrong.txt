@@ -1,0 +1,7 @@
+System.out.println("In broken notify...");
+Object lock = new Object();
+try {
+    lock.notify();
+} catch (IllegalMonitorStateException e) {
+    e.printStackTrace();
+}

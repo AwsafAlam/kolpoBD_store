@@ -1,0 +1,13 @@
+private Object getField(Object object, String name)  {
+
+
+    for (Class cls = object.getClass(); cls != null; cls = cls.getSuperclass()) {
+             
+        
+            Field field = cls.getDeclaredField(name);
+            field.setAccessible(true);
+            return field.get(object);
+       
+    }
+
+}

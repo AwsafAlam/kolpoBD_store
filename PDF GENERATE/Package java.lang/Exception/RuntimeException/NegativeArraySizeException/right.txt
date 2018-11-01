@@ -1,0 +1,1 @@
+ArraySize can not be negative

@@ -1,0 +1,24 @@
+private Object getField(Object object, String name) throws NoSuchFieldException {
+
+    if (object == null) 
+        throw new IllegalArgumentException("Invalid null object argument");
+
+    for (Class cls = object.getClass(); cls != null; cls = cls.getSuperclass()) {
+             
+        try {
+            Field field = cls.getDeclaredField(name);
+            field.setAccessible(true);
+            return field.get(object);
+        } catch (Exception ex) {
+            // in case of an exception, we will throw a new
+            // NoSuchFieldException object below
+            ;
+        }
+    }
+
+    // Arrived here because we couldn't find the field or an exception
+    //   was thrown during field access.
+    
+    throw new NoSuchFieldException("Could get value for field " +
+            object.getClass().getName() + "." + name);
+}

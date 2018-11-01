@@ -1,0 +1,3 @@
+When java fails to recognize which kind of error it is, then it throws UnknownError.
+
+Usually happens with api calls or a new kind of error, for which no class is defined.

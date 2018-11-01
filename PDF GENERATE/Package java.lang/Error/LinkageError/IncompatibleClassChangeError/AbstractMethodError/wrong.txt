@@ -1,0 +1,42 @@
+public abstract class AbsClass {
+
+    public abstract void hello();
+
+}
+
+
+
+public class MainClass extends AbsClass {
+
+     
+
+    public static void main(String[] args) {
+
+        MainClass obj = new MainClass();
+
+         
+
+        obj.hello();
+
+     
+
+    }
+
+}
+
+
+
+
+
+
+/***********Running in command line**************/
+
+>_ javac MainClass.java
+>_ java MainClass
+
+
+
+Exception in thread "main" java.lang.AbstractMethodError: MainClass.hello()V
+
+        at MainClass.main(MainClass.java:6)
+

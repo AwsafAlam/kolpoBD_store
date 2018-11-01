@@ -1,0 +1,27 @@
+package my.enumtest;
+
+enum MyEnum {
+     B, C;
+}
+
+
+
+
+/* MyEnumTest1  class */
+
+package my.enumtest;
+
+    import my.enumtest.MyEnum;
+
+    class MyEnumTest1 {
+
+        public static void main(String [] args) {
+            System.out.println(MyEnum.A);        
+        }        
+    }
+
+
+
+
+
+

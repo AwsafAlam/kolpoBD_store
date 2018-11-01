@@ -1,0 +1,11 @@
+Object lock = new Object();
+synchronized (lock) {
+    // now we can notify other threads:
+    lock.notify();
+}
+System.out.println("Synchronized notify works!");
+
+
+
+/*java.lang.IllegalMonitorStateException form Object’s 
+notify/wait methods indicates basic synchronization issue. */

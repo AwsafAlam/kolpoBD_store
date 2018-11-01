@@ -1,0 +1,3 @@
+We cannot extend a final class.
+
+VarifyError

@@ -1,0 +1,18 @@
+public class TestClass {
+
+    public static String str = "Hello from Java Code Geeks!";
+
+}
+
+
+
+
+public class NoSuchFieldErrorExample {
+
+    public static void main(String[] args) {
+
+        System.out.println(TestClass.str);
+
+    }
+
+}

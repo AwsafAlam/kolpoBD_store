@@ -1,0 +1,14 @@
+In this example I intentionally create a NoSuchMethodException by trying to instantiate 
+a method named fooMethod on the java.lang.String class. Here's the line of code that actually 
+throws the exception:
+
+
+Method m = c.getDeclaredMethod("fooMethod", paramTypes);
+
+Because this method (fooMethod) doesn't exist, a NoSuchMethodException is thrown.
+The actual error message (stack trace) is as follows:
+
+java.lang.NoSuchMethodException: java.lang.String.fooMethod(null, null, null, null, null)
+   at java.lang.Class.getDeclaredMethod(Class.java:1909)
+   at com.devdaily.javasamples.JavaReflectionExample2.(JavaReflectionExample2.java:17)
+   at com.devdaily.javasamples.JavaReflectionExample2.main(JavaReflectionExample2.java:37)

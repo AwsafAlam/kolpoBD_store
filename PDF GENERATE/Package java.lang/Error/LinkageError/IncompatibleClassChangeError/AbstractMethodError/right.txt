@@ -1,0 +1,43 @@
+public class AbsClass {
+
+    public void hello() {
+
+        System.out.println("Hello! I belong to AbsClass");
+
+    }
+
+}
+
+
+
+public class MainClass extends AbsClass {
+
+     
+
+    public static void main(String[] args) {
+
+        MainClass obj = new MainClass();
+
+         
+
+        obj.hello();
+
+     
+
+    }
+
+}
+
+
+
+
+
+
+/***********Running in command line**************/
+
+>_ javac MainClass.java
+>_ java MainClass
+
+Hello! I belong to AbsClass
+
+

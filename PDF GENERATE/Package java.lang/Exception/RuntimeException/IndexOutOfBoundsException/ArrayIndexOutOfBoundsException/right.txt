@@ -1,0 +1,11 @@
+
+Please enter int value at index 0:
+1
+Please enter int value at index 1:
+2
+Please enter int value at index 2:
+3
+Enter array index to get the value:
+4
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 4
+	at com.journaldev.exceptions.ArrayIndexOutOfBoundsExceptionExample.main(ArrayIndexOutOfBoundsExceptionExample.java:23)

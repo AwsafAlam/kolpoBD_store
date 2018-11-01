@@ -1,0 +1,14 @@
+Thread loop = new Thread(
+  new Runnable() {
+    @Override
+    public void run() {
+      while (true) {
+       
+	
+        }
+        // Continue to do nothing
+      }
+    }
+  }
+);
+loop.start();

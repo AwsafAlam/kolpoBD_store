@@ -1,0 +1,2 @@
+This happens due to a bug in OpenJDK (JDK-8067755 and JDK-8068663) 
+and is triggered by terminating SSL at Tomcat
