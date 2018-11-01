@@ -335,10 +335,20 @@
                     array_push($order, $book_item);
                 
                     }
+                $strings ="SELECT MAX(BookOrder.book_order_id) FROM BookOrder";
+                
+                $result = $conn->prepare($strings);
+                $result->execute();
+                $result->bind_result($price);
+                $Invoice_Number = 1045;
 
-                    $strings = "UPDATE BookOrder
+                while($result->fetch()) {       
+                    $Invoice_Number = $price;
+                }
+
+                $strings = "UPDATE BookOrder
                     SET total_cost = '".$TotalPrice."'
-                    where book_order_id = (SELECT MAX(BookOrder.book_order_id) FROM BookOrder)";
+                    where book_order_id = '".$Invoice_Number."'";
 
                 $result = $conn->query($strings);
                 
@@ -355,7 +365,7 @@
                     </div>
                     <!--End Info-->
                     <div class=\"title\" style=\"float: right;\">
-                      <h1 style=\"font-size: 1.5em;color: #222;\">Invoice #1069</h1>
+                      <h1 style=\"font-size: 1.5em;color: #222;\">Invoice #".$Invoice_Number."</h1>
                       <p style=\"font-size: .7em;color: #666;line-height: 1.2em;text-align: right;\">Issued: Oct 31, 2018</br>
                         Delivery Due: Oct 31, 2018</br>
                       </p>
@@ -384,6 +394,9 @@
                             <h2 style=\"font-size: .9em;\">Item Description</h2>
                           </td>
                           <td class=\"Hours\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
+                            <h2 style=\"font-size: .9em;\">Category</h2>
+                          </td>
+                          <td class=\"Hours\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
                             <h2 style=\"font-size: .9em;\">Quantity</h2>
                           </td>
                           <td class=\"Rate\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
@@ -399,6 +412,9 @@
                   $inv_msg .= "<tr class=\"service\" style=\"border: 1px solid #EEE;\">
                           <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
                             <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">".$value["name"]."</p>
+                          </td>
+                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
+                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">".$value["quality"]."</p>
                           </td>
                           <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
                             <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">".$value["quantity"]."</p>
@@ -438,8 +454,70 @@
                       <p class=\"legal\" style=\"font-size: .7em;color: #666;line-height: 1.2em;width: 70%;\"><strong>Thank you for your Purchase!</strong>  Cash on delivery! Free delivery in BUET
                       </p>
                     </div>
+                    </br>
+                    </br>
+                    </br>
+                    <div> Store Copy </div>
+                    <div id=\"invoice-bot\" style=\"min-height: 250px;\">
               
-                  </div>
+                    <div id=\"table\">
+                      <table style=\"width: 100%;border-collapse: collapse;\">
+                        <tr class=\"tabletitle\" style=\"padding: 5px;background: #EEE;\">
+                          <td class=\"item\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;width: 50%;\">
+                            <h2 style=\"font-size: .9em;\">Item Description</h2>
+                          </td>
+                          <td class=\"Hours\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
+                            <h2 style=\"font-size: .9em;\">Category</h2>
+                          </td>
+                          <td class=\"Hours\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
+                            <h2 style=\"font-size: .9em;\">Quantity</h2>
+                          </td>
+                          <td class=\"Rate\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
+                            <h2 style=\"font-size: .9em;\">Price</h2>
+                          </td>
+                          <td class=\"subtotal\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
+                            <h2 style=\"font-size: .9em;\">Sub-total</h2>
+                          </td>
+                        </tr>
+                    ";
+              foreach ($order as $value) {
+          
+                $inv_msg .= "<tr class=\"service\" style=\"border: 1px solid #EEE;\">
+                        <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
+                          <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">".$value["name"]."</p>
+                        </td>
+                        <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
+                          <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">".$value["quality"]."</p>
+                        </td>
+                        <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
+                          <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">".$value["quantity"]."</p>
+                        </td>
+                        <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
+                          <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">৳ ".$value["price"]."</p>
+                        </td>
+                        <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
+                          <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">৳ ".$value["price"]*$value["quantity"]."</p>
+                        </td>
+                      </tr>";
+            
+              }
+              
+                    $inv_msg .=" 
+                    <tr class=\"tabletitle\" style=\"padding: 5px;background: #EEE;\">
+                          <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
+                          <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
+                          <td class=\"Rate\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
+                            <h2 style=\"font-size: .9em;\">Total</h2>
+                          </td>
+                          <td class=\"payment\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
+                            <h2 style=\"font-size: .9em;\">৳ ".$TotalPrice."</h2>
+                          </td>
+                        </tr>
+              
+                      </table>
+                    </div>
+                    <!--End Table-->
+                    </div>
                 </div>
               </div>";
 
@@ -502,30 +580,27 @@
 
             }
         ?>
-
-        
-
-          <?php
-            }
-            echo $_SESSION['message'];
-
-            // $document->loadHtml($_SESSION['message']);
-            // $document->setPaper('A4' , 'landscape');
-
-            // $document->render();
-            // $document->stream()
-
-            ?>
         </div>
         </div>
         <!-- /.box-body -->
 
         <div class="box-footer" style="padding-left: 30px; padding-bottom: 20px;">
           <button type="submit" class="btn btn-primary">Submit</button>
-
         </div>
       </form>
-    </div>
+      <?php
+        }
+        echo $_SESSION['message'];
+
+        // $document->loadHtml($_SESSION['message']);
+        // $document->setPaper('A4' , 'landscape');
+
+        // $document->render();
+        // $document->stream()
+
+        ?>
+
+</div>
 </div>
 
 </div>
