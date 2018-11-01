@@ -350,29 +350,29 @@ $(document).ready(function () {
       document.getElementById("row"+id).addEventListener("click", function () {
     // body...
     console.log("Clicked");
-    console.log("Del Clicked "+ this.parentElement.parentElement.cells[0].innerHTML);
+    // console.log("Del Clicked "+ this.parentElement.parentElement.cells[0].innerHTML);
 
-    // if(confirm("Are you sure you want to disable all prices in this route?"))
-    // {  
+    if(confirm("Are you sure you want to delete this order?"))
+    {  
 
-    //   var getFromDb="../../v1/index.php?table=DelEmp&Flight="+this.parentElement.parentElement.cells[0].innerHTML;
-    //        xmlhttp = new XMLHttpRequest();
+        //   var getFromDb="../../v1/index.php?table=DelEmp&Flight="+this.parentElement.parentElement.cells[0].innerHTML;
+        //    xmlhttp = new XMLHttpRequest();
 
          
-    //       xmlhttp.onreadystatechange = function() {
-    //         if (this.readyState == 4 && this.status == 200) {
-    //           console.log(this.responseText);
-    //           location.reload();
-    //         }
-    //       };
-    //        xmlhttp.open("GET", getFromDb, true);
+        //   xmlhttp.onreadystatechange = function() {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //       console.log(this.responseText);
+        //       location.reload();
+        //     }
+        //   };
+        //    xmlhttp.open("GET", getFromDb, true);
 
-    //        xmlhttp.send();
-    //        location.reload();
-    // }
-    // else{
-    //   return false;
-    // }
+        //    xmlhttp.send();
+        //    location.reload();
+    }
+    else{
+      return false;
+    }
   });
   
 }

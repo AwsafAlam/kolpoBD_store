@@ -29,6 +29,19 @@
     require_once '../include/DbHandler.php';
     require_once '../include/PassHash.php';
     require '../libs/Slim/Slim.php';
+
+    //include autoloader
+
+    // require_once './dompdf/autoload.inc.php';
+
+    // reference the Dompdf namespace
+
+    // use Dompdf\Dompdf;
+
+    //initialize dompdf class
+
+    // $document = new Dompdf();
+
     
     \Slim\Slim::registerAutoloader();
     
@@ -329,32 +342,22 @@
 
                 $result = $conn->query($strings);
                 
-                foreach ($order as $value) {
-                
-                  $_SESSION['message'] .= "<h3>".$value["name"]."</h3><br>";
-                  $_SESSION['message'] .= "<h3>".$value["price"]."</h3><br>";
-                  $_SESSION['message'] .= "<h3>".$value["quantity"]."</h3><br>";
-
-                }
-
-                $msg = json_encode($order)." <div id=\"invoiceholder\" style=\"width: 100%;hieght: 100%;padding: 150px;\">
-
-                
+                $inv_msg = " <div id=\"invoiceholder\" style=\"width: 100%;hieght: 100%;padding: 150px;\">
                 <div id=\"invoice\" class=\"effect2\" style=\"position: relative;top: -290px;margin: 0 auto;width: 700px;background: #FFF;\">
               
-                  <div id=\"invoice-top\" style=\"min-height: 120px;\">
-                    <div class=\"logo\" style=\"float: left;height: 60px; padding: 50px; width: 60px;background: url(http://michaeltruong.ca/images/logo1.png) no-repeat;background-size: 60px 60px;\"></div>
+                  <div id=\"invoice-top\" style=\"min-height: 90px; margin: 25px; margin-bottom: 0px;\">
+                    <div class=\"logo\" style=\"float: left;height: 60px; width: 60px;background: url(./images/logo2.png) no-repeat;background-size: 60px 60px;\"></div>
                     <div class=\"info\" style=\"display: block;float: left;margin-left: 20px;\">
                       <h2 style=\"font-size: .9em;\">KolpoBD</h2>
-                      <p style=\"font-size: .7em;color: #666;line-height: 1.2em;\">info@kolpobd.com 
-                        01630246627
+                      <p style=\"font-size: .7em;color: #666;line-height: 1.2em;\">info@kolpobd.com</br> 
+                        01630246627</br>
                       </p>
                     </div>
                     <!--End Info-->
                     <div class=\"title\" style=\"float: right;\">
                       <h1 style=\"font-size: 1.5em;color: #222;\">Invoice #1069</h1>
-                      <p style=\"font-size: .7em;color: #666;line-height: 1.2em;text-align: right;\">Issued: Oct 31, 2018
-                        Payment Due: Oct 31, 2018
+                      <p style=\"font-size: .7em;color: #666;line-height: 1.2em;text-align: right;\">Issued: Oct 31, 2018</br>
+                        Delivery Due: Oct 31, 2018</br>
                       </p>
                     </div>
                     <!--End Title-->
@@ -363,11 +366,10 @@
               
                   <div id=\"invoice-mid\" style=\"min-height: 120px;\">
               
-                    <div class=\"clientlogo\" style=\"float: left;height: 60px;width: 60px; padding: 50px; background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;background-size: 60px 60px;border-radius: 50px;\"></div>
                     <div class=\"info\" style=\"display: block;float: left;margin-left: 20px;\">
-                      <h2 style=\"font-size: .9em;\">Awsaf Alam</h2>
-                      <p style=\"font-size: .7em;color: #666;line-height: 1.2em;\">awsafalam@gmail.com
-                        01729732
+                      <h2 style=\"font-size: .9em;\">".$user_name."</h2>
+                      <p style=\"font-size: .7em;color: #666;line-height: 1.2em;\">".$mobile_no."</br>
+                        ".$address."</br>
                     </p></div>
               
                   </div>
@@ -390,105 +392,35 @@
                           <td class=\"subtotal\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
                             <h2 style=\"font-size: .9em;\">Sub-total</h2>
                           </td>
-                        </tr>
-                        <tr class=\"service\" style=\"border: 1px solid #EEE;\">
+                        </tr>";
+
+                foreach ($order as $value) {
+                
+                  $inv_msg .= "<tr class=\"service\" style=\"border: 1px solid #EEE;\">
                           <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">Communication</p>
+                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">".$value["name"]."</p>
                           </td>
                           <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">5</p>
+                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">".$value["quantity"]."</p>
                           </td>
                           <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">$75</p>
+                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">৳ ".$value["price"]."</p>
                           </td>
                           <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">$375.00</p>
+                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">৳ ".$value["price"]*$value["quantity"]."</p>
                           </td>
-                        </tr>
+                        </tr>";
               
-                        <tr class=\"service\" style=\"border: 1px solid #EEE;\">
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">Asset Gathering</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">3</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">$75</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">$225.00</p>
-                          </td>
-                        </tr>
-              
-                        <tr class=\"service\" style=\"border: 1px solid #EEE;\">
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">Design Development</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">5</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">$75</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">$375.00</p>
-                          </td>
-                        </tr>
-              
-                        <tr class=\"service\" style=\"border: 1px solid #EEE;\">
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">Animation</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">20</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">$75</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">$1,500.00</p>
-                          </td>
-                        </tr>
-              
-                        <tr class=\"service\" style=\"border: 1px solid #EEE;\">
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">Animation Revisions</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">10</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">$75</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">$750.00</p>
-                          </td>
-                        </tr>
-              
-                        <tr class=\"service\" style=\"border: 1px solid #EEE;\">
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">HST</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">13%</p>
-                          </td>
-                          <td class=\"tableitem\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\">$419.25</p>
-                          </td>
-                        </tr>
-              
-                        <tr class=\"tabletitle\" style=\"padding: 5px;background: #EEE;\">
+                }
+
+                $inv_msg .= "<tr class=\"tabletitle\" style=\"padding: 5px;background: #EEE;\">
                           <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
                           <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
                           <td class=\"Rate\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
                             <h2 style=\"font-size: .9em;\">Total</h2>
                           </td>
                           <td class=\"payment\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-                            <h2 style=\"font-size: .9em;\">$3,644.25</h2>
+                            <h2 style=\"font-size: .9em;\">৳ ".$TotalPrice."</h2>
                           </td>
                         </tr>
               
@@ -499,17 +431,19 @@
                     <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\" style=\"float: right;margin-top: 30px;text-align: right;\">
                       <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">
                       <input type=\"hidden\" name=\"hosted_button_id\" value=\"QRZ7QTM9XRPJ6\">
-                      <input type=\"image\" src=\"http://michaeltruong.ca/images/paypal.png\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\">
+                      
                     </form>
               
                     <div id=\"legalcopy\" style=\"margin-top: 30px;\">
-                      <p class=\"legal\" style=\"font-size: .7em;color: #666;line-height: 1.2em;width: 70%;\"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices.
+                      <p class=\"legal\" style=\"font-size: .7em;color: #666;line-height: 1.2em;width: 70%;\"><strong>Thank you for your Purchase!</strong>  Cash on delivery! Free delivery in BUET
                       </p>
                     </div>
               
                   </div>
                 </div>
-              </div> <br>".$TotalPrice;
+              </div>";
+
+              $_SESSION['message'] = $inv_msg;
                 
             }
             else{
@@ -573,7 +507,14 @@
 
           <?php
             }
-            echo "<div>".$_SESSION['message']."</div>";
+            echo $_SESSION['message'];
+
+            // $document->loadHtml($_SESSION['message']);
+            // $document->setPaper('A4' , 'landscape');
+
+            // $document->render();
+            // $document->stream()
+
             ?>
         </div>
         </div>
