@@ -280,7 +280,16 @@
                     $quality = $_POST['quality_id'.$i];
                     $quantity = $_POST['quantity'.$i];
 
-                    $book_item["quality"] = $quality;
+                    if($quality == 1){
+                      $book_item["quality"]="White Print";
+                    }
+                    else if($quality == 2){
+                      $book_item["quality"]="News Print";
+                    }
+                    else{
+                      $book_item["quality"]="(N/A)";
+                    }
+
 
                     if($book_id == NULL)
                     {
@@ -432,6 +441,7 @@
                 $inv_msg .= "<tr class=\"tabletitle\" style=\"padding: 5px;background: #EEE;\">
                           <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
                           <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
+                          <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
                           <td class=\"Rate\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
                             <h2 style=\"font-size: .9em;\">Total</h2>
                           </td>
@@ -504,6 +514,7 @@
               
                     $inv_msg .=" 
                     <tr class=\"tabletitle\" style=\"padding: 5px;background: #EEE;\">
+                          <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
                           <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
                           <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
                           <td class=\"Rate\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
