@@ -538,7 +538,7 @@
             else{
             ?>
 
-      <form action="order.php" method="post">
+      <form action="pdfmake.php" method="post">
         <div class="box-body">
           <div class="form-row">
           <div class="form-group col-md-4">
