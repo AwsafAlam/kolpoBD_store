@@ -149,7 +149,7 @@ $inv_msg = " <div id=\"invoiceholder\" style=\"width: 100%;hieght: 100%;padding:
 
     <div id=\"table\">
         <table style=\"width: 100%;border-collapse: collapse;\">
-        <tr class=\"tabletitle\" style=\"padding: 5px;background: #EEE;\">
+        <tr class=\"tabletitle\" style=\"padding: 1px;background: #EEE;\">
             <td class=\"item\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;width: 50%;\">
             <h2 style=\"font-size: .9em;\">Item Description</h2>
             </td>
@@ -226,7 +226,7 @@ $inv_msg .= "
         </td>
     </tr>
 
-        <tr class=\"tabletitle\" style=\"padding: 3px;background: #EEE;\">
+        <tr class=\"tabletitle\" style=\"padding: 1px;background: #EEE;\">
             <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
             <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
             <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
@@ -260,7 +260,7 @@ $inv_msg .= "
         </div>
     <div id=\"table\">
         <table style=\"width: 100%;border-collapse: collapse;\">
-        <tr class=\"tabletitle\" style=\"padding: 5px;background: #EEE;\">
+        <tr class=\"tabletitle\" style=\"padding: 1px;background: #EEE;\">
             <td class=\"item\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;width: 50%;\">
             <h2 style=\"font-size: .9em;\">Item Description</h2>
             </td>
@@ -370,7 +370,7 @@ $dompdf->render();
 // Output the generated PDF to Browser
 // $dompdf->stream();
 // 1 -> download , 0-> preview
-$dompdf->stream("kolpoBD_Invoice",array("Attachment"=>1));
+$dompdf->stream("kolpoBD_Invoice",array("Attachment"=>0));
 
 
 ?>

@@ -239,24 +239,23 @@ $app->get('/book_information', function() use ($app)  {
         
   $result = $conn->prepare($strings);
   $result->execute();
-  $result->bind_result($book_id, $name , $author_name);
+  $result->bind_result($book_name, $name , $book_id);
+  $posts = array();
+  
   $posts = array();
   
   while($result->fetch()) {
     $tmp = array();
-  }
-  $tmp = array();
-  
-  while($result->fetch()) {
+
     $tmp["book_id"] = $book_id; 
-    $tmp["name"] = $name;
-    $tmp["author_name"] = $author_name;
+    $tmp["author_name"] = $name;
+    $tmp["book_name"] = $book_name;
     array_push($posts, $tmp);
   }
 
   $result->close();
 
-
+  echoRespnse(200,$posts);  
 
 });
 
