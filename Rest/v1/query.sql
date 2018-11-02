@@ -248,10 +248,13 @@ WHERE 0 <
 
 
 
-SELECT book.name,author.author_name,cartitem.number_of_item,user.name,bookorder.order_issue,bookorder.shipping_address,bookorder.delivery_confirmed,bookorder.total_cost
+SELECT book.name,author.author_name,cartitem.number_of_item,
+user.name,bookorder.order_issue,bookorder.shipping_address,
+bookorder.delivery_confirmed,bookorder.total_cost
 FROM bookorder,book,author,cartitem,user
 WHERE bookorder.book_order_id=cartitem.book_order_id
 AND book.book_id = cartitem.book_id
 AND bookorder.book_order_id = cartitem.book_order_id
 AND user.user_id = bookorder.user_id
 AND bookorder.book_order_id = 3
+GROUP BY book.name
