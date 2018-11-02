@@ -199,3 +199,59 @@ INSERT INTO cartitem
                 VALUES (NULL,'". $bookid."',(SELECT MAX(bookorder.book_order_id) FROM bookorder),
                 (SELECT DISTINCT price.price_id FROM price,book where price.book_id = '". $bookid."' and price.quality_id = '". $quality."' ),
                 1,'". $quantity."')
+
+
+
+
+
+
+DELETE FROM price
+WHERE 0 < 
+(
+    SELECT COUNT(b.book_id) 
+    FROM book b
+    WHERE 
+    (
+        SELECT b1.book_id
+        FROM book b1
+        WHERE b1.book_id = b.book_id
+        AND price.book_id = b.book_id
+    )
+    
+)
+
+
+DELETE FROM price
+WHERE 0 < 
+(
+    SELECT COUNT(b.book_id)
+    FROM book b
+    WHERE b.book_id = price.book_id
+        
+)
+
+
+
+
+/*************************************************************************************
+
+
+
+                SHOWING ORDERS
+
+
+
+
+***************************************************************************************/
+
+
+
+
+
+SELECT book.name,author.author_name,cartitem.number_of_item,user.name,bookorder.order_issue,bookorder.shipping_address,bookorder.delivery_confirmed,bookorder.total_cost
+FROM bookorder,book,author,cartitem,user
+WHERE bookorder.book_order_id=cartitem.book_order_id
+AND book.book_id = cartitem.book_id
+AND bookorder.book_order_id = cartitem.book_order_id
+AND user.user_id = bookorder.user_id
+AND bookorder.book_order_id = 3
