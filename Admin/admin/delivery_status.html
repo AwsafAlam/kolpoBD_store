@@ -317,8 +317,8 @@
       
           <div id="invoice-top">
             <div class="title">
-              <h1>Invoice #1069</h1>
-              <p>Issued: Oct 31, 2018<br>
+              <h1 id = "invoice_number">Invoice #1069</h1>
+              <p id = "order_date">Issued: Oct 31, 2018<br>
               </p>
             </div>
             <!--End Title-->
@@ -329,9 +329,9 @@
       
             <div class="clientlogo"></div>
             <div class="info">
-              <h2>Awsaf Alam</h2>
-              <p>awsafalam@gmail.com<br>
-                01729732<br>
+              <h2 id = "username">Awsaf Alam</h2>
+              <p id = "Delivery_Addr">awsafalam@gmail.com<br>
+              <p id="Contact">01729732</p>
             </div>
       
           </div>
@@ -340,7 +340,7 @@
           <div id="invoice-bot">
       
             <div id="table">
-              <table>
+              <table id = "dynamic_Order">
                 <tr class="tabletitle">
                   <td class="item">
                     <h2>Item Description</h2>
@@ -492,54 +492,17 @@ function MakeTable(Emplotable) {
             td.textContent = Orderdata[i].date;
               tr.append(td);
     
-      var td = document.createElement("td");
+        var td = document.createElement("td");
         //   td.style.cssText = 'display: flex;';
 
-          var btn_grp = document.createElement('div');
-          btn_grp.classList.add('btn-group');
-          td.append(btn_grp);
-          
-          var butt = document.createElement('button');
-          butt.textContent = "Pending";
-
-          butt.classList.add('btn');
-          butt.classList.add('btn-warning');
-          butt.classList.add('dropdown-toggle');
-          butt.setAttribute("data-toggle", "dropdown");
-          btn_grp.append(butt);
-
-        var dropdown = document.createElement('div');
-        dropdown.classList.add('dropdown-menu');
-          td.append(dropdown);
-
-        var confirm = document.createElement('a');
-        confirm.textContent = "Confirm";
-        confirm.classList.add('dropdown-item');
-        confirm.classList.add('btn-success');
-
-          dropdown.append(confirm);
-
-        var cancel = document.createElement('a');
-        cancel.textContent = "Calcel";
-        cancel.classList.add('dropdown-item');
-        cancel.classList.add('btn-danger');
-
-          dropdown.append(cancel);
-        
-// <div class="btn-group">
-//   <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-//     Action
-//   </button>
-//   <div class="dropdown-menu">
-//     <a class="dropdown-item" href="#">Action</a>
-//     <a class="dropdown-item" href="#">Another action</a>
-//     <a class="dropdown-item" href="#">Something else here</a>
-//     <div class="dropdown-divider"></div>
-//     <a class="dropdown-item" href="#">Separated link</a>
-//   </div>
-// </div>
-
-          tr.append(td);
+          var buttn = document.createElement('button');
+          buttn.textContent = "Confirm";
+          buttn.classList.add('btn');
+          buttn.classList.add('btn-warning');
+      
+          buttn.id = 'confirm'+Orderdata[i].order_id;
+          td.append(buttn);
+          tr.append(td);  
           
     var td = document.createElement("td");
         //   td.style.cssText = 'display: flex;';
@@ -557,7 +520,7 @@ function MakeTable(Emplotable) {
         //   td.style.cssText = 'display: flex;';
 
           var butto = document.createElement('button');
-          butto.textContent = "Delete";
+          butto.textContent = "Cancel";
           butto.classList.add('btn');
           butto.classList.add('btn-danger');
       
@@ -566,7 +529,7 @@ function MakeTable(Emplotable) {
           
           tr.append(td);
     
-          handleClick(Orderdata[i].order_id);      
+          handleClick(Orderdata[i].order_id , i , Orderdata);      
 
   }
 
@@ -581,17 +544,57 @@ function MakeTable(Emplotable) {
 
    
 
-   function handleClick(id) {
+   function handleClick(id , idx, Orderdata) {
     
     document.getElementById("delete"+id).addEventListener("click", function () {
     // body...
-        console.log("Clicked");
         console.log("Del Clicked "+ this.parentElement.parentElement.cells[0].innerHTML);
 
-        if(confirm("Are you sure you want to disable all prices in this route?"))
+        if(confirm("Are you sure you want cancel this order?"))
         {  
+            var getFromDb="../v1/index.php/update_order_status?status=Cancel&id="+this.parentElement.parentElement.cells[0].innerHTML;
+            console.log(getFromDb);
+            xmlhttp = new XMLHttpRequest();
 
-        //   var getFromDb="../../v1/index.php?table=DelEmp&Flight="+this.parentElement.parentElement.cells[0].innerHTML;
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                location.reload();
+                }
+            };
+            xmlhttp.open("GET", getFromDb, true);
+
+            xmlhttp.send();
+            
+        }
+        else{
+        return false;
+        }
+    });
+
+    document.getElementById("row"+id).addEventListener("click" , function(){
+        console.log("Clicker row...")
+        var invoice = document.getElementById('invoice_number');
+        invoice.textContent = "Invoice #"+id;
+
+        var order_date = document.getElementById('order_date');
+        order_date.textContent = "Issued: "+Orderdata[idx].date;
+
+        var username = document.getElementById('username');
+        username.textContent = Orderdata[idx].user_name;
+
+        var Delivery_Addr = document.getElementById('Delivery_Addr');
+        Delivery_Addr.textContent = Orderdata[idx].address ;
+
+
+    });
+
+    document.getElementById("confirm"+id).addEventListener("click" , function(){
+        
+        if(confirm("Are you sure this delivery has been completed?"))
+        {
+            var getFromDb="../v1/index.php/update_order_status?status=Done&id="+this.parentElement.parentElement.cells[0].innerHTML;
+            console.log(getFromDb);
             xmlhttp = new XMLHttpRequest();
 
             
@@ -603,16 +606,12 @@ function MakeTable(Emplotable) {
             };
             xmlhttp.open("GET", getFromDb, true);
 
-            //    xmlhttp.send();
-            //    location.reload();
+            xmlhttp.send();
+            
         }
         else{
-        return false;
+            return false;
         }
-    });
-
-    document.getElementById("row"+id).addEventListener("click" , function(){
-        console.log("Clicker row...")
     });
     
   

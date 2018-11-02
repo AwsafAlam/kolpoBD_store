@@ -341,6 +341,30 @@ $app->get('/new_order', function() use ($app) {
   echoRespnse(200,$posts); 
 });
 
+$app->get('/update_order_status', function() use ($app) {
+
+  // $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_devtesting");
+  $status = $app->request->get('status');
+  $id = $app->request->get('id');
+
+  $posts = "done ".$status." - ".$id;
+  
+  if($status == "Done"){
+    $strings ="UPDATE BookOrder SET delivery_confirmed =1 WHERE BookOrder.book_order_id = '".$id."'";
+    $result = $conn->query($strings);
+  
+  }
+  else if($status = "Cancel"){
+    $strings ="UPDATE BookOrder SET delivery_confirmed =2 WHERE BookOrder.book_order_id = '".$id."'";
+    $result = $conn->query($strings);
+  }
+  // $result->close();
+
+  echoRespnse(200,$posts); 
+
+});
+
 /*
 
 SELECT book.name , author.author_name , quality.quality_category,price.price,price.price_id,price.quality_id,quality.quality_id
