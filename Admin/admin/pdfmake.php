@@ -128,23 +128,20 @@ $inv_msg = " <div id=\"invoiceholder\" style=\"width: 100%;hieght: 100%;padding:
             <p style=\"font-size: .7em;color: #666;line-height: 1.2em;\">info@kolpobd.com
             </p>
         </div>
-        <div class=\"title\" style=\"display: block;\">
+        <div style=\"position: relative;\">
+        <div class=\"title\" style=\"display: inline-block;\">
             <h1 style=\"font-size: 1.5em;color: #222;\">Invoice #".$Invoice_Number."</h1>
-            <p style=\"font-size: .7em;color: #666;line-height: 1.2em;text-align: left;\">Issued: Oct 31, 2018</br>
+            <p style=\"font-size: .7em;color: #666;line-height: 1.2em;text-align: left;\">Issued: Oct 31, 2018<br>
             Delivery Due: Oct 31, 2018</br>
             </p>
         </div>
-        <div id=\"invoice-mid\" style=\"display: block;\">
-        <div class=\"title\" style=\"\">
-        <h1 style=\"font-size: 1.2em;\">".$user_name."</h1>
-        <p style=\"font-size: 1.1em;color: #000;line-height: 1.9em;\">Contact: ".$mobile_no."<br>
-        Delivery Location: ".$address."</br>
-        </p>
+        <div id=\"invoice-mid\" style=\"display: inline-block; float: right;\">
+            <h1 style=\"font-size: 1.5em;color: #222;\">".$user_name."</h1>
+            <p style=\"font-size: 0.8em;color: #000;line-height: 1.2em;\">Contact: ".$mobile_no."<br>
+            Delivery Location: ".$address."</br>
+            </p>
         </div>
-    
-    </div>
-    <!--End InvoiceTop-->
-    
+        </div>
     </div>
     <!--End Invoice Mid-->
 
@@ -192,7 +189,44 @@ foreach ($order as $value) {
 
 }
 
-$inv_msg .= "<tr class=\"tabletitle\" style=\"padding: 5px;background: #EEE;\">
+$inv_msg .= "
+<tr class=\"service\" style=\"border: 1px solid #EEE;\">
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+    </tr>
+
+    <tr class=\"service\" style=\"border: 1px solid #EEE;\">
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+    </tr>
+
+        <tr class=\"tabletitle\" style=\"padding: 3px;background: #EEE;\">
             <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
             <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
             <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
@@ -200,7 +234,7 @@ $inv_msg .= "<tr class=\"tabletitle\" style=\"padding: 5px;background: #EEE;\">
             <h2 style=\"font-size: .9em;\">Total</h2>
             </td>
             <td class=\"payment\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-            <h2 style=\"font-size: .9em;\">৳ ".$TotalPrice."</h2>
+            <h2 style=\"font-size: .9em;\">Tk ".$TotalPrice."</h2>
             </td>
         </tr>
 
@@ -208,22 +242,22 @@ $inv_msg .= "<tr class=\"tabletitle\" style=\"padding: 5px;background: #EEE;\">
     </div>
     <!--End Table-->
 
-    <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\" style=\"float: right;margin-top: 30px;text-align: right;\">
-        <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">
-        <input type=\"hidden\" name=\"hosted_button_id\" value=\"QRZ7QTM9XRPJ6\">
-        
-    </form>
-
-    <div id=\"legalcopy\" style=\"margin-top: 30px;\">
+    
+    <div id=\"legalcopy\" style=\"\">
         <p class=\"legal\" style=\"font-size: .7em;color: #666;line-height: 1.2em;width: 70%;\"><strong>Thank you for your Purchase!</strong>  Cash on delivery! Free delivery in BUET
         </p>
     </div>
-    </br>
-    </br>
-    </br>
-    <div> Store Copy </div>
+    <br>
+    <div style=\"padding: 2px;border: 2px dashed #666;\"></div>
+    <br>
+    
     <div id=\"invoice-bot\" style=\"min-height: 250px;\">
-
+    <div class=\"title\" style=\"display: block;\">
+            <h1 style=\"font-size: 1.5em;color: #222;\">Invoice #".$Invoice_Number."</h1>
+            <p style=\"font-size: .7em;color: #666;line-height: 1.2em;text-align: left;\">Issued: Oct 31, 2018</br>
+            Delivery Due: Oct 31, 2018</br>
+            </p>
+        </div>
     <div id=\"table\">
         <table style=\"width: 100%;border-collapse: collapse;\">
         <tr class=\"tabletitle\" style=\"padding: 5px;background: #EEE;\">
@@ -266,7 +300,43 @@ $inv_msg .= "<tr class=\"service\" style=\"border: 1px solid #EEE;\">
 
 }
 
-    $inv_msg .=" 
+    $inv_msg .="
+    <tr class=\"service\" style=\"border: 1px solid #EEE;\">
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+    </tr>
+
+    <tr class=\"service\" style=\"border: 1px solid #EEE;\">
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+        <td class=\"tableitem\" style=\"padding: 12px;border: 1px solid #EEE;\">
+            <p class=\"itemtext\" style=\"font-size: .9em;color: #666;line-height: 1.2em;\"></p>
+        </td>
+    </tr>
+
     <tr class=\"tabletitle\" style=\"padding: 5px;background: #EEE;\">
             <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
             <td style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\"></td>
@@ -275,7 +345,7 @@ $inv_msg .= "<tr class=\"service\" style=\"border: 1px solid #EEE;\">
             <h2 style=\"font-size: .9em;\">Total</h2>
             </td>
             <td class=\"payment\" style=\"padding: 5px 0 5px 15px;border: 1px solid #EEE;\">
-            <h2 style=\"font-size: .9em;\">৳ ".$TotalPrice."</h2>
+            <h2 style=\"font-size: .9em;\">Tk ".$TotalPrice."</h2>
             </td>
         </tr>
 
@@ -299,6 +369,7 @@ $dompdf->render();
 
 // Output the generated PDF to Browser
 // $dompdf->stream();
+// 1 -> download , 0-> preview
 $dompdf->stream("kolpoBD_Invoice",array("Attachment"=>1));
 
 
