@@ -238,13 +238,29 @@ WHERE 0 <
 
 
                 SHOWING ORDERS
-
+SELECT BookOrder.book_order_id ,  User.name, BookOrder.shipping_address,CartItem.number_of_item, BookOrder.total_cost,
+BookOrder.order_issue,BookOrder.delivery_confirmed
+FROM BookOrder,Book,Author,CartItem,User
+WHERE BookOrder.book_order_id=CartItem.book_order_id
+AND Book.book_id = CartItem.book_id
+AND BookOrder.book_order_id = CartItem.book_order_id
+AND User.user_id = BookOrder.user_id
+AND BookOrder.delivery_confirmed = 0
+GROUP BY BookOrder.book_order_id
+ORDER BY BookOrder.book_order_id
 
 
 
 ***************************************************************************************/
 
-
+SELECT BookOrder.book_order_id , Book.name ,Author.author_name, CartItem.number_of_item, User.name, BookOrder.order_issue,BookOrder.shipping_address,BookOrder.delivery_confirmed,BookOrder.total_cost
+FROM BookOrder,Book,Author,CartItem,User
+WHERE BookOrder.book_order_id=CartItem.book_order_id
+AND Book.book_id = CartItem.book_id
+AND BookOrder.book_order_id = CartItem.book_order_id
+AND User.user_id = BookOrder.user_id
+GROUP BY BookOrder.book_order_id
+ORDER BY BookOrder.book_order_id
 
 
 

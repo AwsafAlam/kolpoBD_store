@@ -299,7 +299,47 @@ $app->get('/book_pricelist', function() use ($app)  {
 	
 });
 
+$app->get('/new_order', function() use ($app) {
 
+  // $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_devtesting");
+
+  $strings = "SELECT BookOrder.book_order_id ,  User.name, BookOrder.shipping_address,CartItem.number_of_item, BookOrder.total_cost,
+  BookOrder.order_issue,BookOrder.delivery_confirmed
+  FROM BookOrder,Book,Author,CartItem,User
+  WHERE BookOrder.book_order_id=CartItem.book_order_id
+  AND Book.book_id = CartItem.book_id
+  AND BookOrder.book_order_id = CartItem.book_order_id
+  AND User.user_id = BookOrder.user_id
+  AND BookOrder.delivery_confirmed = 0
+  GROUP BY BookOrder.book_order_id
+  ORDER BY BookOrder.book_order_id";
+        
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($order_id, $user_name , $address , $items , $total_cost , $date, $status);
+  $posts = array();
+  
+  $posts = array();
+  
+  while($result->fetch()) {
+    $tmp = array();
+
+    $tmp["order_id"] = $order_id;
+    $tmp["user_name"] =  $user_name; 
+    $tmp["address"] = $address;
+    $tmp["items"] =  $items;
+    $tmp["total_cost"] = $total_cost ;
+    $tmp["date"] = $date;
+    $tmp["status"] = $status;
+
+    array_push($posts, $tmp);
+  }
+
+  $result->close();
+
+  echoRespnse(200,$posts); 
+});
 
 /*
 
