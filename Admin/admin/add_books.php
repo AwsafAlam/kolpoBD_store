@@ -179,6 +179,7 @@
             $_SESSION['message']='';
 
             if ($_SERVER['REQUEST_METHOD']=='POST'){
+
                 
                 $book = $_POST['name'];
                 $author = $_POST['author'];
@@ -222,8 +223,6 @@
                 while($result->fetch()) {       
                     $temp_1["book_id"] = $book_id;
                 }
-
-                // $result->close();
 
                 if(sizeof($temp_1) == 0)
                 {
