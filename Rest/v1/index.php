@@ -239,24 +239,23 @@ $app->get('/book_information', function() use ($app)  {
         
   $result = $conn->prepare($strings);
   $result->execute();
-  $result->bind_result($book_id, $name , $author_name);
+  $result->bind_result($book_name, $name , $book_id);
+  $posts = array();
+  
   $posts = array();
   
   while($result->fetch()) {
     $tmp = array();
-  }
-  $tmp = array();
-  
-  while($result->fetch()) {
+
     $tmp["book_id"] = $book_id; 
-    $tmp["name"] = $name;
-    $tmp["author_name"] = $author_name;
+    $tmp["author_name"] = $name;
+    $tmp["book_name"] = $book_name;
     array_push($posts, $tmp);
   }
 
   $result->close();
 
-
+  echoRespnse(200,$posts);  
 
 });
 
@@ -300,7 +299,71 @@ $app->get('/book_pricelist', function() use ($app)  {
 	
 });
 
+$app->get('/new_order', function() use ($app) {
 
+  // $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_devtesting");
+
+  $strings = "SELECT BookOrder.book_order_id ,  User.name, BookOrder.shipping_address,CartItem.number_of_item, BookOrder.total_cost,
+  BookOrder.order_issue,BookOrder.delivery_confirmed
+  FROM BookOrder,Book,Author,CartItem,User
+  WHERE BookOrder.book_order_id=CartItem.book_order_id
+  AND Book.book_id = CartItem.book_id
+  AND BookOrder.book_order_id = CartItem.book_order_id
+  AND User.user_id = BookOrder.user_id
+  AND BookOrder.delivery_confirmed = 0
+  GROUP BY BookOrder.book_order_id
+  ORDER BY BookOrder.book_order_id";
+        
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($order_id, $user_name , $address , $items , $total_cost , $date, $status);
+  $posts = array();
+  
+  $posts = array();
+  
+  while($result->fetch()) {
+    $tmp = array();
+
+    $tmp["order_id"] = $order_id;
+    $tmp["user_name"] =  $user_name; 
+    $tmp["address"] = $address;
+    $tmp["items"] =  $items;
+    $tmp["total_cost"] = $total_cost ;
+    $tmp["date"] = $date;
+    $tmp["status"] = $status;
+
+    array_push($posts, $tmp);
+  }
+
+  $result->close();
+
+  echoRespnse(200,$posts); 
+});
+
+$app->get('/update_order_status', function() use ($app) {
+
+  // $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_devtesting");
+  $status = $app->request->get('status');
+  $id = $app->request->get('id');
+
+  $posts = "done ".$status." - ".$id;
+  
+  if($status == "Done"){
+    $strings ="UPDATE BookOrder SET delivery_confirmed =1 WHERE BookOrder.book_order_id = '".$id."'";
+    $result = $conn->query($strings);
+  
+  }
+  else if($status = "Cancel"){
+    $strings ="UPDATE BookOrder SET delivery_confirmed =2 WHERE BookOrder.book_order_id = '".$id."'";
+    $result = $conn->query($strings);
+  }
+  // $result->close();
+
+  echoRespnse(200,$posts); 
+
+});
 
 /*
 
