@@ -365,6 +365,216 @@ $app->get('/update_order_status', function() use ($app) {
 
 });
 
+
+
+
+
+ $app->get('/BookDataStore', function() use ($app)  {
+ 
+   $bookId = $app->request->post('bookId');
+  
+   
+  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+
+  $strings = "SELECT Author.author_id,Author.author_name
+  FROM Book,Author,Bookauthor
+  WHERE Book.book_id = Bookauthor.book_id
+  AND Bookauthor.author_id = Author.author_id
+  AND Book.book_id = '.$bookId.'";    
+  
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($author_id,$authorName);
+  $authorList = array();
+
+  while($result->fetch()) {
+      
+      $temp = array();
+      $temp["author_id"] = $author_id;
+      $temp["authorName"] = $authorName;
+      array_push($authorList, $temp);
+            
+  }
+    
+  $result->close();
+
+  $strings = "SELECT Edition.name,Edition.edition_id
+  FROM Edition,Book,Bookedition
+  WHERE Bookedition.book_id = Book.book_id
+  AND Edition.edition_id  = Bookedition.edition_id
+  AND Book.book_id = '.$bookId.'";    
+  
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($editionName,$EditionId);
+  $BookEdition = array();
+
+  while($result->fetch()) {   
+    $temp = array();    
+    $temp["editionName"] = $editionName;
+    $temp["editionName"] = $EditionId;
+    array_push($BookEdition, $temp);
+          
+  }
+
+  $result->close();
+
+  $strings = "SELECT Tag.tag_id,Tag.tag_name 
+  FROM Tag,Book,Booktag 
+  WHERE Tag.tag_id = Tooktag.tag_id 
+  AND Booktag.book_id = Took.book_id 
+  AND Book.book_id  = '.$bookId.'";    
+  
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($TagId,$TagName);
+  $Tags = array();
+
+  while($result->fetch()) {   
+    $temp = array();    
+    $temp["TagId"] = $TagId;
+    $temp["TagName"] = $TagName;
+    array_push($Tags, $temp);
+          
+  }
+
+  $result->close();
+
+
+  $strings = "SELECT Semester.semester_id,Semester.number
+  FROM Semester,Booksemester,Book
+  WHERE Book.book_id = Booksemester.book_id
+  AND Booksemester.semester_id = Semester.semester_id
+  and Book.book_id = '.$bookId.'";    
+  
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($SemisterId,$SemisterNumber);
+  $Semister = array();
+
+  while($result->fetch()) {   
+    $temp = array();    
+    $temp["SemisterId"] = $SemisterId;
+    $temp["SemisterNumber"] = $SemisterNumber;
+    array_push($Semister, $temp);
+          
+  }
+
+  $result->close();
+
+
+  $strings = "SELECT department.deaprtment_id,department.name,department.abbreviation
+  FROM department,book,booksemester
+  WHERE book.book_id = booksemester.book_id
+  AND department.deaprtment_id = booksemester.department_id
+  AND book.book_id  = '.$bookId.'";    
+  
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($DepartmentId,$DepartmentName,$DepartmentAbbriviation);
+  $Department = array();
+
+  while($result->fetch()) {   
+    $temp = array();    
+    $temp["DepartmentId"] = $DepartmentId;
+    $temp["DepartmentName"] = $DepartmentName;
+    $temp["DepartmentAbbriviation"] = $DepartmentAbbriviation;
+    array_push($Department, $temp);
+          
+  }
+
+  $result->close();
+
+
+
+  $strings = "SELECT Price.price_id,Price.price,Price.buying_price,
+  Price.quality_id,Price.book_id,Quality.quality_category
+  FROM Price,Book,Quality
+  WHERE Price.book_id = Book.book_id
+  AND Price.quality_id = Quality.quality_id
+  AND Book.book_id = '.$bookId.'";    
+  
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($PriceId,$SellingPrice,$BuyingPrice,$QualityId,$BookId,$QualityCatagory);
+  $PriceListOfBooks = array();
+
+  while($result->fetch()) {   
+    $temp = array();    
+    $temp["PriceId"] = $PriceId;
+    $temp["SellingPrice"] = $SellingPrice;
+    $temp["BuyingPrice"] = $BuyingPrice;
+    $temp["QualityId"] = $QualityId;
+    $temp["BookId"] = $BookId;
+    $temp["QualityCatagory"] = $QualityCatagory;
+    array_push($PriceListOfBooks, $temp);
+          
+  }
+  $result->close();
+
+  $strings = "SELECT University.university_id,university.name,university.abbreviation 
+  FROM university,booksemester,book 
+  WHERE university.university_id = booksemester.university_id 
+  AND booksemester.book_id = book.book_id 
+  AND book.book_id = '.$bookId.'";    
+  
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($UniversityId,$UniversityName,$UniversityAbbreviation);
+  $University = array();
+
+  while($result->fetch()) {   
+    $temp = array();    
+    $temp["UniversityId"] = $UniversityId;
+    $temp["UniversityName"] = $UniversityName;
+    $temp["UniversityAbbreviation"] = $UniversityAbbreviation;
+    array_push($University, $temp);
+          
+  }
+
+
+  $result->close();
+
+
+  $strings = "SELECT Book.name
+  FROM Book
+  WHERE Book.book_id = '.$bookId.'";    
+  
+  $result = $conn->prepare($strings);
+  $result->execute();
+  $result->bind_result($BookName);
+  $AllBookInformationList = array();
+
+  while($result->fetch()) {  
+    
+    $AllBookInformationList["BookId"]  = $bookId;
+    $AllBookInformationList["BookName"]  = $BookName;
+    
+    array_push($AllBookInformationList, $authorList);
+    array_push($AllBookInformationList, $BookEdition);
+    array_push($AllBookInformationList, $Tags);
+    array_push($AllBookInformationList, $Semister);
+    array_push($AllBookInformationList, $Department);
+    array_push($AllBookInformationList, $University);
+    array_push($AllBookInformationList, $PriceListOfBooks);
+    
+    
+  }
+
+
+  $result->close();
+
+  echoRespnse(200,$AllBookInformationList); 
+
+
+        
+           
+ });
+
+
+
+
+
 /*
 
 SELECT book.name , author.author_name , quality.quality_category,price.price,price.price_id,price.quality_id,quality.quality_id
