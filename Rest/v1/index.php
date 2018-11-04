@@ -305,7 +305,7 @@ $app->get('/new_order', function() use ($app) {
   $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_devtesting");
 
   $strings = "SELECT BookOrder.book_order_id ,  User.name, BookOrder.shipping_address,CartItem.number_of_item, BookOrder.total_cost,
-  BookOrder.order_issue,BookOrder.delivery_confirmed
+  BookOrder.order_issue,BookOrder.delivery_confirmed, User.mobile
   FROM BookOrder,Book,Author,CartItem,User
   WHERE BookOrder.book_order_id=CartItem.book_order_id
   AND Book.book_id = CartItem.book_id
@@ -317,7 +317,7 @@ $app->get('/new_order', function() use ($app) {
         
   $result = $conn->prepare($strings);
   $result->execute();
-  $result->bind_result($order_id, $user_name , $address , $items , $total_cost , $date, $status);
+  $result->bind_result($order_id, $user_name , $address , $items , $total_cost , $date, $status , $mobile);
   $posts = array();
   
   $posts = array();
@@ -326,8 +326,20 @@ $app->get('/new_order', function() use ($app) {
     $tmp = array();
 
     $tmp["order_id"] = $order_id;
+
+    /*******
+     * query for individual cart items* 
+SELECT Book.name, Price.price ,CartItem.number_of_item , Quality.quality_category FROM CartItem JOIN BookOrder
+JOIN Book ON Book.book_id = CartItem.book_id
+JOIN Price ON Price.price_id = CartItem.price_id
+JOIN Quality ON Price.quality_id = Quality.quality_id
+WHERE BookOrder.book_order_id = 6
+
+    *********/
     $tmp["user_name"] =  $user_name; 
     $tmp["address"] = $address;
+    $tmp["mobile"] = $mobile;
+
     $tmp["items"] =  $items;
     $tmp["total_cost"] = $total_cost ;
     $tmp["date"] = $date;
