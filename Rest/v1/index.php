@@ -794,7 +794,9 @@ $app->get('/update_order_status', function() use ($app) {
     while($result->fetch()) {  
       
       array_push($AllBookInformationList, $bookId);
-      $AllBookInformationList["BookName"] = $BookName;
+      $temp = array();
+      $temp["BookName"] = $BookName;
+      array_push($AllBookInformationList, $temp);
       array_push($AllBookInformationList, $authorList);
       array_push($AllBookInformationList, $BookEdition);
       array_push($AllBookInformationList, $Tags);
