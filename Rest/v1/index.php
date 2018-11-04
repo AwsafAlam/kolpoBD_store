@@ -463,11 +463,11 @@ $app->get('/update_order_status', function() use ($app) {
   $result->close();
 
 
-  $strings = "SELECT department.deaprtment_id,department.name,department.abbreviation
-  FROM department,book,booksemester
-  WHERE book.book_id = booksemester.book_id
-  AND department.deaprtment_id = booksemester.department_id
-  AND book.book_id  = '.$bookId.'";    
+  $strings = "SELECT Department.deaprtment_id,Department.name,Department.abbreviation
+  FROM Department,Book,Booksemester
+  WHERE Book.book_id = Booksemester.book_id
+  AND Department.deaprtment_id = Booksemester.department_id
+  AND Book.book_id  = '.$bookId.'";    
   
   $result = $conn->prepare($strings);
   $result->execute();
