@@ -349,6 +349,9 @@
                                                     <h2>Item Description</h2>
                                                 </td>
                                                 <td class="Hours">
+                                                  <h2>Quality</h2>
+                                                </td>
+                                                <td class="Hours">
                                                     <h2>Quantity</h2>
                                                 </td>
                                                 <td class="Rate">
@@ -358,35 +361,6 @@
                                                     <h2>Sub-total</h2>
                                                 </td>
                                             </tr>
-
-                                            <tr class="service">
-                                                <td class="tableitem">
-                                                    <p class="itemtext">Communication</p>
-                                                </td>
-                                                <td class="tableitem">
-                                                    <p class="itemtext">5</p>
-                                                </td>
-                                                <td class="tableitem">
-                                                    <p class="itemtext">$75</p>
-                                                </td>
-                                                <td class="tableitem">
-                                                    <p class="itemtext">$375.00</p>
-                                                </td>
-                                            </tr>
-
-
-
-                                            <tr class="tabletitle">
-                                                <td></td>
-                                                <td></td>
-                                                <td class="Rate">
-                                                    <h2>Total</h2>
-                                                </td>
-                                                <td class="payment">
-                                                    <h2>$3,644.25</h2>
-                                                </td>
-                                            </tr>
-
                                         </table>
                                     </div>
                                     <!--End Table-->
@@ -439,8 +413,10 @@
             // body...
 
             var Ordertable = document.getElementById('Emptable');
+            var invtable = document.getElementById('dynamic_Order');
 
 
+            var Orderdata;
             var getFromDb = "../v1/index.php/new_order";
 
             var xmlhttp = new XMLHttpRequest();
@@ -462,7 +438,7 @@
 
             function MakeTable(Emplotable) {
                 // body...
-                var Orderdata = JSON.parse(Emplotable);
+                Orderdata = JSON.parse(Emplotable);
                 console.log(Orderdata);
                 var tbody = document.createElement("tbody");
 
@@ -582,6 +558,7 @@
                         invoice.textContent = "Invoice #" + id;
 
                         var order_date = document.getElementById('order_date');
+                        // order_date.textContent = "Issued: " + Orderdata[idx].date;
                         order_date.textContent = "Issued: " + Orderdata[idx].date;
 
                         var username = document.getElementById('username');
@@ -589,6 +566,65 @@
 
                         var Delivery_Addr = document.getElementById('Delivery_Addr');
                         Delivery_Addr.textContent = Orderdata[idx].address;
+
+                        // var price_total = document.getElementById('price_total');
+                        // price_total.textContent = Orderdata[idx].total_cost;
+
+
+                        console.log(Orderdata[idx][0]);
+                        
+                        for(var j = 0 ; j<Orderdata[idx][0].length ; j++){
+                          
+                          var tr = document.createElement("tr");
+                          
+                          invtable.append(tr);
+
+                          var td = document.createElement("td");
+                          td.textContent = Orderdata[idx][0][j].book_name;
+                          tr.append(td);
+
+                          var td = document.createElement("td");
+                          td.textContent = Orderdata[idx][0][j].quality;
+                          tr.append(td);
+
+                          var td = document.createElement("td");
+                          td.textContent = Orderdata[idx][0][j].items;
+                          tr.append(td);
+                          
+                          var td = document.createElement("td");
+                          td.textContent = Orderdata[idx][0][j].sell_price;
+                          tr.append(td);
+                          
+                          var td = document.createElement("td");
+                          td.textContent = parseInt(Orderdata[idx][0][j].items) * parseInt(Orderdata[idx][0][j].sell_price);
+                          tr.append(td);
+                          
+                          
+                        }
+
+                          var tr = document.createElement("tr");
+                          tr.classList.add("tabletitle")
+                          invtable.append(tr);
+
+                          var td = document.createElement("td");
+                          tr.append(td);
+
+                          var td = document.createElement("td");
+                          tr.append(td);
+
+                          var td = document.createElement("td");
+                          tr.append(td);
+
+                          var td = document.createElement("td");
+                          td.classList.add("Rate");
+                          td.innerHTML = "<h2>Total</h2>";
+                          tr.append(td);
+
+                          var td = document.createElement("td");
+                          td.classList.add("payment");
+                          td.innerHTML = "<h2>Tk "+Orderdata[idx].total_cost+"</h2>";
+
+                          tr.append(td);
 
 
                     });

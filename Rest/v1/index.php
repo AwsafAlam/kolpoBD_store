@@ -330,31 +330,7 @@ $app->get('/new_order', function() use ($app) {
     $tmp["total_cost"] = $total_cost ;
     $tmp["date"] = $date;
     $tmp["status"] = $status;
-
-    // $query = "SELECT Book.name, Price.price ,CartItem.number_of_item , Quality.quality_category 
-    //  FROM CartItem JOIN BookOrder
-    //  JOIN Book ON Book.book_id = CartItem.book_id
-    //  JOIN Price ON Price.price_id = CartItem.price_id
-    //  JOIN Quality ON Price.quality_id = Quality.quality_id
-    //  WHERE BookOrder.book_order_id = '".$order_id."'";
-
-    //   $resultN = $conn->prepare($query);
-    //   $resultN->execute();
-    //   $resultN->bind_result($book_name, $sell_price , $items , $quality);
-    //   $item = array();
-
-    //   while($resultN->fetch()) {
-    //     $temp = array();
-
-    //     $temp["book_name"] = $book_name;
-    //     $temp["sell_price"] =  $sell_price; 
-    //     $temp["items"] =  $items; 
-    //     $temp["quality"] =  $quality; 
-
-    //     array_push($item, $temp);
-    //   }
-
-    // array_push($tmp, $item);
+    array_push($tmp, getCartItems($order_id));
 
     array_push($posts, $tmp);
 
@@ -364,6 +340,41 @@ $app->get('/new_order', function() use ($app) {
 
   echoRespnse(200,$posts); 
 });
+
+function getCartItems($order_id)
+{
+  # code...
+  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_devtesting");
+
+  $query = "SELECT Book.name, Price.price ,CartItem.number_of_item , Quality.quality_category 
+    FROM CartItem JOIN BookOrder ON CartItem.book_order_id = BookOrder.book_order_id
+    JOIN Book ON Book.book_id = CartItem.book_id
+    JOIN BookAuthor ON Book.book_id = BookAuthor.book_id
+    JOIN Author ON Author.author_id = BookAuthor.author_id
+    JOIN Price ON Price.price_id = CartItem.price_id
+    JOIN Quality ON Price.quality_id = Quality.quality_id
+    WHERE BookOrder.book_order_id = '".$order_id."'";
+
+    $resultN = $conn->prepare($query);
+    $resultN->execute();
+    $resultN->bind_result($book_name, $sell_price , $items , $quality);
+    $item = array();
+
+    while($resultN->fetch()) {
+      $temp = array();
+
+      $temp["book_name"] = $book_name;
+      $temp["sell_price"] =  $sell_price; 
+      $temp["items"] =  $items; 
+      $temp["quality"] =  $quality; 
+
+      array_push($item, $temp);
+    }
+    $resultN->close();
+
+    return $item;
+
+}
 
 $app->get('/update_order_status', function() use ($app) {
 
