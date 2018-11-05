@@ -344,23 +344,7 @@
 
                                     <div id="table">
                                         <table id="dynamic_Order">
-                                            <tr class="tabletitle">
-                                                <td class="item">
-                                                    <h2>Item Description</h2>
-                                                </td>
-                                                <td class="Hours">
-                                                  <h2>Quality</h2>
-                                                </td>
-                                                <td class="Hours">
-                                                    <h2>Quantity</h2>
-                                                </td>
-                                                <td class="Rate">
-                                                    <h2>Price</h2>
-                                                </td>
-                                                <td class="subtotal">
-                                                    <h2>Sub-total</h2>
-                                                </td>
-                                            </tr>
+                                            
                                         </table>
                                     </div>
                                     <!--End Table-->
@@ -553,6 +537,8 @@
                     });
 
                     document.getElementById("row" + id).addEventListener("click", function () {
+                        invtable.innerHTML = '<tr class=\"tabletitle\"><td class=\"item\"><h2>Item Description</h2></td><td class="Hours"><h2>Quality</h2></td><td class="Hours"><h2>Quantity</h2></td><td class="Rate">    <h2>Price</h2></td><td class="subtotal"><h2>Sub-total</h2></td></tr>';
+                        
                         console.log("Clicker row...")
                         var invoice = document.getElementById('invoice_number');
                         invoice.textContent = "Invoice #" + id;
