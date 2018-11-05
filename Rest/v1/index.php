@@ -600,8 +600,8 @@ $app->get('/update_order_status', function() use ($app) {
  
  
 
-  $conn = new mysqli("localhost", "testing", "kolpobd", "kolpobdc_site");
-  //$conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+  // $conn = new mysqli("localhost", "testing", "kolpobd", "kolpobdc_site");
+  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
   $OverAllArray = array();
   
   $strings = "SELECT Book.book_id
@@ -625,16 +625,13 @@ $app->get('/update_order_status', function() use ($app) {
 
 
   
-  foreach($booklist as &$bookId)
+  foreach($booklist as $bookId)
   {
     
-    
-    echo($bookId["book_id"]);
-    echo("\n");
     $strings = "SELECT Author.author_id,Author.author_name
     FROM Book,Author,Bookauthor
-    WHERE Book.book_id = Bookauthor.book_id
-    AND Bookauthor.author_id = Author.author_id
+    WHERE Book.book_id = BookAuthor.book_id
+    AND BookAuthor.author_id = Author.author_id
     AND Book.book_id = '".$bookId["book_id"]."'";    
     
     $result = $conn->prepare($strings);
@@ -655,9 +652,9 @@ $app->get('/update_order_status', function() use ($app) {
     $result->close();
    
     $strings = "SELECT Edition.name,Edition.edition_id
-    FROM Edition,Book,Bookedition
-    WHERE Bookedition.book_id = Book.book_id
-    AND Edition.edition_id  = Bookedition.edition_id
+    FROM Edition,Book,BookEdition
+    WHERE BookEdition.book_id = Book.book_id
+    AND Edition.edition_id  = BookEdition.edition_id
     AND Book.book_id = '".$bookId["book_id"]."'";    
     
     $result = $conn->prepare($strings);
@@ -699,8 +696,8 @@ $app->get('/update_order_status', function() use ($app) {
    
     $strings = "SELECT Semester.semester_id,Semester.number
     FROM Semester,Booksemester,Book
-    WHERE Book.book_id = Booksemester.book_id
-    AND Booksemester.semester_id = Semester.semester_id
+    WHERE Book.book_id = BookSemester.book_id
+    AND BookSemester.semester_id = Semester.semester_id
     and Book.book_id = '".$bookId["book_id"]."'";    
     
     $result = $conn->prepare($strings);
@@ -721,9 +718,9 @@ $app->get('/update_order_status', function() use ($app) {
    
    
     $strings = "SELECT Department.deaprtment_id,Department.name,Department.abbreviation
-    FROM Department,Book,Booksemester
-    WHERE Book.book_id = Booksemester.book_id
-    AND Department.deaprtment_id = Booksemester.department_id
+    FROM Department,Book,BookSemester
+    WHERE Book.book_id = BookSemester.book_id
+    AND Department.deaprtment_id = BookSemester.department_id
     AND Book.book_id  = '".$bookId["book_id"]."'";    
     
     $result = $conn->prepare($strings);
@@ -769,11 +766,11 @@ $app->get('/update_order_status', function() use ($app) {
     }
     $result->close();
    
-    $strings = "SELECT University.university_id,university.name,university.abbreviation 
-    FROM university,booksemester,book 
-    WHERE university.university_id = booksemester.university_id 
-    AND booksemester.book_id = book.book_id 
-    AND book.book_id = '".$bookId["book_id"]."'";    
+    $strings = "SELECT University.university_id,University.name,University.abbreviation 
+    FROM University,BookSemester,book 
+    WHERE University.university_id = BookSemester.university_id 
+    AND BookSemester.book_id = Book.book_id 
+    AND Book.book_id = '".$bookId["book_id"]."'";    
     
     $result = $conn->prepare($strings);
     $result->execute();
