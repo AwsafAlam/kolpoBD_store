@@ -242,7 +242,7 @@
             filter.addEventListener("click" , function () {
                 console.log(dept.value +" - "+ sem.value);
                 tbody.innerHTML = '';
-                // FilterTable(Order_data , dept.value , sem.value);
+                FilterTable(Order_data , dept.value , sem.value);
             });
             
             var getFromDb = "../v1/index.php/AllBookDataStore";
@@ -262,6 +262,79 @@
             xmlhttp.open("GET", getFromDb, true);
             xmlhttp.send();
 
+        function FilterTable(HttpResponse , dept , sem) {
+            
+            if(dept == 0 && sem == 0){
+                MakeTable(HttpResponse);
+            }
+            else if(dept == 0 && sem != 0){
+                var Orderdata = JSON.parse(HttpResponse);
+                // var tbody = document.createElement("tbody");
+                // Ordertable.append(tbody);
+                for (var i = 0; i < Orderdata.length; i++) {
+                    var flag_sem = false;
+                    
+                    for(var j = 0 ; j < Orderdata[i][3].length ; j++ ){
+                        if(Orderdata[i][3][j].SemisterId == sem ){
+                            flag_sem = true;
+                        }
+                    }
+                    
+                    if(!flag_sem){
+                        continue;
+                    }
+                    filterRow(i , Orderdata);
+                }
+            }
+            else if(dept != 0 && sem == 0){
+                var Orderdata = JSON.parse(HttpResponse);
+                // var tbody = document.createElement("tbody");
+                // Ordertable.append(tbody);
+                for (var i = 0; i < Orderdata.length; i++) {
+                    var flag_dept = false;
+                
+                    for(var j = 0 ; j < Orderdata[i][4].length ; j++ ){
+                        if(Orderdata[i][4][j].DepartmentId == dept ){
+                            flag_dept = true;
+                        }
+                    }
+                    if(!flag_dept){
+                        continue;
+                    }
+                    filterRow(i , Orderdata);
+                }
+            }
+            else{
+            
+                var Orderdata = JSON.parse(HttpResponse);
+                // console.log(Orderdata);
+                // var tbody = document.createElement("tbody");
+                // Ordertable.append(tbody);
+                for (var i = 0; i < Orderdata.length; i++) {
+                    var flag_sem = false;
+                    var flag_dept = false;
+                    for(var j = 0 ; j < Orderdata[i][3].length ; j++ ){
+                        if(Orderdata[i][3][j].SemisterId == sem ){
+                            flag_sem = true;
+                        }
+                    }
+                    
+                    for(var j = 0 ; j < Orderdata[i][4].length ; j++ ){
+                        if(Orderdata[i][4][j].DepartmentId == dept ){
+                            flag_dept = true;
+                        }
+                    }
+                    if(!flag_sem || !flag_dept){
+                        continue;
+                    }
+                    filterRow(i , Orderdata);
+                }
+            }
+        }
+
+        function filterRow(i , Orderdata){
+            console.log(i + "Row")
+        }
 
             function MakeTable(Emplotable) {
                 // body...
