@@ -183,9 +183,9 @@
                                         <td>News Price (Sell)</td>
                                     </tr>
                                 </thead>
-                                <!-- <tbody id="tbody">
+                                <tbody id="tbody">
 
-                                </tbody> -->
+                                </tbody>
 
                             </table>
                         </div>
@@ -234,12 +234,21 @@
 
             var Ordertable = document.getElementById('Emptable');
 
-
+            var tbody = document.getElementById('tbody');
+            var Order_data;
+            var dept = document.getElementById('dept');
+            var sem = document.getElementById('sem');
+            var filter = document.getElementById('filter');
+            filter.addEventListener("click" , function () {
+                console.log(dept.value +" - "+ sem.value);
+                tbody.innerHTML = '';
+                // FilterTable(Order_data , dept.value , sem.value);
+            });
+            
             var getFromDb = "../v1/index.php/AllBookDataStore";
 
             var xmlhttp = new XMLHttpRequest();
 
-            var Order_data;
             xmlhttp.onreadystatechange = function () {
 
                 if (this.readyState == 4 && this.status == 200) {
@@ -257,10 +266,10 @@
             function MakeTable(Emplotable) {
                 // body...
                 var Orderdata = JSON.parse(Emplotable);
-                console.log(Orderdata);
-                var tbody = document.createElement("tbody");
+                // console.log(Orderdata);
+                // var tbody = document.createElement("tbody");
 
-                Ordertable.append(tbody);
+                // Ordertable.append(tbody);
 
 
                 for (var i = 0; i < Orderdata.length; i++) {
