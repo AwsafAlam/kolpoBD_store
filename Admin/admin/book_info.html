@@ -165,51 +165,6 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-sm-3">
-                            <label for="exampleInputEdition">Level Term</label>
-                            <div class="form-group">
-                                <select id="sem" name="sem" class="form-control">
-                                    <option value="0">All Level, Term</option>
-                                    <option value="1">L1 T1</option>
-                                    <option value="2">L1 T2</option>
-                                    <option value="3">L2 T1</option>
-                                    <option value="4">L2 T2</option>
-                                    <option value="5">L3 T1</option>
-                                    <option value="6">L3 T2</option>
-                                    <option value="7">L4 T1</option>
-                                    <option value="8">L4 T2</option>
-                                    <option value="9">L5 T1</option>
-                                    <option value="10">L5 T2</option>
-                                </select>
-    
-                            </div>
-                    </div>
-                    <div class="col-sm-3">
-                            <label for="exampleInputEdition">Department</label>
-                            <div class="form-group">
-                                <select id="dept" name="dept" class="form-control">
-                                    <option value="0">All Department</option>
-                                    <option value="1">CSE</option>
-                                    <option value="2">EEE</option>
-                                    <option value="3">Chemical</option>
-                                    <option value="4">BME</option>
-                                    <option value="5">ME</option>
-                                    <option value="6">IPE</option>
-                                    <option value="7">Architecture</option>
-                                    <option value="8">Civil</option>
-                                    <option value="9">MME</option>
-                                    <option value="10">NAME</option>
-                                    <option value="11">URP</option>
-                                    <option value="12">WRE</option>
-                                </select>
-                            </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <button style="margin-top: 30px;" id="filter" class="btn btn-primary">Submit</button>
-                    </div>
-                    
-                </div>
-                <div class="row">
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">Available Books</h3>
@@ -238,80 +193,56 @@
                     </div>
                 </div>
                 <div class="row">
-<<<<<<< HEAD
-                    <div id="container">	
+                    <div id="container">
 
-                    <!-- Start	Product details -->
-                        <div class="product-details">
-                            
-                            <!-- 	Product Name -->
-                        <h1>Biru Putaran</h1>
-                    <!-- 		<span class="hint new">New</span> -->
-                    <!-- 		<span class="hint free-shipping">Free Shipping</span> -->
-                    <!-- 		the Product rating -->
-                        <span class="hint-star star">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                        </span>
-                            
-                        
-                    <!-- The most important information about the product -->
-                            <p class="information">" Especially good for container gardening, the Angelonia will keep blooming all summer even if old flowers are removed. Once tall enough to cut, bring them inside and you'll notice a light scent that some say is reminiscent of apples. "</p>
-                    
-                            
-                            
-                    <!-- 		Control -->
-                    <div class="control">
-                        
-                    <!-- Start Button buying -->
-                        <button class="btn">
-                    <!-- 		the Price -->
-                            <span class="price">49 $</span>
-                    <!-- 		shopping cart icon-->
-                        <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-                    <!-- 		Buy Now / ADD to Cart-->
-                        <span class="buy">Buy Now</span>
-                        </button>
-                        <!-- End Button buying -->
-                        
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="inputEmail4">Book Name</label>
+                                    <input type="text" class="form-control" id="book_name"  readonly>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputPassword4">Book ID</label>
+                                    <input type="text" class="form-control" id="book_id" placeholder="book_id" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress">Address</label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress2">Address 2</label>
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputCity">City</label>
+                                    <input type="text" class="form-control" id="inputCity">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputState">State</label>
+                                    <select id="inputState" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputZip">Zip</label>
+                                    <input type="text" class="form-control" id="inputZip">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                    <label class="form-check-label" for="gridCheck">
+                                        Check me out
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign in</button>
+                        </form>
                     </div>
-                                
-                    </div>
-                        
-                    <!-- 	End	Product details   -->
-                        
-                        
-                        
-                    <!-- 	Start product image & Information -->
-                        
-                    <div class="product-image">
-                        
-                        <img src="https://sc01.alicdn.com/kf/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3/200006212/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3.jpg" alt="Omar Dsoky">
-                        
-                    <!-- 	product Information-->
-                    <div class="info">
-                        <h2>The Description</h2>
-                        <ul>
-                            <li><strong>Sun Needs: </strong>Full Sun</li>
-                            <li><strong>Soil Needs: </strong>Damp</li>
-                            <li><strong>Zones: </strong>9 - 11</li>
-                            <li><strong>Height: </strong>2 - 3 feet</li>
-                            <li><strong>Blooms in: </strong>Mid‑Summer - Mid‑Fall</li>
-                            <li><strong>Features: </strong>Tolerates heat</li>
-                        </ul>
-                    </div>
-                    </div>
-                    <!--  End product image  -->
-                    
-                    
-                    </div>
-                                
-=======
 
->>>>>>> JSBug
                 </div>
 
             </div>
@@ -347,15 +278,6 @@
 
 
 
-<<<<<<< HEAD
-<script type="text/javascript">
-    $(document).ready(function () {
-        // body...
-
-        // var Ordertable = document.getElementById('Emptable');
-        var tbody = document.getElementById('tbody');
-        var Order_data;
-=======
     <script type="text/javascript">
         $(document).ready(function () {
             // body...
@@ -367,10 +289,14 @@
             var dept = document.getElementById('dept');
             var sem = document.getElementById('sem');
             var filter = document.getElementById('filter');
-            filter.addEventListener("click" , function () {
-                console.log(dept.value +" - "+ sem.value);
-                tbody.innerHTML = '';
-                FilterTable(Order_data , dept.value , sem.value);
+            filter.addEventListener("click", function () {
+                console.log(dept.value + " - " + sem.value);
+                // tbody.innerHTML = '';
+                var table = $('#Emptable').DataTable();
+                table.clear().draw();
+
+                FilterTable(Order_data, dept.value, sem.value);
+                
                 // $('#Emptable').DataTable({
                 // 'paging': true,
                 // 'lengthChange': true,
@@ -379,21 +305,16 @@
                 //     [1, "asc"]
                 // ],
                 // 'info': true,
-                // 'autoWidth': true,
-                // 'destroy': true
+                // 'autoWidth': true
                 // });
 
             });
-            
+
             var getFromDb = "../v1/index.php/AllBookDataStore";
->>>>>>> JSBug
 
-        // var dept = document.getElementById('dept');
-        // var sem = document.getElementById('sem');
 
-<<<<<<< HEAD
-        // var filter = document.getElementById('filter');
-=======
+            var xmlhttp = new XMLHttpRequest();
+
             xmlhttp.onreadystatechange = function () {
 
                 if (this.readyState == 4 && this.status == 200) {
@@ -403,389 +324,81 @@
 
                 }
             };
->>>>>>> JSBug
 
-        // filter.addEventListener("click" , function () {
-        //     console.log(dept.value +" - "+ sem.value);
-        //     tbody.innerHTML = '';
-        //     FilterTable(Order_data , dept.value , sem.value);
-
-<<<<<<< HEAD
-        // });
-
-        var getFromDb = "../v1/index.php/AllBookDataStore";
-
-        var xmlhttp = new XMLHttpRequest();
-
-        xmlhttp.onreadystatechange = function () {
-
-            if (this.readyState == 4 && this.status == 200) {
-                //   console.log(JSON.parse(this.responseText));
-                Order_data = this.responseText;
-                // console.log(Order_data);
-                MakeTable(Order_data)
-
-            }
-        };
-
-        xmlhttp.open("GET", getFromDb, true);
-        xmlhttp.send();
-
-        // function FilterTable(HttpResponse , dept , sem) {
-            
-        //     if(dept == 0 && sem == 0){
-        //         MakeTable(Order_data);
-        //     }
-        //     else if(dept == 0 && sem != 0){
-        //         var Orderdata = JSON.parse(HttpResponse);
-
-        //         // var tbody = document.createElement("tbody");
-        //         // Ordertable.append(tbody);
-
-        //         for (var i = 0; i < Orderdata.length; i++) {
-        //             var flag_sem = false;
-                    
-        //             for(var j = 0 ; j < Orderdata[i][3].length ; j++ ){
-        //                 if(Orderdata[i][3][j].SemisterId == sem ){
-        //                     flag_sem = true;
-        //                 }
-        //             }
-                    
-        //             if(!flag_sem){
-        //                 continue;
-        //             }
-        //             filterRow(i , Orderdata ,tbody);
-
-        //         }
-        //     }
-        //     else if(dept != 0 && sem == 0){
-        //         var Orderdata = JSON.parse(HttpResponse);
-
-        //         // var tbody = document.createElement("tbody");
-        //         // Ordertable.append(tbody);
-
-        //         for (var i = 0; i < Orderdata.length; i++) {
-        //             var flag_dept = false;
-                
-        //             for(var j = 0 ; j < Orderdata[i][4].length ; j++ ){
-        //                 if(Orderdata[i][4][j].DepartmentId == dept ){
-        //                     flag_dept = true;
-        //                 }
-        //             }
-
-        //             if(!flag_dept){
-        //                 continue;
-        //             }
-        //             filterRow(i , Orderdata ,tbody);
-
-        //         }
-        //     }
-        //     else{
-            
-        //         var Orderdata = JSON.parse(HttpResponse);
-        //         // console.log(Orderdata);
-        //         // var tbody = document.createElement("tbody");
-        //         // Ordertable.append(tbody);
+            xmlhttp.open("GET", getFromDb, true);
+            xmlhttp.send();
 
 
-        //         for (var i = 0; i < Orderdata.length; i++) {
-        //             var flag_sem = false;
-        //             var flag_dept = false;
 
-        //             for(var j = 0 ; j < Orderdata[i][3].length ; j++ ){
-        //                 if(Orderdata[i][3][j].SemisterId == sem ){
-        //                     flag_sem = true;
-        //                 }
-        //             }
-                    
-        //             for(var j = 0 ; j < Orderdata[i][4].length ; j++ ){
-        //                 if(Orderdata[i][4][j].DepartmentId == dept ){
-        //                     flag_dept = true;
-        //                 }
-        //             }
+            function FilterTable(HttpResponse, dept, sem) {
 
-        //             if(!flag_sem || !flag_dept){
-        //                 continue;
-        //             }
-        //             filterRow(i , Orderdata ,tbody);
+                if (dept == 0 && sem == 0) {
+                    MakeTable(HttpResponse);
+                } else if (dept == 0 && sem != 0) {
+                    var Orderdata = JSON.parse(HttpResponse);
+                    // var tbody = document.createElement("tbody");
+                    // Ordertable.append(tbody);
+                    for (var i = 0; i < Orderdata.length; i++) {
+                        var flag_sem = false;
 
-        //         }
-        //     }
-
-        // }
-        
-        // function filterRow(i , Orderdata ,tbody){
-        //     var tr = document.createElement("tr");
-        //         tr.id = 'row' + Orderdata[i].BookId;
-
-        //         tbody.append(tr);
-
-        //         var td = document.createElement("td");
-        //         td.textContent = Orderdata[i].BookId;
-        //         tr.append(td);
-        //         var td = document.createElement("td");
-        //         td.textContent = Orderdata[i].BookName;
-        //         tr.append(td);
-
-        //         var td = document.createElement("td");
-        //         var authorname = "";
-
-        //         for(var j = 0 ; j < Orderdata[i][0].length ; j++ ){
-        //             authorname += Orderdata[i][0][j].authorName + ", "
-        //         }
-        //         td.textContent =authorname;
-        //         tr.append(td);
-
-        //         authorname = "";
-        //         var td = document.createElement("td");
-        //         for(var j = 0 ; j < Orderdata[i][1].length ; j++ ){
-        //             authorname += Orderdata[i][1][j].editionName + ", "
-        //         }
-        //         td.textContent = authorname;
-        //         tr.append(td);
-
-
-        //         // Bookk Prices
-        //         authorname = "";
-        //         var td = document.createElement("td");
-        //         for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-        //             authorname = Orderdata[i][6][0].BuyingPrice;
-        //         }
-        //         td.textContent = authorname;
-        //         tr.append(td);
-
-        //         authorname = "";
-        //         var td = document.createElement("td");
-        //         for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-        //             authorname = Orderdata[i][6][0].SellingPrice;
-        //         }
-        //         td.textContent = authorname;
-        //         tr.append(td);
-
-        //         authorname = "";
-        //         var td = document.createElement("td");
-        //         for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-        //             authorname = Orderdata[i][6][1].BuyingPrice;
-        //         }
-        //         td.textContent = authorname;
-        //         tr.append(td);
-
-        //         authorname = "";
-        //         var td = document.createElement("td");
-        //         for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-        //             authorname = Orderdata[i][6][1].SellingPrice;
-        //         }
-        //         td.textContent = authorname;
-        //         tr.append(td);
-
-        //         handleClick(Orderdata[i].BookId, i, Orderdata);
-        // }
-        
-        function MakeTable(HttpResponse) {
-            // body...
-            var Orderdata = JSON.parse(HttpResponse);
-            console.log(Orderdata);
-            // var tbody = document.createElement("tbody");
-            // Ordertable.append(tbody);
-
-
-            for (var i = 0; i < Orderdata.length; i++) {
-                // filterRow(i , Order_data,tbody);
-                var tr = document.createElement("tr");
-                tr.id = 'row' + Orderdata[i].BookId;
-
-                tbody.append(tr);
-
-                var td = document.createElement("td");
-                td.textContent = Orderdata[i].BookId;
-                tr.append(td);
-                var td = document.createElement("td");
-                td.textContent = Orderdata[i].BookName;
-                tr.append(td);
-
-                var td = document.createElement("td");
-                var authorname = "";
-
-                for(var j = 0 ; j < Orderdata[i][0].length ; j++ ){
-                    authorname += Orderdata[i][0][j].authorName + ", "
-                }
-                td.textContent =authorname;
-                tr.append(td);
-
-                authorname = "";
-                var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][1].length ; j++ ){
-                    authorname += Orderdata[i][1][j].editionName + ", "
-                }
-                td.textContent = authorname;
-                tr.append(td);
-
-
-                // Bookk Prices
-                authorname = "";
-                var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                    authorname = Orderdata[i][6][0].BuyingPrice;
-                }
-                td.textContent = authorname;
-                tr.append(td);
-
-                authorname = "";
-                var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                    authorname = Orderdata[i][6][0].SellingPrice;
-                }
-                td.textContent = authorname;
-                tr.append(td);
-
-                authorname = "";
-                var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                    authorname = Orderdata[i][6][1].BuyingPrice;
-                }
-                td.textContent = authorname;
-                tr.append(td);
-
-=======
-        function FilterTable(HttpResponse , dept , sem) {
-            
-            if(dept == 0 && sem == 0){
-                MakeTable(HttpResponse);
-            }
-            else if(dept == 0 && sem != 0){
-                var Orderdata = JSON.parse(HttpResponse);
-                // var tbody = document.createElement("tbody");
-                // Ordertable.append(tbody);
-                for (var i = 0; i < Orderdata.length; i++) {
-                    var flag_sem = false;
-                    
-                    for(var j = 0 ; j < Orderdata[i][3].length ; j++ ){
-                        if(Orderdata[i][3][j].SemisterId == sem ){
-                            flag_sem = true;
+                        for (var j = 0; j < Orderdata[i][3].length; j++) {
+                            if (Orderdata[i][3][j].SemisterId == sem) {
+                                flag_sem = true;
+                            }
                         }
+
+                        if (!flag_sem) {
+                            continue;
+                        }
+                        filterRow(i, Orderdata);
                     }
-                    
-                    if(!flag_sem){
-                        continue;
+                } else if (dept != 0 && sem == 0) {
+                    var Orderdata = JSON.parse(HttpResponse);
+                    // var tbody = document.createElement("tbody");
+                    // Ordertable.append(tbody);
+                    for (var i = 0; i < Orderdata.length; i++) {
+                        var flag_dept = false;
+
+                        for (var j = 0; j < Orderdata[i][4].length; j++) {
+                            if (Orderdata[i][4][j].DepartmentId == dept) {
+                                flag_dept = true;
+                            }
+                        }
+                        if (!flag_dept) {
+                            continue;
+                        }
+                        filterRow(i, Orderdata);
                     }
-                    filterRow(i , Orderdata);
+                } else {
+
+                    var Orderdata = JSON.parse(HttpResponse);
+                    // console.log(Orderdata);
+                    // var tbody = document.createElement("tbody");
+                    // Ordertable.append(tbody);
+                    for (var i = 0; i < Orderdata.length; i++) {
+                        var flag_sem = false;
+                        var flag_dept = false;
+                        for (var j = 0; j < Orderdata[i][3].length; j++) {
+                            if (Orderdata[i][3][j].SemisterId == sem) {
+                                flag_sem = true;
+                            }
+                        }
+
+                        for (var j = 0; j < Orderdata[i][4].length; j++) {
+                            if (Orderdata[i][4][j].DepartmentId == dept) {
+                                flag_dept = true;
+                            }
+                        }
+                        if (!flag_sem || !flag_dept) {
+                            continue;
+                        }
+                        filterRow(i, Orderdata);
+                    }
                 }
             }
-            else if(dept != 0 && sem == 0){
-                var Orderdata = JSON.parse(HttpResponse);
-                // var tbody = document.createElement("tbody");
-                // Ordertable.append(tbody);
-                for (var i = 0; i < Orderdata.length; i++) {
-                    var flag_dept = false;
-                
-                    for(var j = 0 ; j < Orderdata[i][4].length ; j++ ){
-                        if(Orderdata[i][4][j].DepartmentId == dept ){
-                            flag_dept = true;
-                        }
-                    }
-                    if(!flag_dept){
-                        continue;
-                    }
-                    filterRow(i , Orderdata);
-                }
-            }
-            else{
-            
-                var Orderdata = JSON.parse(HttpResponse);
-                // console.log(Orderdata);
-                // var tbody = document.createElement("tbody");
-                // Ordertable.append(tbody);
-                for (var i = 0; i < Orderdata.length; i++) {
-                    var flag_sem = false;
-                    var flag_dept = false;
-                    for(var j = 0 ; j < Orderdata[i][3].length ; j++ ){
-                        if(Orderdata[i][3][j].SemisterId == sem ){
-                            flag_sem = true;
-                        }
-                    }
-                    
-                    for(var j = 0 ; j < Orderdata[i][4].length ; j++ ){
-                        if(Orderdata[i][4][j].DepartmentId == dept ){
-                            flag_dept = true;
-                        }
-                    }
-                    if(!flag_sem || !flag_dept){
-                        continue;
-                    }
-                    filterRow(i , Orderdata);
-                }
-            }
-        }
 
-        function filterRow(i , Orderdata){
-            // console.log(i + "Row")
-            var tr = document.createElement("tr");
-            tr.id = 'row' + Orderdata[i].BookId;
-            tbody.append(tr);
-            var td = document.createElement("td");
-            td.textContent = Orderdata[i].BookId;
-            tr.append(td);
-            var td = document.createElement("td");
-            td.textContent = Orderdata[i].BookName;
-            tr.append(td);
-            var td = document.createElement("td");
-            var authorname = "";
-            for(var j = 0 ; j < Orderdata[i][0].length ; j++ ){
-                authorname += Orderdata[i][0][j].authorName + ", "
-            }
-            td.textContent =authorname;
-            tr.append(td);
-            authorname = "";
-            var td = document.createElement("td");
-            for(var j = 0 ; j < Orderdata[i][1].length ; j++ ){
-                authorname += Orderdata[i][1][j].editionName + ", "
-            }
-            td.textContent = authorname;
-            tr.append(td);
-            // Bookk Prices
-            authorname = "";
-            var td = document.createElement("td");
-            for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                authorname = Orderdata[i][6][0].BuyingPrice;
-            }
-            td.textContent = authorname;
-            tr.append(td);
-            authorname = "";
-            var td = document.createElement("td");
-            for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                authorname = Orderdata[i][6][0].SellingPrice;
-            }
-            td.textContent = authorname;
-            tr.append(td);
-            authorname = "";
-            var td = document.createElement("td");
-            for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                authorname = Orderdata[i][6][1].BuyingPrice;
-            }
-            td.textContent = authorname;
-            tr.append(td);
-            authorname = "";
-            var td = document.createElement("td");
-            for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                authorname = Orderdata[i][6][1].SellingPrice;
-            }
-            td.textContent = authorname;
-            tr.append(td);
-
-            // handleClick(Orderdata[i].BookId, i, Orderdata);
-        }
-
-        function MakeTable(Emplotable) {
-            // body...
-            var Orderdata = JSON.parse(Emplotable);
-            // console.log(Orderdata);
-            // var tbody = document.createElement("tbody");
-
-            // Ordertable.append(tbody);
-
-
-            for (var i = 0; i < Orderdata.length; i++) {
-                
+            function filterRow(i, Orderdata) {
+                // console.log(i + "Row")
                 var tr = document.createElement("tr");
                 tr.id = 'row' + Orderdata[i].BookId;
                 tbody.append(tr);
@@ -797,14 +410,14 @@
                 tr.append(td);
                 var td = document.createElement("td");
                 var authorname = "";
-                for(var j = 0 ; j < Orderdata[i][0].length ; j++ ){
+                for (var j = 0; j < Orderdata[i][0].length; j++) {
                     authorname += Orderdata[i][0][j].authorName + ", "
                 }
-                td.textContent =authorname;
+                td.textContent = authorname;
                 tr.append(td);
                 authorname = "";
                 var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][1].length ; j++ ){
+                for (var j = 0; j < Orderdata[i][1].length; j++) {
                     authorname += Orderdata[i][1][j].editionName + ", "
                 }
                 td.textContent = authorname;
@@ -812,123 +425,147 @@
                 // Bookk Prices
                 authorname = "";
                 var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                for (var j = 0; j < Orderdata[i][6].length; j++) {
                     authorname = Orderdata[i][6][0].BuyingPrice;
                 }
                 td.textContent = authorname;
                 tr.append(td);
                 authorname = "";
                 var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                for (var j = 0; j < Orderdata[i][6].length; j++) {
                     authorname = Orderdata[i][6][0].SellingPrice;
                 }
                 td.textContent = authorname;
                 tr.append(td);
                 authorname = "";
                 var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                for (var j = 0; j < Orderdata[i][6].length; j++) {
                     authorname = Orderdata[i][6][1].BuyingPrice;
                 }
                 td.textContent = authorname;
                 tr.append(td);
->>>>>>> JSBug
                 authorname = "";
                 var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                for (var j = 0; j < Orderdata[i][6].length; j++) {
                     authorname = Orderdata[i][6][1].SellingPrice;
                 }
                 td.textContent = authorname;
                 tr.append(td);
 
-<<<<<<< HEAD
                 handleClick(Orderdata[i].BookId, i, Orderdata);
             }
-        }
 
-        $('#Emptable').DataTable({
-            'paging': true,
-            'lengthChange': true,
-            'searching': true,
-            'ordering': [
-                [1, "asc"]
-            ],
-            'info': true,
-            'autoWidth': true
-        });
-=======
+            function MakeTable(Emplotable) {
+                // body...
+                var Orderdata = JSON.parse(Emplotable);
+                // console.log(Orderdata);
+                // var tbody = document.createElement("tbody");
+                // Ordertable.append(tbody);
+
+
+                for (var i = 0; i < Orderdata.length; i++) {
+
+                    var tr = document.createElement("tr");
+                    tr.id = 'row' + Orderdata[i].BookId;
+                    tbody.append(tr);
+                    var td = document.createElement("td");
+                    td.textContent = Orderdata[i].BookId;
+                    tr.append(td);
+                    var td = document.createElement("td");
+                    td.textContent = Orderdata[i].BookName;
+                    tr.append(td);
+                    var td = document.createElement("td");
+                    var authorname = "";
+                    for (var j = 0; j < Orderdata[i][0].length; j++) {
+                        authorname += Orderdata[i][0][j].authorName + ", "
+                    }
+                    td.textContent = authorname;
+                    tr.append(td);
+                    authorname = "";
+                    var td = document.createElement("td");
+                    for (var j = 0; j < Orderdata[i][1].length; j++) {
+                        authorname += Orderdata[i][1][j].editionName + ", "
+                    }
+                    td.textContent = authorname;
+                    tr.append(td);
+                    // Bookk Prices
+                    authorname = "";
+                    var td = document.createElement("td");
+                    for (var j = 0; j < Orderdata[i][6].length; j++) {
+                        authorname = Orderdata[i][6][0].BuyingPrice;
+                    }
+                    td.textContent = authorname;
+                    tr.append(td);
+                    authorname = "";
+                    var td = document.createElement("td");
+                    for (var j = 0; j < Orderdata[i][6].length; j++) {
+                        authorname = Orderdata[i][6][0].SellingPrice;
+                    }
+                    td.textContent = authorname;
+                    tr.append(td);
+                    authorname = "";
+                    var td = document.createElement("td");
+                    for (var j = 0; j < Orderdata[i][6].length; j++) {
+                        authorname = Orderdata[i][6][1].BuyingPrice;
+                    }
+                    td.textContent = authorname;
+                    tr.append(td);
+                    authorname = "";
+                    var td = document.createElement("td");
+                    for (var j = 0; j < Orderdata[i][6].length; j++) {
+                        authorname = Orderdata[i][6][1].SellingPrice;
+                    }
+                    td.textContent = authorname;
+                    tr.append(td);
+
                     handleClick(Orderdata[i].BookId, i, Orderdata);
+                }
+
+                $('#Emptable').DataTable({
+                    'paging': true,
+                    'lengthChange': true,
+                    'searching': true,
+                    'ordering': [
+                        [1, "asc"]
+                    ],
+                    'info': true,
+                    'autoWidth': true
+                });
+
             }
->>>>>>> JSBug
-
-            $('#Emptable').DataTable({
-            'paging': true,
-            'lengthChange': true,
-            'searching': true,
-            'ordering': [
-                [1, "asc"]
-            ],
-            'info': true,
-            'autoWidth': true
-            });
-
-<<<<<<< HEAD
-
-        function handleClick(id, idx, Orderdata) {
-
-            
-            document.getElementById("row" + id).addEventListener("click", function () {
-                console.log("Clicker row -->"+id);
-                // var invoice = document.getElementById('invoice_number');
-                // invoice.textContent = "Invoice #" + id;
-
-                // var order_date = document.getElementById('order_date');
-                // order_date.textContent = "Issued: " + Orderdata[idx].date;
-
-                // var username = document.getElementById('username');
-                // username.textContent = Orderdata[idx].user_name;
-
-                // var Delivery_Addr = document.getElementById('Delivery_Addr');
-                // Delivery_Addr.textContent = Orderdata[idx].address;
 
 
-            });
-
-            
-
-        }
-
-=======
-        }
-
-            
 
 
             function handleClick(id, idx, Orderdata) {
 
                 document.getElementById("row" + id).addEventListener("click", function () {
-                    console.log("Clicker row...")
-                    var invoice = document.getElementById('invoice_number');
-                    invoice.textContent = "Invoice #" + id;
+                    console.log("Clicker row ID: " + id)
+                    var Book_ID = document.getElementById('book_id');
+                    Book_ID.textContent = id; //BUG : Does not show in server
 
-                    var order_date = document.getElementById('order_date');
-                    order_date.textContent = "Issued: " + Orderdata[idx].date;
+                    var book_name = document.getElementById('book_name');
+                    book_name.textContent = Orderdata[idx].BookName;
 
-                    var username = document.getElementById('username');
-                    username.textContent = Orderdata[idx].user_name;
+                    // .. Rest of the info are dynamic. So, the form must be created using JS
+                    // Also, Never use form
 
-                    var Delivery_Addr = document.getElementById('Delivery_Addr');
-                    Delivery_Addr.textContent = Orderdata[idx].address;
+                    // var username = document.getElementById('username');
+                    // username.textContent = Orderdata[idx].user_name;
+
+                    // var Delivery_Addr = document.getElementById('Delivery_Addr');
+                    // Delivery_Addr.textContent = Orderdata[idx].address;
 
 
                 });
 
-                
+
             }
->>>>>>> JSBug
 
 
         });
-</script>
+
+    </script>
 
 
 
