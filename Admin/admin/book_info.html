@@ -243,6 +243,18 @@
                 console.log(dept.value +" - "+ sem.value);
                 tbody.innerHTML = '';
                 FilterTable(Order_data , dept.value , sem.value);
+                // $('#Emptable').DataTable({
+                // 'paging': true,
+                // 'lengthChange': true,
+                // 'searching': true,
+                // 'ordering': [
+                //     [1, "asc"]
+                // ],
+                // 'info': true,
+                // 'autoWidth': true,
+                // 'destroy': true
+                // });
+
             });
             
             var getFromDb = "../v1/index.php/AllBookDataStore";
@@ -333,112 +345,168 @@
         }
 
         function filterRow(i , Orderdata){
-            console.log(i + "Row")
+            // console.log(i + "Row")
+            var tr = document.createElement("tr");
+            tr.id = 'row' + Orderdata[i].BookId;
+            tbody.append(tr);
+            var td = document.createElement("td");
+            td.textContent = Orderdata[i].BookId;
+            tr.append(td);
+            var td = document.createElement("td");
+            td.textContent = Orderdata[i].BookName;
+            tr.append(td);
+            var td = document.createElement("td");
+            var authorname = "";
+            for(var j = 0 ; j < Orderdata[i][0].length ; j++ ){
+                authorname += Orderdata[i][0][j].authorName + ", "
+            }
+            td.textContent =authorname;
+            tr.append(td);
+            authorname = "";
+            var td = document.createElement("td");
+            for(var j = 0 ; j < Orderdata[i][1].length ; j++ ){
+                authorname += Orderdata[i][1][j].editionName + ", "
+            }
+            td.textContent = authorname;
+            tr.append(td);
+            // Bookk Prices
+            authorname = "";
+            var td = document.createElement("td");
+            for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                authorname = Orderdata[i][6][0].BuyingPrice;
+            }
+            td.textContent = authorname;
+            tr.append(td);
+            authorname = "";
+            var td = document.createElement("td");
+            for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                authorname = Orderdata[i][6][0].SellingPrice;
+            }
+            td.textContent = authorname;
+            tr.append(td);
+            authorname = "";
+            var td = document.createElement("td");
+            for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                authorname = Orderdata[i][6][1].BuyingPrice;
+            }
+            td.textContent = authorname;
+            tr.append(td);
+            authorname = "";
+            var td = document.createElement("td");
+            for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                authorname = Orderdata[i][6][1].SellingPrice;
+            }
+            td.textContent = authorname;
+            tr.append(td);
+
+            // handleClick(Orderdata[i].BookId, i, Orderdata);
         }
 
-            function MakeTable(Emplotable) {
-                // body...
-                var Orderdata = JSON.parse(Emplotable);
-                // console.log(Orderdata);
-                // var tbody = document.createElement("tbody");
+        function MakeTable(Emplotable) {
+            // body...
+            var Orderdata = JSON.parse(Emplotable);
+            // console.log(Orderdata);
+            // var tbody = document.createElement("tbody");
 
-                // Ordertable.append(tbody);
+            // Ordertable.append(tbody);
 
 
-                for (var i = 0; i < Orderdata.length; i++) {
-                    var tr = document.createElement("tr");
-                    tr.id = 'row' + Orderdata[i].BookId;
-                    tbody.append(tr);
-                    var td = document.createElement("td");
-                    td.textContent = Orderdata[i].BookId;
-                    tr.append(td);
-                    var td = document.createElement("td");
-                    td.textContent = Orderdata[i].BookName;
-                    tr.append(td);
-                    var td = document.createElement("td");
-                    var authorname = "";
-                    for(var j = 0 ; j < Orderdata[i][0].length ; j++ ){
-                        authorname += Orderdata[i][0][j].authorName + ", "
-                    }
-                    td.textContent =authorname;
-                    tr.append(td);
-                    authorname = "";
-                    var td = document.createElement("td");
-                    for(var j = 0 ; j < Orderdata[i][1].length ; j++ ){
-                        authorname += Orderdata[i][1][j].editionName + ", "
-                    }
-                    td.textContent = authorname;
-                    tr.append(td);
-                    // Bookk Prices
-                    authorname = "";
-                    var td = document.createElement("td");
-                    for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                        authorname = Orderdata[i][6][0].BuyingPrice;
-                    }
-                    td.textContent = authorname;
-                    tr.append(td);
-                    authorname = "";
-                    var td = document.createElement("td");
-                    for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                        authorname = Orderdata[i][6][0].SellingPrice;
-                    }
-                    td.textContent = authorname;
-                    tr.append(td);
-                    authorname = "";
-                    var td = document.createElement("td");
-                    for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                        authorname = Orderdata[i][6][1].BuyingPrice;
-                    }
-                    td.textContent = authorname;
-                    tr.append(td);
-                    authorname = "";
-                    var td = document.createElement("td");
-                    for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                        authorname = Orderdata[i][6][1].SellingPrice;
-                    }
-                    td.textContent = authorname;
-                    tr.append(td);
-
-                     handleClick(Orderdata[i].BookId, i, Orderdata);
+            for (var i = 0; i < Orderdata.length; i++) {
+                
+                var tr = document.createElement("tr");
+                tr.id = 'row' + Orderdata[i].BookId;
+                tbody.append(tr);
+                var td = document.createElement("td");
+                td.textContent = Orderdata[i].BookId;
+                tr.append(td);
+                var td = document.createElement("td");
+                td.textContent = Orderdata[i].BookName;
+                tr.append(td);
+                var td = document.createElement("td");
+                var authorname = "";
+                for(var j = 0 ; j < Orderdata[i][0].length ; j++ ){
+                    authorname += Orderdata[i][0][j].authorName + ", "
                 }
+                td.textContent =authorname;
+                tr.append(td);
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][1].length ; j++ ){
+                    authorname += Orderdata[i][1][j].editionName + ", "
+                }
+                td.textContent = authorname;
+                tr.append(td);
+                // Bookk Prices
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                    authorname = Orderdata[i][6][0].BuyingPrice;
+                }
+                td.textContent = authorname;
+                tr.append(td);
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                    authorname = Orderdata[i][6][0].SellingPrice;
+                }
+                td.textContent = authorname;
+                tr.append(td);
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                    authorname = Orderdata[i][6][1].BuyingPrice;
+                }
+                td.textContent = authorname;
+                tr.append(td);
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                    authorname = Orderdata[i][6][1].SellingPrice;
+                }
+                td.textContent = authorname;
+                tr.append(td);
 
-                $('#Emptable').DataTable({
-                    'paging': true,
-                    'lengthChange': true,
-                    'searching': true,
-                    'ordering': [
-                        [1, "asc"]
-                    ],
-                    'info': true,
-                    'autoWidth': true
+                    handleClick(Orderdata[i].BookId, i, Orderdata);
+            }
+
+            $('#Emptable').DataTable({
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': [
+                [1, "asc"]
+            ],
+            'info': true,
+            'autoWidth': true
+            });
+
+        }
+
+            
+
+
+            function handleClick(id, idx, Orderdata) {
+
+                document.getElementById("row" + id).addEventListener("click", function () {
+                    console.log("Clicker row...")
+                    var invoice = document.getElementById('invoice_number');
+                    invoice.textContent = "Invoice #" + id;
+
+                    var order_date = document.getElementById('order_date');
+                    order_date.textContent = "Issued: " + Orderdata[idx].date;
+
+                    var username = document.getElementById('username');
+                    username.textContent = Orderdata[idx].user_name;
+
+                    var Delivery_Addr = document.getElementById('Delivery_Addr');
+                    Delivery_Addr.textContent = Orderdata[idx].address;
+
+
                 });
 
-
-
-                function handleClick(id, idx, Orderdata) {
-
-                    document.getElementById("row" + id).addEventListener("click", function () {
-                        console.log("Clicker row...")
-                        var invoice = document.getElementById('invoice_number');
-                        invoice.textContent = "Invoice #" + id;
-
-                        var order_date = document.getElementById('order_date');
-                        order_date.textContent = "Issued: " + Orderdata[idx].date;
-
-                        var username = document.getElementById('username');
-                        username.textContent = Orderdata[idx].user_name;
-
-                        var Delivery_Addr = document.getElementById('Delivery_Addr');
-                        Delivery_Addr.textContent = Orderdata[idx].address;
-
-
-                    });
-
-                   
-                }
-
-
+                
             }
+
 
         });
 
