@@ -307,17 +307,17 @@
         var tbody = document.getElementById('tbody');
         var Order_data;
 
-        var dept = document.getElementById('dept');
-        var sem = document.getElementById('sem');
+        // var dept = document.getElementById('dept');
+        // var sem = document.getElementById('sem');
 
-        var filter = document.getElementById('filter');
+        // var filter = document.getElementById('filter');
 
-        filter.addEventListener("click" , function () {
-            console.log(dept.value +" - "+ sem.value);
-            tbody.innerHTML = '';
-            FilterTable(Order_data , dept.value , sem.value);
+        // filter.addEventListener("click" , function () {
+        //     console.log(dept.value +" - "+ sem.value);
+        //     tbody.innerHTML = '';
+        //     FilterTable(Order_data , dept.value , sem.value);
 
-        });
+        // });
 
         var getFromDb = "../v1/index.php/AllBookDataStore";
 
@@ -337,155 +337,155 @@
         xmlhttp.open("GET", getFromDb, true);
         xmlhttp.send();
 
-        function FilterTable(HttpResponse , dept , sem) {
+        // function FilterTable(HttpResponse , dept , sem) {
             
-            if(dept == 0 && sem == 0){
-                MakeTable(Order_data);
-            }
-            else if(dept == 0 && sem != 0){
-                var Orderdata = JSON.parse(HttpResponse);
+        //     if(dept == 0 && sem == 0){
+        //         MakeTable(Order_data);
+        //     }
+        //     else if(dept == 0 && sem != 0){
+        //         var Orderdata = JSON.parse(HttpResponse);
 
-                // var tbody = document.createElement("tbody");
-                // Ordertable.append(tbody);
+        //         // var tbody = document.createElement("tbody");
+        //         // Ordertable.append(tbody);
 
-                for (var i = 0; i < Orderdata.length; i++) {
-                    var flag_sem = false;
+        //         for (var i = 0; i < Orderdata.length; i++) {
+        //             var flag_sem = false;
                     
-                    for(var j = 0 ; j < Orderdata[i][3].length ; j++ ){
-                        if(Orderdata[i][3][j].SemisterId == sem ){
-                            flag_sem = true;
-                        }
-                    }
+        //             for(var j = 0 ; j < Orderdata[i][3].length ; j++ ){
+        //                 if(Orderdata[i][3][j].SemisterId == sem ){
+        //                     flag_sem = true;
+        //                 }
+        //             }
                     
-                    if(!flag_sem){
-                        continue;
-                    }
-                    filterRow(i , Orderdata ,tbody);
+        //             if(!flag_sem){
+        //                 continue;
+        //             }
+        //             filterRow(i , Orderdata ,tbody);
 
-                }
-            }
-            else if(dept != 0 && sem == 0){
-                var Orderdata = JSON.parse(HttpResponse);
+        //         }
+        //     }
+        //     else if(dept != 0 && sem == 0){
+        //         var Orderdata = JSON.parse(HttpResponse);
 
-                // var tbody = document.createElement("tbody");
-                // Ordertable.append(tbody);
+        //         // var tbody = document.createElement("tbody");
+        //         // Ordertable.append(tbody);
 
-                for (var i = 0; i < Orderdata.length; i++) {
-                    var flag_dept = false;
+        //         for (var i = 0; i < Orderdata.length; i++) {
+        //             var flag_dept = false;
                 
-                    for(var j = 0 ; j < Orderdata[i][4].length ; j++ ){
-                        if(Orderdata[i][4][j].DepartmentId == dept ){
-                            flag_dept = true;
-                        }
-                    }
+        //             for(var j = 0 ; j < Orderdata[i][4].length ; j++ ){
+        //                 if(Orderdata[i][4][j].DepartmentId == dept ){
+        //                     flag_dept = true;
+        //                 }
+        //             }
 
-                    if(!flag_dept){
-                        continue;
-                    }
-                    filterRow(i , Orderdata ,tbody);
+        //             if(!flag_dept){
+        //                 continue;
+        //             }
+        //             filterRow(i , Orderdata ,tbody);
 
-                }
-            }
-            else{
+        //         }
+        //     }
+        //     else{
             
-                var Orderdata = JSON.parse(HttpResponse);
-                // console.log(Orderdata);
-                // var tbody = document.createElement("tbody");
-                // Ordertable.append(tbody);
+        //         var Orderdata = JSON.parse(HttpResponse);
+        //         // console.log(Orderdata);
+        //         // var tbody = document.createElement("tbody");
+        //         // Ordertable.append(tbody);
 
 
-                for (var i = 0; i < Orderdata.length; i++) {
-                    var flag_sem = false;
-                    var flag_dept = false;
+        //         for (var i = 0; i < Orderdata.length; i++) {
+        //             var flag_sem = false;
+        //             var flag_dept = false;
 
-                    for(var j = 0 ; j < Orderdata[i][3].length ; j++ ){
-                        if(Orderdata[i][3][j].SemisterId == sem ){
-                            flag_sem = true;
-                        }
-                    }
+        //             for(var j = 0 ; j < Orderdata[i][3].length ; j++ ){
+        //                 if(Orderdata[i][3][j].SemisterId == sem ){
+        //                     flag_sem = true;
+        //                 }
+        //             }
                     
-                    for(var j = 0 ; j < Orderdata[i][4].length ; j++ ){
-                        if(Orderdata[i][4][j].DepartmentId == dept ){
-                            flag_dept = true;
-                        }
-                    }
+        //             for(var j = 0 ; j < Orderdata[i][4].length ; j++ ){
+        //                 if(Orderdata[i][4][j].DepartmentId == dept ){
+        //                     flag_dept = true;
+        //                 }
+        //             }
 
-                    if(!flag_sem || !flag_dept){
-                        continue;
-                    }
-                    filterRow(i , Orderdata ,tbody);
+        //             if(!flag_sem || !flag_dept){
+        //                 continue;
+        //             }
+        //             filterRow(i , Orderdata ,tbody);
 
-                }
-            }
+        //         }
+        //     }
 
-        }
+        // }
         
-        function filterRow(i , Orderdata ,tbody){
-            var tr = document.createElement("tr");
-                tr.id = 'row' + Orderdata[i].BookId;
+        // function filterRow(i , Orderdata ,tbody){
+        //     var tr = document.createElement("tr");
+        //         tr.id = 'row' + Orderdata[i].BookId;
 
-                tbody.append(tr);
+        //         tbody.append(tr);
 
-                var td = document.createElement("td");
-                td.textContent = Orderdata[i].BookId;
-                tr.append(td);
-                var td = document.createElement("td");
-                td.textContent = Orderdata[i].BookName;
-                tr.append(td);
+        //         var td = document.createElement("td");
+        //         td.textContent = Orderdata[i].BookId;
+        //         tr.append(td);
+        //         var td = document.createElement("td");
+        //         td.textContent = Orderdata[i].BookName;
+        //         tr.append(td);
 
-                var td = document.createElement("td");
-                var authorname = "";
+        //         var td = document.createElement("td");
+        //         var authorname = "";
 
-                for(var j = 0 ; j < Orderdata[i][0].length ; j++ ){
-                    authorname += Orderdata[i][0][j].authorName + ", "
-                }
-                td.textContent =authorname;
-                tr.append(td);
+        //         for(var j = 0 ; j < Orderdata[i][0].length ; j++ ){
+        //             authorname += Orderdata[i][0][j].authorName + ", "
+        //         }
+        //         td.textContent =authorname;
+        //         tr.append(td);
 
-                authorname = "";
-                var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][1].length ; j++ ){
-                    authorname += Orderdata[i][1][j].editionName + ", "
-                }
-                td.textContent = authorname;
-                tr.append(td);
+        //         authorname = "";
+        //         var td = document.createElement("td");
+        //         for(var j = 0 ; j < Orderdata[i][1].length ; j++ ){
+        //             authorname += Orderdata[i][1][j].editionName + ", "
+        //         }
+        //         td.textContent = authorname;
+        //         tr.append(td);
 
 
-                // Bookk Prices
-                authorname = "";
-                var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                    authorname = Orderdata[i][6][0].BuyingPrice;
-                }
-                td.textContent = authorname;
-                tr.append(td);
+        //         // Bookk Prices
+        //         authorname = "";
+        //         var td = document.createElement("td");
+        //         for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+        //             authorname = Orderdata[i][6][0].BuyingPrice;
+        //         }
+        //         td.textContent = authorname;
+        //         tr.append(td);
 
-                authorname = "";
-                var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                    authorname = Orderdata[i][6][0].SellingPrice;
-                }
-                td.textContent = authorname;
-                tr.append(td);
+        //         authorname = "";
+        //         var td = document.createElement("td");
+        //         for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+        //             authorname = Orderdata[i][6][0].SellingPrice;
+        //         }
+        //         td.textContent = authorname;
+        //         tr.append(td);
 
-                authorname = "";
-                var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                    authorname = Orderdata[i][6][1].BuyingPrice;
-                }
-                td.textContent = authorname;
-                tr.append(td);
+        //         authorname = "";
+        //         var td = document.createElement("td");
+        //         for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+        //             authorname = Orderdata[i][6][1].BuyingPrice;
+        //         }
+        //         td.textContent = authorname;
+        //         tr.append(td);
 
-                authorname = "";
-                var td = document.createElement("td");
-                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
-                    authorname = Orderdata[i][6][1].SellingPrice;
-                }
-                td.textContent = authorname;
-                tr.append(td);
+        //         authorname = "";
+        //         var td = document.createElement("td");
+        //         for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+        //             authorname = Orderdata[i][6][1].SellingPrice;
+        //         }
+        //         td.textContent = authorname;
+        //         tr.append(td);
 
-                handleClick(Orderdata[i].BookId, i, Orderdata);
-        }
+        //         handleClick(Orderdata[i].BookId, i, Orderdata);
+        // }
         
         function MakeTable(HttpResponse) {
             // body...
@@ -581,7 +581,7 @@
 
             
             document.getElementById("row" + id).addEventListener("click", function () {
-                console.log("Clicker row...")
+                console.log("Clicker row -->"+id);
                 // var invoice = document.getElementById('invoice_number');
                 // invoice.textContent = "Invoice #" + id;
 
