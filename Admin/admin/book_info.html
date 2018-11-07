@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="assets/css/lib/datatable/dataTables.bootstrap.min.css">
     <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
     <link rel="stylesheet" href="assets/scss/style.css">
+    <link rel="stylesheet" href="assets/css/book_info.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -120,9 +121,54 @@
             <div class="col-sm-12">
 
                 <div class="row">
+                    <div class="col-sm-3">
+                            <label for="exampleInputEdition">Level Term</label>
+                            <div class="form-group">
+                                <select id="sem" name="sem" class="form-control">
+                                    <option value="0">All Level, Term</option>
+                                    <option value="1">L1 T1</option>
+                                    <option value="2">L1 T2</option>
+                                    <option value="3">L2 T1</option>
+                                    <option value="4">L2 T2</option>
+                                    <option value="5">L3 T1</option>
+                                    <option value="6">L3 T2</option>
+                                    <option value="7">L4 T1</option>
+                                    <option value="8">L4 T2</option>
+                                    <option value="9">L5 T1</option>
+                                    <option value="10">L5 T2</option>
+                                </select>
+    
+                            </div>
+                    </div>
+                    <div class="col-sm-3">
+                            <label for="exampleInputEdition">Department</label>
+                            <div class="form-group">
+                                <select id="dept" name="dept" class="form-control">
+                                    <option value="0">All Department</option>
+                                    <option value="1">CSE</option>
+                                    <option value="2">EEE</option>
+                                    <option value="3">Chemical</option>
+                                    <option value="4">BME</option>
+                                    <option value="5">ME</option>
+                                    <option value="6">IPE</option>
+                                    <option value="7">Architecture</option>
+                                    <option value="8">Civil</option>
+                                    <option value="9">MME</option>
+                                    <option value="10">NAME</option>
+                                    <option value="11">URP</option>
+                                    <option value="12">WRE</option>
+                                </select>
+                            </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <button style="margin-top: 30px;" id="filter" class="btn btn-primary">Submit</button>
+                    </div>
+                    
+                </div>
+                <div class="row">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Data Table With Full Features</h3>
+                            <h3 class="box-title">Available Books</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -133,113 +179,92 @@
                                         <td>Book Name</td>
                                         <td>Authors</td>
                                         <td>Edition</td>
-                                        <td>News Price</td>
-                                        <td>White Price</td>
+                                        <td>White Price (Buy)</td>
+                                        <td>White Price (Sell)</td>
                                         <td>News Price (Buy)</td>
                                         <td>News Price (Sell)</td>
-                                        <td>Delete</td>
                                     </tr>
                                 </thead>
+                                <tbody id="tbody">
+
+                                </tbody>
 
                             </table>
                         </div>
                     </div>
                 </div>
                 <div class="row">
+                    <div id="container">	
 
-                <div class="box box-primary container">
-                    <div class="box-header with-border">
-                        <br><br><br>
-                        <h4 class="box-title">Order Details</h4><br><br>
+                    <!-- Start	Product details -->
+                        <div class="product-details">
+                            
+                            <!-- 	Product Name -->
+                        <h1>Biru Putaran</h1>
+                    <!-- 		<span class="hint new">New</span> -->
+                    <!-- 		<span class="hint free-shipping">Free Shipping</span> -->
+                    <!-- 		the Product rating -->
+                        <span class="hint-star star">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </span>
+                            
+                        
+                    <!-- The most important information about the product -->
+                            <p class="information">" Especially good for container gardening, the Angelonia will keep blooming all summer even if old flowers are removed. Once tall enough to cut, bring them inside and you'll notice a light scent that some say is reminiscent of apples. "</p>
+                    
+                            
+                            
+                    <!-- 		Control -->
+                    <div class="control">
+                        
+                    <!-- Start Button buying -->
+                        <button class="btn">
+                    <!-- 		the Price -->
+                            <span class="price">49 $</span>
+                    <!-- 		shopping cart icon-->
+                        <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+                    <!-- 		Buy Now / ADD to Cart-->
+                        <span class="buy">Buy Now</span>
+                        </button>
+                        <!-- End Button buying -->
+                        
                     </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
-                    <div id="invoiceholder">
-
-                        <div id="headerimage"></div>
-                        <div id="invoice" class="effect2">
-
-                            <div id="invoice-top">
-                                <div class="title">
-                                    <h1 id="invoice_number">Invoice #1069</h1>
-                                    <p id="order_date">Issued: Oct 31, 2018<br>
-                                    </p>
-                                </div>
-                                <!--End Title-->
-                            </div>
-                            <!--End InvoiceTop-->
-
-                            <div id="invoice-mid">
-
-                                <div class="clientlogo"></div>
-                                <div class="info">
-                                    <h2 id="username">Awsaf Alam</h2>
-                                    <p id="Delivery_Addr">awsafalam@gmail.com<br>
-                                        <p id="Contact">01729732</p>
-                                </div>
-
-                            </div>
-                            <!--End Invoice Mid-->
-
-                            <div id="invoice-bot">
-
-                                <div id="table">
-                                    <table id="dynamic_Order">
-                                        <tr class="tabletitle">
-                                            <td class="item">
-                                                <h2>Item Description</h2>
-                                            </td>
-                                            <td class="Hours">
-                                                <h2>Quantity</h2>
-                                            </td>
-                                            <td class="Rate">
-                                                <h2>Price</h2>
-                                            </td>
-                                            <td class="subtotal">
-                                                <h2>Sub-total</h2>
-                                            </td>
-                                        </tr>
-
-                                        <tr class="service">
-                                            <td class="tableitem">
-                                                <p class="itemtext">Communication</p>
-                                            </td>
-                                            <td class="tableitem">
-                                                <p class="itemtext">5</p>
-                                            </td>
-                                            <td class="tableitem">
-                                                <p class="itemtext">$75</p>
-                                            </td>
-                                            <td class="tableitem">
-                                                <p class="itemtext">$375.00</p>
-                                            </td>
-                                        </tr>
-
-
-
-                                        <tr class="tabletitle">
-                                            <td></td>
-                                            <td></td>
-                                            <td class="Rate">
-                                                <h2>Total</h2>
-                                            </td>
-                                            <td class="payment">
-                                                <h2>$3,644.25</h2>
-                                            </td>
-                                        </tr>
-
-                                    </table>
-                                </div>
-                                <!--End Table-->
-
-                            </div>
-                            <!--End InvoiceBot-->
-                        </div>
-                        <!--End Invoice-->
+                                
                     </div>
-                    <!-- End Invoice Holder-->
+                        
+                    <!-- 	End	Product details   -->
+                        
+                        
+                        
+                    <!-- 	Start product image & Information -->
+                        
+                    <div class="product-image">
+                        
+                        <img src="https://sc01.alicdn.com/kf/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3/200006212/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3.jpg" alt="Omar Dsoky">
+                        
+                    <!-- 	product Information-->
+                    <div class="info">
+                        <h2>The Description</h2>
+                        <ul>
+                            <li><strong>Sun Needs: </strong>Full Sun</li>
+                            <li><strong>Soil Needs: </strong>Damp</li>
+                            <li><strong>Zones: </strong>9 - 11</li>
+                            <li><strong>Height: </strong>2 - 3 feet</li>
+                            <li><strong>Blooms in: </strong>Mid‑Summer - Mid‑Fall</li>
+                            <li><strong>Features: </strong>Tolerates heat</li>
+                        </ul>
+                    </div>
+                    </div>
+                    <!--  End product image  -->
+                    
+                    
+                    </div>
+                                
                 </div>
-            </div>
 
             </div>
 
@@ -274,198 +299,311 @@
 
 
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            // body...
+<script type="text/javascript">
+    $(document).ready(function () {
+        // body...
 
-            var Ordertable = document.getElementById('Emptable');
+        // var Ordertable = document.getElementById('Emptable');
+        var tbody = document.getElementById('tbody');
+        var Order_data;
 
+        var dept = document.getElementById('dept');
+        var sem = document.getElementById('sem');
 
-            var getFromDb = "../v1/index.php/new_order";
+        var filter = document.getElementById('filter');
 
-            var xmlhttp = new XMLHttpRequest();
-
-            var Order_data;
-            xmlhttp.onreadystatechange = function () {
-
-                if (this.readyState == 4 && this.status == 200) {
-                    //   console.log(JSON.parse(this.responseText));
-                    Order_data = this.responseText;
-                    MakeTable(Order_data)
-
-                }
-            };
-
-            xmlhttp.open("GET", getFromDb, true);
-            xmlhttp.send();
-
-
-            function MakeTable(Emplotable) {
-                // body...
-                var Orderdata = JSON.parse(Emplotable);
-                console.log(Orderdata);
-                var tbody = document.createElement("tbody");
-
-                Ordertable.append(tbody);
-
-
-                for (var i = 0; i < Orderdata.length; i++) {
-                    var tr = document.createElement("tr");
-                    tr.id = 'row' + Orderdata[i].order_id;
-
-                    tbody.append(tr);
-
-                    var td = document.createElement("td");
-                    td.textContent = Orderdata[i].order_id;
-                    tr.append(td);
-                    var td = document.createElement("td");
-                    td.textContent = Orderdata[i].user_name;
-                    tr.append(td);
-                    var td = document.createElement("td");
-                    td.textContent = Orderdata[i].address;
-                    tr.append(td);
-                    var td = document.createElement("td");
-                    td.textContent = Orderdata[i].items;
-                    tr.append(td);
-
-                    var td = document.createElement("td");
-                    td.textContent = Orderdata[i].total_cost;
-                    tr.append(td);
-                    var td = document.createElement("td");
-                    td.textContent = Orderdata[i].date;
-                    tr.append(td);
-
-                    var td = document.createElement("td");
-                    //   td.style.cssText = 'display: flex;';
-
-                    var buttn = document.createElement('button');
-                    buttn.textContent = "Confirm";
-                    buttn.classList.add('btn');
-                    buttn.classList.add('btn-warning');
-
-                    buttn.id = 'confirm' + Orderdata[i].order_id;
-                    td.append(buttn);
-                    tr.append(td);
-
-                    var td = document.createElement("td");
-                    //   td.style.cssText = 'display: flex;';
-
-                    var buttn = document.createElement('button');
-                    buttn.textContent = "Print";
-                    buttn.classList.add('btn');
-                    buttn.classList.add('btn-primary');
-
-                    buttn.id = 'print' + Orderdata[i].order_id;
-                    td.append(buttn);
-                    tr.append(td);
-
-                    var td = document.createElement("td");
-                    //   td.style.cssText = 'display: flex;';
-
-                    var butto = document.createElement('button');
-                    butto.textContent = "Cancel";
-                    butto.classList.add('btn');
-                    butto.classList.add('btn-danger');
-
-                    butto.id = 'delete' + Orderdata[i].order_id;
-                    td.append(butto);
-
-                    tr.append(td);
-
-                    handleClick(Orderdata[i].order_id, i, Orderdata);
-
-                }
-
-                $('#Emptable').DataTable({
-                    'paging': true,
-                    'lengthChange': true,
-                    'searching': true,
-                    'ordering': [
-                        [1, "asc"]
-                    ],
-                    'info': true,
-                    'autoWidth': true
-                });
-
-
-
-                function handleClick(id, idx, Orderdata) {
-
-                    document.getElementById("delete" + id).addEventListener("click", function () {
-                        // body...
-                        console.log("Del Clicked " + this.parentElement.parentElement.cells[0].innerHTML);
-
-                        if (confirm("Are you sure you want cancel this order?")) {
-                            var getFromDb = "../v1/index.php/update_order_status?status=Cancel&id=" +
-                                this.parentElement.parentElement.cells[0].innerHTML;
-                            console.log(getFromDb);
-                            xmlhttp = new XMLHttpRequest();
-
-                            xmlhttp.onreadystatechange = function () {
-                                if (this.readyState == 4 && this.status == 200) {
-                                    console.log(this.responseText);
-                                    location.reload();
-                                }
-                            };
-                            xmlhttp.open("GET", getFromDb, true);
-
-                            xmlhttp.send();
-
-                        } else {
-                            return false;
-                        }
-                    });
-
-                    document.getElementById("row" + id).addEventListener("click", function () {
-                        console.log("Clicker row...")
-                        var invoice = document.getElementById('invoice_number');
-                        invoice.textContent = "Invoice #" + id;
-
-                        var order_date = document.getElementById('order_date');
-                        order_date.textContent = "Issued: " + Orderdata[idx].date;
-
-                        var username = document.getElementById('username');
-                        username.textContent = Orderdata[idx].user_name;
-
-                        var Delivery_Addr = document.getElementById('Delivery_Addr');
-                        Delivery_Addr.textContent = Orderdata[idx].address;
-
-
-                    });
-
-                    document.getElementById("confirm" + id).addEventListener("click", function () {
-
-                        if (confirm("Are you sure this delivery has been completed?")) {
-                            var getFromDb = "../v1/index.php/update_order_status?status=Done&id=" +
-                                this.parentElement.parentElement.cells[0].innerHTML;
-                            console.log(getFromDb);
-                            xmlhttp = new XMLHttpRequest();
-
-
-                            xmlhttp.onreadystatechange = function () {
-                                if (this.readyState == 4 && this.status == 200) {
-                                    console.log(this.responseText);
-                                    location.reload();
-                                }
-                            };
-                            xmlhttp.open("GET", getFromDb, true);
-
-                            xmlhttp.send();
-
-                        } else {
-                            return false;
-                        }
-                    });
-
-
-                }
-
-
-            }
+        filter.addEventListener("click" , function () {
+            console.log(dept.value +" - "+ sem.value);
+            tbody.innerHTML = '';
+            FilterTable(Order_data , dept.value , sem.value);
 
         });
 
-    </script>
+        var getFromDb = "../v1/index.php/AllBookDataStore";
+
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+                //   console.log(JSON.parse(this.responseText));
+                Order_data = this.responseText;
+                // console.log(Order_data);
+                MakeTable(Order_data)
+
+            }
+        };
+
+        xmlhttp.open("GET", getFromDb, true);
+        xmlhttp.send();
+
+        function FilterTable(HttpResponse , dept , sem) {
+            
+            if(dept == 0 && sem == 0){
+                MakeTable(Order_data);
+            }
+            else if(dept == 0 && sem != 0){
+                var Orderdata = JSON.parse(HttpResponse);
+
+                // var tbody = document.createElement("tbody");
+                // Ordertable.append(tbody);
+
+                for (var i = 0; i < Orderdata.length; i++) {
+                    var flag_sem = false;
+                    
+                    for(var j = 0 ; j < Orderdata[i][3].length ; j++ ){
+                        if(Orderdata[i][3][j].SemisterId == sem ){
+                            flag_sem = true;
+                        }
+                    }
+                    
+                    if(!flag_sem){
+                        continue;
+                    }
+                    filterRow(i , Orderdata ,tbody);
+
+                }
+            }
+            else if(dept != 0 && sem == 0){
+                var Orderdata = JSON.parse(HttpResponse);
+
+                // var tbody = document.createElement("tbody");
+                // Ordertable.append(tbody);
+
+                for (var i = 0; i < Orderdata.length; i++) {
+                    var flag_dept = false;
+                
+                    for(var j = 0 ; j < Orderdata[i][4].length ; j++ ){
+                        if(Orderdata[i][4][j].DepartmentId == dept ){
+                            flag_dept = true;
+                        }
+                    }
+
+                    if(!flag_dept){
+                        continue;
+                    }
+                    filterRow(i , Orderdata ,tbody);
+
+                }
+            }
+            else{
+            
+                var Orderdata = JSON.parse(HttpResponse);
+                // console.log(Orderdata);
+                // var tbody = document.createElement("tbody");
+                // Ordertable.append(tbody);
+
+
+                for (var i = 0; i < Orderdata.length; i++) {
+                    var flag_sem = false;
+                    var flag_dept = false;
+
+                    for(var j = 0 ; j < Orderdata[i][3].length ; j++ ){
+                        if(Orderdata[i][3][j].SemisterId == sem ){
+                            flag_sem = true;
+                        }
+                    }
+                    
+                    for(var j = 0 ; j < Orderdata[i][4].length ; j++ ){
+                        if(Orderdata[i][4][j].DepartmentId == dept ){
+                            flag_dept = true;
+                        }
+                    }
+
+                    if(!flag_sem || !flag_dept){
+                        continue;
+                    }
+                    filterRow(i , Orderdata ,tbody);
+
+                }
+            }
+
+        }
+        
+        function filterRow(i , Orderdata ,tbody){
+            var tr = document.createElement("tr");
+                tr.id = 'row' + Orderdata[i].BookId;
+
+                tbody.append(tr);
+
+                var td = document.createElement("td");
+                td.textContent = Orderdata[i].BookId;
+                tr.append(td);
+                var td = document.createElement("td");
+                td.textContent = Orderdata[i].BookName;
+                tr.append(td);
+
+                var td = document.createElement("td");
+                var authorname = "";
+
+                for(var j = 0 ; j < Orderdata[i][0].length ; j++ ){
+                    authorname += Orderdata[i][0][j].authorName + ", "
+                }
+                td.textContent =authorname;
+                tr.append(td);
+
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][1].length ; j++ ){
+                    authorname += Orderdata[i][1][j].editionName + ", "
+                }
+                td.textContent = authorname;
+                tr.append(td);
+
+
+                // Bookk Prices
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                    authorname = Orderdata[i][6][0].BuyingPrice;
+                }
+                td.textContent = authorname;
+                tr.append(td);
+
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                    authorname = Orderdata[i][6][0].SellingPrice;
+                }
+                td.textContent = authorname;
+                tr.append(td);
+
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                    authorname = Orderdata[i][6][1].BuyingPrice;
+                }
+                td.textContent = authorname;
+                tr.append(td);
+
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                    authorname = Orderdata[i][6][1].SellingPrice;
+                }
+                td.textContent = authorname;
+                tr.append(td);
+
+                handleClick(Orderdata[i].BookId, i, Orderdata);
+        }
+        
+        function MakeTable(HttpResponse) {
+            // body...
+            var Orderdata = JSON.parse(HttpResponse);
+            console.log(Orderdata);
+            // var tbody = document.createElement("tbody");
+            // Ordertable.append(tbody);
+
+
+            for (var i = 0; i < Orderdata.length; i++) {
+                // filterRow(i , Order_data,tbody);
+                var tr = document.createElement("tr");
+                tr.id = 'row' + Orderdata[i].BookId;
+
+                tbody.append(tr);
+
+                var td = document.createElement("td");
+                td.textContent = Orderdata[i].BookId;
+                tr.append(td);
+                var td = document.createElement("td");
+                td.textContent = Orderdata[i].BookName;
+                tr.append(td);
+
+                var td = document.createElement("td");
+                var authorname = "";
+
+                for(var j = 0 ; j < Orderdata[i][0].length ; j++ ){
+                    authorname += Orderdata[i][0][j].authorName + ", "
+                }
+                td.textContent =authorname;
+                tr.append(td);
+
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][1].length ; j++ ){
+                    authorname += Orderdata[i][1][j].editionName + ", "
+                }
+                td.textContent = authorname;
+                tr.append(td);
+
+
+                // Bookk Prices
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                    authorname = Orderdata[i][6][0].BuyingPrice;
+                }
+                td.textContent = authorname;
+                tr.append(td);
+
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                    authorname = Orderdata[i][6][0].SellingPrice;
+                }
+                td.textContent = authorname;
+                tr.append(td);
+
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                    authorname = Orderdata[i][6][1].BuyingPrice;
+                }
+                td.textContent = authorname;
+                tr.append(td);
+
+                authorname = "";
+                var td = document.createElement("td");
+                for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                    authorname = Orderdata[i][6][1].SellingPrice;
+                }
+                td.textContent = authorname;
+                tr.append(td);
+
+                handleClick(Orderdata[i].BookId, i, Orderdata);
+            }
+        }
+
+        $('#Emptable').DataTable({
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': [
+                [1, "asc"]
+            ],
+            'info': true,
+            'autoWidth': true
+        });
+
+
+
+        function handleClick(id, idx, Orderdata) {
+
+            
+            document.getElementById("row" + id).addEventListener("click", function () {
+                console.log("Clicker row...")
+                // var invoice = document.getElementById('invoice_number');
+                // invoice.textContent = "Invoice #" + id;
+
+                // var order_date = document.getElementById('order_date');
+                // order_date.textContent = "Issued: " + Orderdata[idx].date;
+
+                // var username = document.getElementById('username');
+                // username.textContent = Orderdata[idx].user_name;
+
+                // var Delivery_Addr = document.getElementById('Delivery_Addr');
+                // Delivery_Addr.textContent = Orderdata[idx].address;
+
+
+            });
+
+            
+
+        }
+
+
+        });
+</script>
 
 
 
