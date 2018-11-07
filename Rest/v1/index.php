@@ -750,9 +750,7 @@ $app->get('/update_order_status', function() use ($app) {
   
   foreach($booklist as $bookId)
   {
-    echo("seafr regersvgkbreg");
-    
-    
+
     array_push($OverAllArray, ReturnIndividualBookInfo($bookId["book_id"]));
     
 
