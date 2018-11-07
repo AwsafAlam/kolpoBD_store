@@ -118,11 +118,55 @@
         <div class="container">
             <!-- Main row -->
             <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="exampleInputEdition">Level Term</label>
+                        <div class="form-group">
+                            <select id="sem" name="sem" class="form-control">
+                                <option value="0">All Level, Term</option>
+                                <option value="1">L1 T1</option>
+                                <option value="2">L1 T2</option>
+                                <option value="3">L2 T1</option>
+                                <option value="4">L2 T2</option>
+                                <option value="5">L3 T1</option>
+                                <option value="6">L3 T2</option>
+                                <option value="7">L4 T1</option>
+                                <option value="8">L4 T2</option>
+                                <option value="9">L5 T1</option>
+                                <option value="10">L5 T2</option>
+                            </select>
 
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="exampleInputEdition">Department</label>
+                        <div class="form-group">
+                            <select id="dept" name="dept" class="form-control">
+                                <option value="0">All Department</option>
+                                <option value="1">CSE</option>
+                                <option value="2">EEE</option>
+                                <option value="3">Chemical</option>
+                                <option value="4">BME</option>
+                                <option value="5">ME</option>
+                                <option value="6">IPE</option>
+                                <option value="7">Architecture</option>
+                                <option value="8">Civil</option>
+                                <option value="9">MME</option>
+                                <option value="10">NAME</option>
+                                <option value="11">URP</option>
+                                <option value="12">WRE</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <button style="margin-top: 30px;" id="filter" class="btn btn-primary">Submit</button>
+                    </div>
+
+                </div>
                 <div class="row">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Data Table With Full Features</h3>
+                            <h3 class="box-title">Available Books</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -133,13 +177,15 @@
                                         <td>Book Name</td>
                                         <td>Authors</td>
                                         <td>Edition</td>
-                                        <td>News Price</td>
-                                        <td>White Price</td>
+                                        <td>White Price (Buy)</td>
+                                        <td>White Price (Sell)</td>
                                         <td>News Price (Buy)</td>
                                         <td>News Price (Sell)</td>
-                                        <td>Delete</td>
                                     </tr>
                                 </thead>
+                                <!-- <tbody id="tbody">
+
+                                </tbody> -->
 
                             </table>
                         </div>
@@ -147,7 +193,7 @@
                 </div>
                 <div class="row">
 
-            </div>
+                </div>
 
             </div>
 
@@ -189,7 +235,7 @@
             var Ordertable = document.getElementById('Emptable');
 
 
-            var getFromDb = "../v1/index.php/new_order";
+            var getFromDb = "../v1/index.php/AllBookDataStore";
 
             var xmlhttp = new XMLHttpRequest();
 
@@ -219,69 +265,59 @@
 
                 for (var i = 0; i < Orderdata.length; i++) {
                     var tr = document.createElement("tr");
-                    tr.id = 'row' + Orderdata[i].order_id;
-
+                    tr.id = 'row' + Orderdata[i].BookId;
                     tbody.append(tr);
-
                     var td = document.createElement("td");
-                    td.textContent = Orderdata[i].order_id;
+                    td.textContent = Orderdata[i].BookId;
                     tr.append(td);
                     var td = document.createElement("td");
-                    td.textContent = Orderdata[i].user_name;
+                    td.textContent = Orderdata[i].BookName;
                     tr.append(td);
                     var td = document.createElement("td");
-                    td.textContent = Orderdata[i].address;
+                    var authorname = "";
+                    for(var j = 0 ; j < Orderdata[i][0].length ; j++ ){
+                        authorname += Orderdata[i][0][j].authorName + ", "
+                    }
+                    td.textContent =authorname;
                     tr.append(td);
+                    authorname = "";
                     var td = document.createElement("td");
-                    td.textContent = Orderdata[i].items;
+                    for(var j = 0 ; j < Orderdata[i][1].length ; j++ ){
+                        authorname += Orderdata[i][1][j].editionName + ", "
+                    }
+                    td.textContent = authorname;
                     tr.append(td);
-
+                    // Bookk Prices
+                    authorname = "";
                     var td = document.createElement("td");
-                    td.textContent = Orderdata[i].total_cost;
+                    for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                        authorname = Orderdata[i][6][0].BuyingPrice;
+                    }
+                    td.textContent = authorname;
                     tr.append(td);
+                    authorname = "";
                     var td = document.createElement("td");
-                    td.textContent = Orderdata[i].date;
+                    for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                        authorname = Orderdata[i][6][0].SellingPrice;
+                    }
+                    td.textContent = authorname;
                     tr.append(td);
-
+                    authorname = "";
                     var td = document.createElement("td");
-                    //   td.style.cssText = 'display: flex;';
-
-                    var buttn = document.createElement('button');
-                    buttn.textContent = "Confirm";
-                    buttn.classList.add('btn');
-                    buttn.classList.add('btn-warning');
-
-                    buttn.id = 'confirm' + Orderdata[i].order_id;
-                    td.append(buttn);
+                    for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                        authorname = Orderdata[i][6][1].BuyingPrice;
+                    }
+                    td.textContent = authorname;
                     tr.append(td);
-
+                    authorname = "";
                     var td = document.createElement("td");
-                    //   td.style.cssText = 'display: flex;';
-
-                    var buttn = document.createElement('button');
-                    buttn.textContent = "Print";
-                    buttn.classList.add('btn');
-                    buttn.classList.add('btn-primary');
-
-                    buttn.id = 'print' + Orderdata[i].order_id;
-                    td.append(buttn);
+                    for(var j = 0 ; j < Orderdata[i][6].length ; j++ ){
+                        authorname = Orderdata[i][6][1].SellingPrice;
+                    }
+                    td.textContent = authorname;
                     tr.append(td);
 
-                    var td = document.createElement("td");
-                    //   td.style.cssText = 'display: flex;';
-
-                    var butto = document.createElement('button');
-                    butto.textContent = "Cancel";
-                    butto.classList.add('btn');
-                    butto.classList.add('btn-danger');
-
-                    butto.id = 'delete' + Orderdata[i].order_id;
-                    td.append(butto);
-
-                    tr.append(td);
-
-                    handleClick(Orderdata[i].order_id, i, Orderdata);
-
+                     handleClick(Orderdata[i].BookId, i, Orderdata);
                 }
 
                 $('#Emptable').DataTable({
@@ -298,31 +334,6 @@
 
 
                 function handleClick(id, idx, Orderdata) {
-
-                    document.getElementById("delete" + id).addEventListener("click", function () {
-                        // body...
-                        console.log("Del Clicked " + this.parentElement.parentElement.cells[0].innerHTML);
-
-                        if (confirm("Are you sure you want cancel this order?")) {
-                            var getFromDb = "../v1/index.php/update_order_status?status=Cancel&id=" +
-                                this.parentElement.parentElement.cells[0].innerHTML;
-                            console.log(getFromDb);
-                            xmlhttp = new XMLHttpRequest();
-
-                            xmlhttp.onreadystatechange = function () {
-                                if (this.readyState == 4 && this.status == 200) {
-                                    console.log(this.responseText);
-                                    location.reload();
-                                }
-                            };
-                            xmlhttp.open("GET", getFromDb, true);
-
-                            xmlhttp.send();
-
-                        } else {
-                            return false;
-                        }
-                    });
 
                     document.getElementById("row" + id).addEventListener("click", function () {
                         console.log("Clicker row...")
@@ -341,31 +352,7 @@
 
                     });
 
-                    document.getElementById("confirm" + id).addEventListener("click", function () {
-
-                        if (confirm("Are you sure this delivery has been completed?")) {
-                            var getFromDb = "../v1/index.php/update_order_status?status=Done&id=" +
-                                this.parentElement.parentElement.cells[0].innerHTML;
-                            console.log(getFromDb);
-                            xmlhttp = new XMLHttpRequest();
-
-
-                            xmlhttp.onreadystatechange = function () {
-                                if (this.readyState == 4 && this.status == 200) {
-                                    console.log(this.responseText);
-                                    location.reload();
-                                }
-                            };
-                            xmlhttp.open("GET", getFromDb, true);
-
-                            xmlhttp.send();
-
-                        } else {
-                            return false;
-                        }
-                    });
-
-
+                   
                 }
 
 
