@@ -15,20 +15,29 @@
 
 </head>
 
-<body>
-    <nav class="amber darken-3">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo">KolpoBD</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <!-- <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">JavaScript</a></li> -->
-            </ul>
-        </div>
-    </nav>
+<body onload="timer()">
+    <div class="navbar-fixed">
+        <nav class="amber darken-3">
+            <div class="nav-wrapper">
+                <a href="#" id="timer" class="brand-logo">KolpoBD</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <!-- <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">JavaScript</a></li> -->
+                </ul>
+            </div>
+        </nav>
+    </div>
 
     <div class="container">
         <!-- Page Content goes here -->
+        <div class="row z-depth-2" style="margin: 15px; padding: 40px;">
+            <h3>Total time for this quiz is 30 minutes!</h3>
+            <strong>বিজয় দিবস অনলাইন কুইজ
+                বিজয়ের দিনে কল্পবিডির পক্ষ থেকে আয়োজন করা হয়েছে অনলাইন কুইজ, ঘরে বসেই অংশ নিন কুইজে এবং ঝালিয়ে নিন
+                নিজের দেশ সম্পর্কে নিজের জ্ঞান।
+                ুইজে প্রথম তিনজন বিজয়ীদের জন্য থাকছে বিশেষ পুরষ্কার।</strong>
+        </div>
         <div class="row z-depth-4" style="margin: 15px;">
             <form class="col s12">
                 <div class="row">
@@ -314,6 +323,31 @@
             <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 
             <script type="text/javascript">
+                var h1 = document.getElementById('timer'),
+                    seconds = 0,
+                    minutes = 0,
+                    hours = 0,
+                    t;
+
+                
+                // timer();
+
+
+                /* Start button */
+                // start.onclick = timer;
+
+                // /* Stop button */
+                // stop.onclick = function() {
+                //     clearTimeout(t);
+                // }
+
+                // /* Clear button */
+                // clear.onclick = function() {
+                //     console.log("Click")
+                //     h1.textContent = "00:00";
+                //     seconds = 0; minutes = 0; hours = 0;
+                // }
+
                 function uploadAnswer() {
 
                     var corretans = new Array();
@@ -376,7 +410,7 @@
                             type: 'success',
                             confirmButtonText: 'ok'
                         });
-
+                        // location.replace("http://kolpobd.com/quiz/finish.html");
 
                     } else {
                         Swal({
@@ -385,6 +419,8 @@
                             type: 'error',
                             confirmButtonText: 'ok'
                         });
+                        // location.replace("http://kolpobd.com/quiz/finish.html");
+
                     }
 
                     console.log(answers);
@@ -392,9 +428,10 @@
                     var phone = document.getElementById("phone").value;
                     var first_name = document.getElementById("first_name").value;
 
-                    var getFromDb = "server.php?phone=" + phone+"&first_name="+first_name;
-                    for(var i=0 ; i<20; i++){
-                        getFromDb += "&"+i+"="+answers[i];
+                    var getFromDb = "server.php?phone=" + phone + "&first_name=" + first_name;
+                    getFromDb += "&hr=" + hours + "&min=" + minutes + "&sec=" + seconds;
+                    for (var i = 0; i < 20; i++) {
+                        getFromDb += "&" + i + "=" + answers[i];
                     }
 
                     var xmlhttp = new XMLHttpRequest();
@@ -405,6 +442,7 @@
                             // //   console.log(JSON.parse(this.responseText));
                             // Order_data = this.responseText;
                             // MakeTable(Order_data)
+                            location.replace("http://kolpobd.com/quiz/finish.html");
 
                         }
                     };
@@ -414,6 +452,45 @@
 
 
                 }
+            
+                function add() {
+                    seconds++;
+                    if (seconds >= 60) {
+                        seconds = 0;
+                        minutes++;
+                        if (minutes >= 60) {
+                            minutes = 0;
+                            hours++;
+                        }
+                    }
+
+                    h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ?
+                        minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+                    if (minutes >= 30) {
+                        Swal({
+                            title: 'Time Up!',
+                            text: "Your time is up! Better luck next time!",
+                            type: 'error',
+                            confirmButtonText: 'ok'
+                        }).then((value) => {
+                            // swal(`The returned value is: ${value}`);
+                            console.log("Time up")
+                            uploadAnswer();
+                        });
+                        
+
+                    }
+                    else{
+                        timer();
+                    }
+                }
+
+                function timer() {
+
+                    t = setTimeout(add, 1000);
+                }
+            
             </script>
 
             <!--
