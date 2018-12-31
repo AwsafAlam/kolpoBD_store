@@ -113,79 +113,29 @@ $app->post('/insertbookdata', function() use ($app)  {
 
   $book = $app->request->post('name');
   $author = $app->request->post('author');
-
-  $Edition = $app->request->post('Edition');
-
-  $Price_W = $app->request->post('Price_W');
-  $Price_N = $app->request->post('Price_N');
-  $Price_O = $app->request->post('Price_O');
-
-  $Dept = $app->request->post('dept');
-  $Sem = $app->request->post('sem');
+  $buy_price = $app->request->post('buy_price');
+  $sell_price = $app->request->post('sell_price');
+  $description = $app->request->post('description');
+  $genre = $app->request->post('genre');
+  $publisher = $app->request->post('publisher');
+  $mainImage = $app->request->post('image');
+  
   
   // $conn = new mysqli("localhost", "root", "", "kolpbdc_site");
-  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
-
-  $strings ="INSERT INTO Book (book_id , name) VALUES (NULL , '".$book."')";
+  //$conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_bookstore");
+  $conn = new mysqli("localhost", "root", "", "kolpobdc_bookstore");
+    
+  $imgpath=$book.".png";
+  file_put_contents($path,base64_decode($mainImage));
+  
+  $string=mysqli_real_escape_string($conn,$string);
+	
+  $strings="INSERT INTO book(book_id,book_name,author,buy_price,sell_price,description,genre,img_link,pdf_link,publisher)  VALUES (" . "NULL". "," . "'". $book . "'". "," . "'". $author . "'". "," . "'". $buy_price. "'" ."," ."'" . $sell_price . "'" . "," . "'". $description. "'" . "," . "'".$genre. "'" . "," . "'". $imgpath. "'" . "," . "'". $pdfpath . "'" . ",". "'" . $publisher . "'" . ")";
+  
+  
   $result = $conn->query($strings);
   
-  $strings ="SELECT book_id FROM Book WHERE name = '".$book."'";
-  
-  $result = $conn->prepare($strings);
-  $result->execute();
-  $result->bind_result($book_id);
-  $tmp = array();
-
-  while($result->fetch()) {       
-    $tmp["book_id"] = $book_id;
-    #no array_push here
-  }
-  $result->close();
-  
-  $strings ="INSERT INTO BookEdition (id ,book_id , edition_id) VALUES (NULL , '".$tmp["book_id"]."' , '".$Edition."')";
-  $result = $conn->query($strings);
-
-  $strings ="INSERT INTO Price (price_id ,book_id , quality_id , price) VALUES (NULL , '".$tmp["book_id"]."' ,'1' ,'".$Price_W."')";
-  $result = $conn->query($strings);
-
-  $strings ="INSERT INTO Price (price_id ,book_id , quality_id , price) VALUES (NULL , '".$tmp["book_id"]."' ,'2' ,'".$Price_N."')";
-  $result = $conn->query($strings);
-
-  $strings ="INSERT INTO Price (price_id ,book_id , quality_id , price) VALUES (NULL , '".$tmp["book_id"]."' ,'3' ,'".$Price_O."')";
-  $result = $conn->query($strings);
-
-  # tow quality_id = 1
-  $strings ="INSERT INTO BookSemester (id ,university_id, department_id, semester_id , book_id) VALUES (NULL , '1' ,'".$Dept."' ,'".$Sem."', '".$tmp["book_id"]."')";
-  $result = $conn->query($strings);
-  
-
-  $strings ="INSERT INTO Author (author_id , author_name ) VALUES (NULL , '".$author."')";
-  $result = $conn->query($strings);
-  
-  $strings ="SELECT author_id FROM Author WHERE author_name = '".$author."'";
-  
-  $result = $conn->prepare($strings);
-  $result->execute();
-  $result->bind_result($id);
-  
-  while($result->fetch()) {       
-    $tmp["author_id"] = $id;
-  }
-
-  $result->close();
-
-  $strings ="INSERT INTO BookAuthor (id ,book_id ,author_id) VALUES (NULL , '".$tmp["book_id"]."' , '".$tmp["author_id"]."')";
-  $result = $conn->query($strings);
-  
-  $Price_S = $Price_N * 0.5;
-
-  $strings ="INSERT INTO Price (price_id ,book_id , quality_id , price) VALUES (NULL , '".$tmp["book_id"]."' ,'4' ,'".$Price_S."')";
-  $result = $conn->query($strings);
-
-
-  echoRespnse(201,$tmp);
-
-  # quality_id --  1 = WhitePrint , 2 = NEw , 3 = USED
+    
 
 });
 
@@ -302,15 +252,16 @@ $app->get('/book_pricelist', function() use ($app)  {
 $app->get('/new_order', function() use ($app) {
 
   // $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
-  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_devtesting");
+  //$conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_devtesting");
+   $conn = new mysqli("localhost", "root", "", "kolpobdc_bookstore");
 
-  $strings = "SELECT BookOrder.book_order_id ,  User.name, BookOrder.shipping_address, BookOrder.total_cost,
-  BookOrder.order_issue,BookOrder.delivery_confirmed, User.mobile
-  FROM BookOrder,Book,Author,User
-  WHERE User.user_id = BookOrder.user_id
-  AND BookOrder.delivery_confirmed = 0
-  GROUP BY BookOrder.book_order_id
-  ORDER BY BookOrder.book_order_id";
+  $strings = "SELECT order.order_id ,  user.name, order.address, order.total_cost,
+  order.time,order.delivery_status, user.mobile
+  FROM order,book,user
+  WHERE user.user_id = order.user_id
+  AND order.delivery_status = 0
+  GROUP BY user.user_id
+  ORDER BY order.order_id";
         
   $result = $conn->prepare($strings);
   $result->execute();
@@ -407,39 +358,45 @@ $app->get('/update_order_status', function() use ($app) {
  $app->get('/IndividualBookDataStore', function() use ($app)  {
  
   // $bookId = $app->request->get('bookId');
-   $bookId = 2;
+   $bookId = 1;
   // $conn = new mysqli("localhost", "testing", "kolpobd", "kolpobdc_site");
-   $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+  //$conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+   $conn = new mysqli("localhost", "root", "", "kolpobdc_bookstore");
 
 
-  $strings = "SELECT Book.name
-  FROM Book
-  WHERE Book.book_id = '".$bookId."'";    
+  $strings = "SELECT *
+  FROM book
+  WHERE book.book_id = '".$bookId."'";    
   
-  $result = $conn->prepare($strings);
-  $result->execute();
-  $result->bind_result($BookName);
-  $AllBookInformationList = array();
-
-  while($result->fetch()) {  
-    
-    $AllBookInformationList["BookId"] = $bookId;
-    $AllBookInformationList["BookName"] = $BookName;
-    array_push($AllBookInformationList, ReturnAuthor($bookId));
-    array_push($AllBookInformationList, ReturnBookEdition($bookId));
-    array_push($AllBookInformationList, ReturnTags($bookId));
-    array_push($AllBookInformationList, ReturnSemister($bookId));
-    array_push($AllBookInformationList, ReturnDepartment($bookId));
-    array_push($AllBookInformationList, ReturnUniversity($bookId));
-    array_push($AllBookInformationList, ReturnPriceList($bookId));
-    
-    
+    // $conn = new mysqli("localhost", "testing", "kolpobd", "kolpobdc_site");
+ 
+  
+  $resultX = $conn->prepare($strings);
+  $resultX->execute();
+  $resultX->bind_result($book_id,$book_name,$publisher,$author,$buy_price,$sell_price,$genre,$description,$img_link,$pdf_link);
+  $booklist = array();
+ 
+  while($resultX->fetch()) {
+      
+      $temp  =array();
+      $booklist["total"] = $book_id;
+      $temp["book_id"] = $book_id;
+      $temp["book_name"] = $book_name;
+      $temp["publisher"] = $publisher;
+      $temp["author"] = $author;
+      $temp["buy_price"] = $buy_price;
+      $temp["sell_price"] = $sell_price;
+      $temp["genre"] = $genre;
+      $temp["description"] = $description;
+      $temp["img_link"] = $img_link;
+      $temp["pdf_link"] = $pdf_link;
+      
+            
   }
+  $resultX->close();
 
-
-  $result->close();
-
-  echoRespnse(200,$AllBookInformationList); 
+echoRespnse(200,$temp); 
+ 
 
 
         
@@ -451,7 +408,8 @@ $app->get('/update_order_status', function() use ($app) {
  function ReturnAuthor($bookId)
  {
    # code...
-   $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+   //$conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+  $conn = new mysqli("localhost", "root", "", "kolpobdc_bookstore");
  
    $strings = "SELECT Author.author_id,Author.author_name
    FROM Book,Author,BookAuthor
@@ -724,44 +682,47 @@ $app->get('/update_order_status', function() use ($app) {
  
 
   // $conn = new mysqli("localhost", "testing", "kolpobd", "kolpobdc_site");
-  $conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
-  $OverAllArray = array();
+  //$conn = new mysqli("localhost", "kolpobdc", "5NUl.2tru1T3-H", "kolpobdc_site");
+   $conn = new mysqli("localhost", "root", "", "kolpobdc_bookstore");
   
-  $strings = "SELECT Book.book_id
-  FROM Book
-  ORDER BY Book.book_id";    
+  $strings = "SELECT * FROM book
+  ORDER BY book.book_id";    
   
   $resultX = $conn->prepare($strings);
   $resultX->execute();
-  $resultX->bind_result($book_id);
+  $resultX->bind_result($book_id,$book_name,$publisher,$author,$buy_price,$sell_price,$genre,$description,$img_link,$pdf_link);
   $booklist = array();
  
   while($resultX->fetch()) {
       
-      $temp = array();
+      $temp  =array();
+      //$booklist["total"] = $book_id;
       $temp["book_id"] = $book_id;
+      $temp["book_name"] = $book_name;
+      $temp["publisher"] = $publisher;
+      $temp["author"] = $author;
+      $temp["buy_price"] = $buy_price;
+      $temp["sell_price"] = $sell_price;
+      $temp["genre"] = $genre;
+      $temp["description"] = $description;
+      $temp["img_link"] = $img_link;
+      $temp["pdf_link"] = $pdf_link;
+      
+      //echo ($temp);
+      
       array_push($booklist, $temp);
             
   }
   $resultX->close();
 
 
-
-  
-  foreach($booklist as $bookId)
-  {
-
-    array_push($OverAllArray, ReturnIndividualBookInfo($bookId["book_id"]));
-    
-
-  }
     
 
  
 
  
 
-echoRespnse(200,$OverAllArray); 
+echoRespnse(200,$booklist); 
 
 
        
