@@ -10,6 +10,12 @@
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
 
+    <!-- Compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
     <link rel="stylesheet" href="assets/css/normalize.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
@@ -24,7 +30,27 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+<style>
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
 
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+
+</style>
 </head>
 
 <body>
@@ -197,49 +223,66 @@
 
                         <form>
                             <div class="form-row">
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-6">
                                     <label for="inputEmail4">Book Name</label>
-                                    <input type="text" class="form-control" id="book_name"  readonly>
+                                    <h5 id="book_name">Teach yourself C++</h5>
+                                    <!-- <input type="text" class="form-control" id="book_name"  readonly> -->
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="inputPassword4">Book ID</label>
-                                    <input type="text" class="form-control" id="book_id" placeholder="book_id" readonly>
+                                    <h5 id="book_id">23</h5>
+                                    <!-- <input type="text" class="form-control" id="book_id" placeholder="book_id" readonly> -->
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputAddress">Address</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress2">Address 2</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                                <label >Authors</label>
+                                <h5 id="Authors"></h5>
+                                <!-- <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"> -->
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputCity">City</label>
-                                    <input type="text" class="form-control" id="inputCity">
+                                <div class="form-group col-md-2">
+                                    <label for="inputCity">Edition</label>
+                                    <h5 id="edition">4</h5>
+                                    <!-- <input type="text" class="form-control" id="edition"> -->
                                 </div>
-                                <div class="form-group col-md-4">
+                                <!-- <div class="form-group col-md-4">
                                     <label for="inputState">State</label>
                                     <select id="inputState" class="form-control">
                                         <option selected>Choose...</option>
                                         <option>...</option>
                                     </select>
+                                </div> -->
+                                <div class="form-group col-md-2">
+                                    <label for="inputZip">News (Buy)</label>
+                                    <h5 id="news_buy">120</h5>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label for="inputZip">Zip</label>
-                                    <input type="text" class="form-control" id="inputZip">
+                                    <label for="inputZip">News (Sell)</label>
+                                    <h5 id="news_buy">130</h5>
                                 </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputZip">White (Buy)</label>
+                                    <h5 id="news_buy">220</h5>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputZip">White (Sell)</label>
+                                    <h5 id="news_buy">230</h5>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <button type="button" class="btn btn-default btn-circle"><i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                                
                             </div>
                             <div class="form-group">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="gridCheck">
                                     <label class="form-check-label" for="gridCheck">
-                                        Check me out
+                                        Any New Updates?
                                     </label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Sign in</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                     </div>
 

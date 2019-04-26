@@ -1,0 +1,233 @@
+[05-Nov-2018 23:05:51 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[05-Nov-2018 23:05:51 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[05-Nov-2018 23:05:51 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[05-Nov-2018 23:05:51 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[05-Nov-2018 23:05:51 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[05-Nov-2018 23:05:51 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[06-Nov-2018 16:42:40 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[06-Nov-2018 16:42:40 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[06-Nov-2018 16:42:40 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[06-Nov-2018 16:42:40 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[06-Nov-2018 16:42:40 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[06-Nov-2018 16:42:40 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[06-Nov-2018 18:13:42 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[06-Nov-2018 18:13:42 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[06-Nov-2018 18:13:42 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[06-Nov-2018 18:13:42 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[06-Nov-2018 18:13:42 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[06-Nov-2018 18:13:42 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[06-Nov-2018 18:14:35 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[06-Nov-2018 18:14:35 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[06-Nov-2018 18:14:35 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[06-Nov-2018 18:14:35 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[06-Nov-2018 18:14:35 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[06-Nov-2018 18:14:35 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[06-Nov-2018 20:21:13 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[06-Nov-2018 20:21:13 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[06-Nov-2018 20:21:13 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[06-Nov-2018 20:21:13 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[06-Nov-2018 20:21:13 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[06-Nov-2018 20:21:13 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[06-Nov-2018 20:21:17 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[06-Nov-2018 20:21:17 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[06-Nov-2018 20:21:17 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[06-Nov-2018 20:21:17 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[06-Nov-2018 20:21:17 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[06-Nov-2018 20:21:17 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[06-Nov-2018 23:32:11 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[06-Nov-2018 23:32:11 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[06-Nov-2018 23:32:11 UTC] PHP Notice:  Undefined index: username in /home/kolpobdc/public_html/admin/session.php on line 14
+[06-Nov-2018 23:32:11 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[06-Nov-2018 23:32:11 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[06-Nov-2018 23:32:11 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[06-Nov-2018 23:32:11 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[06-Nov-2018 23:41:43 UTC] PHP Notice:  Undefined index: username in /home/kolpobdc/public_html/admin/pdfmake.php on line 12
+[06-Nov-2018 23:41:43 UTC] PHP Notice:  Undefined index: mobile in /home/kolpobdc/public_html/admin/pdfmake.php on line 13
+[06-Nov-2018 23:41:43 UTC] PHP Notice:  Undefined index: delivery_address in /home/kolpobdc/public_html/admin/pdfmake.php on line 14
+[06-Nov-2018 23:41:43 UTC] PHP Notice:  Undefined index: book_id0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 36
+[06-Nov-2018 23:41:43 UTC] PHP Notice:  Undefined index: quality_id0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 37
+[06-Nov-2018 23:41:43 UTC] PHP Notice:  Undefined index: quantity0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 38
+[07-Nov-2018 16:20:48 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[07-Nov-2018 16:20:48 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[07-Nov-2018 16:20:48 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[07-Nov-2018 16:20:48 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[07-Nov-2018 16:20:48 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[07-Nov-2018 16:20:48 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[07-Nov-2018 16:44:41 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[07-Nov-2018 16:44:41 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[07-Nov-2018 16:44:41 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[07-Nov-2018 16:44:41 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[07-Nov-2018 16:44:41 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[07-Nov-2018 16:44:41 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[07-Nov-2018 17:00:37 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[07-Nov-2018 17:00:37 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[07-Nov-2018 17:00:37 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[07-Nov-2018 17:00:37 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[07-Nov-2018 17:00:37 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[07-Nov-2018 17:00:37 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[07-Nov-2018 21:59:13 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[07-Nov-2018 21:59:13 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[07-Nov-2018 21:59:13 UTC] PHP Notice:  Undefined index: username in /home/kolpobdc/public_html/admin/session.php on line 14
+[07-Nov-2018 21:59:13 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[07-Nov-2018 21:59:13 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[07-Nov-2018 21:59:13 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[07-Nov-2018 21:59:13 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[07-Nov-2018 21:59:16 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[07-Nov-2018 21:59:16 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[07-Nov-2018 21:59:16 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[07-Nov-2018 21:59:16 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[07-Nov-2018 21:59:16 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[07-Nov-2018 21:59:16 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[10-Nov-2018 18:30:21 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[10-Nov-2018 18:30:21 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[10-Nov-2018 18:30:21 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[10-Nov-2018 18:30:21 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[10-Nov-2018 18:30:21 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[10-Nov-2018 18:30:21 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[10-Nov-2018 22:41:16 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[10-Nov-2018 22:41:16 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[10-Nov-2018 22:41:16 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[10-Nov-2018 22:41:16 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[10-Nov-2018 22:41:16 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[10-Nov-2018 22:41:16 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[11-Nov-2018 18:35:43 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[11-Nov-2018 18:35:43 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[11-Nov-2018 18:35:43 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[11-Nov-2018 18:35:43 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[11-Nov-2018 18:35:43 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[11-Nov-2018 18:35:43 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[14-Nov-2018 09:29:55 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[14-Nov-2018 09:29:55 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[14-Nov-2018 09:29:55 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[14-Nov-2018 09:29:55 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[14-Nov-2018 09:29:55 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[14-Nov-2018 09:29:55 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[14-Nov-2018 10:45:21 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[14-Nov-2018 10:45:21 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[14-Nov-2018 10:45:21 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[14-Nov-2018 10:45:21 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[14-Nov-2018 10:45:21 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[14-Nov-2018 10:45:21 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[14-Nov-2018 10:49:11 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[14-Nov-2018 10:49:11 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[14-Nov-2018 10:49:11 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[14-Nov-2018 10:49:11 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[14-Nov-2018 10:49:11 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[14-Nov-2018 10:49:11 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[14-Nov-2018 12:38:00 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[14-Nov-2018 12:38:00 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[14-Nov-2018 12:38:00 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[14-Nov-2018 12:38:00 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[14-Nov-2018 12:38:00 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[14-Nov-2018 12:38:00 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[15-Nov-2018 10:38:28 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[15-Nov-2018 10:38:28 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[15-Nov-2018 10:38:28 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[15-Nov-2018 10:38:28 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[15-Nov-2018 10:38:28 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[15-Nov-2018 10:38:28 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[15-Nov-2018 12:13:10 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[15-Nov-2018 12:13:10 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[15-Nov-2018 12:13:10 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[15-Nov-2018 12:13:10 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[15-Nov-2018 12:13:10 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[15-Nov-2018 12:13:10 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[15-Nov-2018 12:42:39 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[15-Nov-2018 12:42:39 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[15-Nov-2018 12:42:39 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[15-Nov-2018 12:42:39 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[15-Nov-2018 12:42:39 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[15-Nov-2018 12:42:39 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[17-Nov-2018 07:01:35 UTC] PHP Notice:  Undefined index: username in /home/kolpobdc/public_html/admin/pdfmake.php on line 12
+[17-Nov-2018 07:01:35 UTC] PHP Notice:  Undefined index: mobile in /home/kolpobdc/public_html/admin/pdfmake.php on line 13
+[17-Nov-2018 07:01:35 UTC] PHP Notice:  Undefined index: delivery_address in /home/kolpobdc/public_html/admin/pdfmake.php on line 14
+[17-Nov-2018 07:01:35 UTC] PHP Notice:  Undefined index: book_id0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 36
+[17-Nov-2018 07:01:35 UTC] PHP Notice:  Undefined index: quality_id0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 37
+[17-Nov-2018 07:01:35 UTC] PHP Notice:  Undefined index: quantity0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 38
+[18-Nov-2018 18:14:00 UTC] PHP Notice:  Undefined index: username in /home/kolpobdc/public_html/admin/pdfmake.php on line 12
+[18-Nov-2018 18:14:00 UTC] PHP Notice:  Undefined index: mobile in /home/kolpobdc/public_html/admin/pdfmake.php on line 13
+[18-Nov-2018 18:14:00 UTC] PHP Notice:  Undefined index: delivery_address in /home/kolpobdc/public_html/admin/pdfmake.php on line 14
+[18-Nov-2018 18:14:01 UTC] PHP Notice:  Undefined index: book_id0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 36
+[18-Nov-2018 18:14:01 UTC] PHP Notice:  Undefined index: quality_id0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 37
+[18-Nov-2018 18:14:01 UTC] PHP Notice:  Undefined index: quantity0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 38
+[20-Nov-2018 02:48:12 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[20-Nov-2018 02:48:12 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[20-Nov-2018 02:48:12 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[20-Nov-2018 02:48:12 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[20-Nov-2018 02:48:12 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[20-Nov-2018 02:48:12 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[21-Nov-2018 08:15:22 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[21-Nov-2018 08:15:22 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[21-Nov-2018 08:15:22 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[21-Nov-2018 08:15:22 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[21-Nov-2018 08:15:22 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[21-Nov-2018 08:15:22 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[29-Nov-2018 10:54:24 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[29-Nov-2018 10:54:24 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[29-Nov-2018 10:54:24 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[29-Nov-2018 10:54:24 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[29-Nov-2018 10:54:24 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[29-Nov-2018 10:54:24 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[29-Nov-2018 10:55:17 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[29-Nov-2018 10:55:17 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[29-Nov-2018 10:55:17 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[29-Nov-2018 10:55:17 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[29-Nov-2018 10:55:17 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[29-Nov-2018 10:55:17 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[03-Dec-2018 11:26:04 UTC] PHP Notice:  Undefined index: username in /home/kolpobdc/public_html/admin/pdfmake.php on line 12
+[03-Dec-2018 11:26:04 UTC] PHP Notice:  Undefined index: mobile in /home/kolpobdc/public_html/admin/pdfmake.php on line 13
+[03-Dec-2018 11:26:04 UTC] PHP Notice:  Undefined index: delivery_address in /home/kolpobdc/public_html/admin/pdfmake.php on line 14
+[03-Dec-2018 11:26:04 UTC] PHP Notice:  Undefined index: book_id0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 36
+[03-Dec-2018 11:26:04 UTC] PHP Notice:  Undefined index: quality_id0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 37
+[03-Dec-2018 11:26:04 UTC] PHP Notice:  Undefined index: quantity0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 38
+[08-Dec-2018 00:35:06 UTC] PHP Notice:  Undefined index: username in /home/kolpobdc/public_html/admin/pdfmake.php on line 12
+[08-Dec-2018 00:35:06 UTC] PHP Notice:  Undefined index: mobile in /home/kolpobdc/public_html/admin/pdfmake.php on line 13
+[08-Dec-2018 00:35:06 UTC] PHP Notice:  Undefined index: delivery_address in /home/kolpobdc/public_html/admin/pdfmake.php on line 14
+[08-Dec-2018 00:35:06 UTC] PHP Notice:  Undefined index: book_id0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 36
+[08-Dec-2018 00:35:06 UTC] PHP Notice:  Undefined index: quality_id0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 37
+[08-Dec-2018 00:35:06 UTC] PHP Notice:  Undefined index: quantity0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 38
+[08-Dec-2018 00:52:34 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[08-Dec-2018 00:52:34 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[08-Dec-2018 00:52:34 UTC] PHP Notice:  Undefined index: username in /home/kolpobdc/public_html/admin/session.php on line 14
+[08-Dec-2018 00:52:34 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[08-Dec-2018 00:52:34 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[08-Dec-2018 00:52:34 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[08-Dec-2018 00:52:34 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[08-Dec-2018 06:08:14 UTC] PHP Notice:  Undefined index: username in /home/kolpobdc/public_html/admin/pdfmake.php on line 12
+[08-Dec-2018 06:08:14 UTC] PHP Notice:  Undefined index: mobile in /home/kolpobdc/public_html/admin/pdfmake.php on line 13
+[08-Dec-2018 06:08:14 UTC] PHP Notice:  Undefined index: delivery_address in /home/kolpobdc/public_html/admin/pdfmake.php on line 14
+[08-Dec-2018 06:08:14 UTC] PHP Notice:  Undefined index: book_id0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 36
+[08-Dec-2018 06:08:14 UTC] PHP Notice:  Undefined index: quality_id0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 37
+[08-Dec-2018 06:08:14 UTC] PHP Notice:  Undefined index: quantity0 in /home/kolpobdc/public_html/admin/pdfmake.php on line 38
+[11-Dec-2018 11:52:39 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[11-Dec-2018 11:52:39 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[11-Dec-2018 11:52:39 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[11-Dec-2018 11:52:39 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[11-Dec-2018 11:52:39 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[11-Dec-2018 11:52:39 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[21-Dec-2018 11:44:54 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[21-Dec-2018 11:44:54 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[21-Dec-2018 11:44:54 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[21-Dec-2018 11:44:54 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[21-Dec-2018 11:44:54 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[21-Dec-2018 11:44:54 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[26-Dec-2018 16:34:25 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[26-Dec-2018 16:34:25 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[26-Dec-2018 16:34:25 UTC] PHP Notice:  Undefined index: username in /home/kolpobdc/public_html/admin/session.php on line 14
+[26-Dec-2018 16:34:25 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[26-Dec-2018 16:34:25 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[26-Dec-2018 16:34:25 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[26-Dec-2018 16:34:25 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[26-Dec-2018 16:34:44 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[26-Dec-2018 16:34:44 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[26-Dec-2018 16:34:44 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[26-Dec-2018 16:34:44 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[26-Dec-2018 16:34:44 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[26-Dec-2018 16:34:44 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28
+[27-Dec-2018 17:55:51 UTC] PHP Warning:  include(/home/kolpobdc/public_html/phpincludes/auth.php): failed to open stream: No such file or directory in /home/kolpobdc/public_html/admin/session.php on line 4
+[27-Dec-2018 17:55:51 UTC] PHP Warning:  include(): Failed opening '/home/kolpobdc/public_html/phpincludes/auth.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/kolpobdc/public_html/admin/session.php on line 4
+[27-Dec-2018 17:55:51 UTC] PHP Notice:  Undefined index: username in /home/kolpobdc/public_html/admin/session.php on line 14
+[27-Dec-2018 17:55:51 UTC] PHP Notice:  Undefined variable: con in /home/kolpobdc/public_html/admin/session.php on line 15
+[27-Dec-2018 17:55:51 UTC] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, null given in /home/kolpobdc/public_html/admin/session.php on line 15
+[27-Dec-2018 17:55:51 UTC] PHP Notice:  Undefined variable: result in /home/kolpobdc/public_html/admin/session.php on line 28
+[27-Dec-2018 17:55:51 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/kolpobdc/public_html/admin/session.php on line 28

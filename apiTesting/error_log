@@ -1,0 +1,9 @@
+[06-Nov-2018 18:36:13 UTC] PHP Fatal error:  Call to a member function execute() on boolean in /home/kolpobdc/public_html/apiTesting/index.php on line 629
+[06-Nov-2018 18:38:57 UTC] PHP Fatal error:  Call to a member function execute() on boolean in /home/kolpobdc/public_html/apiTesting/index.php on line 631
+[06-Nov-2018 19:01:30 UTC] PHP Fatal error:  Call to a member function execute() on boolean in /home/kolpobdc/public_html/apiTesting/index.php on line 661
+[06-Nov-2018 19:03:35 UTC] PHP Fatal error:  Call to a member function execute() on boolean in /home/kolpobdc/public_html/apiTesting/index.php on line 661
+[06-Nov-2018 19:10:48 UTC] PHP Fatal error:  Call to a member function execute() on boolean in /home/kolpobdc/public_html/apiTesting/index.php on line 717
+[06-Nov-2018 19:34:46 UTC] PHP Fatal error:  Call to a member function execute() on boolean in /home/kolpobdc/public_html/apiTesting/index.php on line 626
+[06-Nov-2018 19:35:32 UTC] PHP Fatal error:  Call to a member function execute() on boolean in /home/kolpobdc/public_html/apiTesting/index.php on line 721
+[06-Nov-2018 19:36:37 UTC] PHP Fatal error:  Call to a member function execute() on boolean in /home/kolpobdc/public_html/apiTesting/index.php on line 721
+[06-Nov-2018 19:38:09 UTC] PHP Fatal error:  Call to a member function execute() on boolean in /home/kolpobdc/public_html/apiTesting/index.php on line 657
